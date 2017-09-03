@@ -1,4 +1,4 @@
-import {EventEmitter, Injectable} from '@angular/core';
+import {EventEmitter, Injectable} from "@angular/core";
 
 export class ToastrEvent {
     constructor(public name: string, public message: string) {
@@ -21,7 +21,7 @@ export class ToastrService {
     }
 
     public add(name: string, message: string): void {
-        let toastr = new ToastrEvent(name, message);
+        let toastr: ToastrEvent = new ToastrEvent(name, message);
         this.events.push(toastr);
         this.eventAdded$.emit(toastr);
     }

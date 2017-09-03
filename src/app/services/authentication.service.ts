@@ -1,7 +1,7 @@
-import {EventEmitter, Inject, Injectable, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
-import {Http, Headers, Response, RequestOptions} from '@angular/http';
-import {Observable} from 'rxjs/Rx';
-import 'rxjs/add/operator/map';
+import {EventEmitter, Inject, Injectable, Input, OnChanges, Output, SimpleChanges} from "@angular/core";
+import {Http, Headers, Response, RequestOptions} from "@angular/http";
+import {Observable} from "rxjs/Rx";
+import "rxjs/add/operator/map";
 import {app} from "../../config/app";
 import {User} from "../models/User";
 import {arrays} from "../helpers/arrays";
@@ -12,7 +12,7 @@ export class AuthenticationService {
 
 
     /**
-     *token field
+     * @param token {string}
      */
     public token: string;
     /**
@@ -28,7 +28,7 @@ export class AuthenticationService {
     constructor(@Inject(Http) private http: Http,
                 private toastrService: ToastrService) {
         // set token if saved in local storage
-        let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        let currentUser = JSON.parse(localStorage.getItem("currentUser"));
         this.token = currentUser && currentUser.token;
     }
 
@@ -40,7 +40,7 @@ export class AuthenticationService {
      * @returns {Observable<R>}
      */
     login(email: string, password: string): Observable<boolean> {
-        return this.http.post(app.api_url + '/api/login', {email: email, password: password})
+        return this.http.post(app.api_url + "/api/login", {email: email, password: password})
             .map((response: Response) => {
                     // login successful if there's a jwt token in the response
                     let token = response.json() && response.json().meta.token;
@@ -51,7 +51,8 @@ export class AuthenticationService {
                         let name = response.json().data.name ? response.json().data.name : "";
 
                         // store email and jwt token in local storage to keep user logged in between page refreshes
-                        localStorage.setItem('currentUser', JSON.stringify({name: name, email: email, token: token}));
+                        localStorage.setItem("currentUser",
+                            JSON.stringify({name: name, email: email, token: token}));
                         this.getUser();
                         this.userChange.emit(response.json());
 
@@ -66,7 +67,7 @@ export class AuthenticationService {
     }
 
     getUser(): any {
-        let that = this;
+        let that: AuthenticationService = this;
 
         this.user = this.getAuthenticatedUser().subscribe(users => {
             if (that.token) {
@@ -77,8 +78,8 @@ export class AuthenticationService {
         }, (error) => {
             that.user = [];
             that.authenticated = false;
-            localStorage.removeItem('currentUser');
-            localStorage.removeItem('io');
+            localStorage.removeItem("currentUser");
+            localStorage.removeItem("io");
             this.userChange.emit(null);
             that.logout();
         });
@@ -93,11 +94,11 @@ export class AuthenticationService {
      */
     getUsers(): Observable<User[]> {
         // add authorization header with jwt token
-        let headers = new Headers({'Authorization': 'Bearer ' + this.token});
+        let headers = new Headers({"Authorization": "Bearer " + this.token});
         let options = new RequestOptions({headers: headers});
 
         // get users from api
-        return this.http.get(app.api_url + '/api/users', options)
+        return this.http.get(app.api_url + "/api/users", options)
             .map((response: Response) => response.json());
     }
 
@@ -108,11 +109,11 @@ export class AuthenticationService {
      */
     getAuthenticatedUser(): Observable<User[]> {
         // add authorization header with jwt token
-        let headers = new Headers({'Authorization': 'Bearer ' + this.token});
+        let headers = new Headers({"Authorization": "Bearer " + this.token});
         let options = new RequestOptions({headers: headers});
 
         // get users from api
-        return this.http.get(app.api_url + '/api/user', options)
+        return this.http.get(app.api_url + "/api/user", options)
             .map((response: Response) => response.json());
     }
 
@@ -126,7 +127,7 @@ export class AuthenticationService {
      * @returns {Observable<boolean>}
      */
     register(name: string, email: string, password: string, confirm: string): Observable<boolean> {
-        return this.http.post(app.api_url + '/api/register', {
+        return this.http.post(app.api_url + "/api/register", {
             name: name,
             email: email,
             password: password,
@@ -143,7 +144,7 @@ export class AuthenticationService {
                     let id = response.json().id ? response.json().id : 0;
                     let user = {id: id, name: name, email: email, token: token};
                     // store username and jwt token in local storage to keep user logged in between page refreshes
-                    localStorage.setItem('currentUser', JSON.stringify(user));
+                    localStorage.setItem("currentUser", JSON.stringify(user));
                     this.user = user;
                     this.authenticated = true;
                     this.userChange.emit(this.user);
@@ -163,8 +164,8 @@ export class AuthenticationService {
     logout(): void {
         // clear token remove user from local storage to log user out
         this.token = null;
-        localStorage.removeItem('currentUser');
+        localStorage.removeItem("currentUser");
         this.userChange.emit(null);
-        this.toastrService.add('info', 'You are logged out!');
+        this.toastrService.add("info", "You are logged out!");
     }
 }

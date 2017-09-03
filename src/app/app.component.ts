@@ -13,8 +13,8 @@ interface IDataStore {
     styleUrls: ["./app.component.css"]
 })
 export class AppComponent implements OnInit {
-    user = [];
-    authenticated: boolean = false;
+    public user = [];
+    public authenticated: boolean = false;
     private toastrAdded: ToastrEvent;
     @Output() userChange = new EventEmitter();
 
@@ -73,7 +73,7 @@ export class AppComponent implements OnInit {
     }
 
     // get users from secure api end point
-    getUser(): void {
+    public getUser(): void {
         if (this.userService.token) {
             this.user = this.userService.getUser();
             this.authenticated = true;

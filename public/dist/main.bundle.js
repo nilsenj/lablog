@@ -291,24 +291,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 
 var HomeComponent = (function () {
     function HomeComponent() {
     }
-    HomeComponent.prototype.ngOnInit = function () {
-    };
     return HomeComponent;
 }());
 HomeComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'app-home',
+        selector: "app-home",
         template: __webpack_require__("../../../../../src/app/components/home/home.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/home/home.component.scss")]
-    }),
-    __metadata("design:paramtypes", [])
+    })
 ], HomeComponent);
 
 //# sourceMappingURL=C:/Users/nilse/Code/lablog/src/home.component.js.map
@@ -369,7 +363,7 @@ var LoginComponent = (function () {
         this.toastrService = toastrService;
         this.model = {};
         this.loading = false;
-        this.error = '';
+        this.error = "";
     }
     LoginComponent.prototype.ngOnInit = function () {
         // reset login status
@@ -383,16 +377,16 @@ var LoginComponent = (function () {
         this.authenticationService.login(this.model.email, this.model.password)
             .subscribe(function (result) {
             if (result === true) {
-                _this.router.navigate(['/']);
+                _this.router.navigate(["/"]);
                 _this.authenticationService.userEvent.emit(result);
-                _this.toastrService.add('info', 'You are logged in!');
+                _this.toastrService.add("info", "You are logged in!");
             }
             else {
-                _this.error = 'Username or password is incorrect';
+                _this.error = "Username or password is incorrect";
                 _this.loading = false;
             }
         }, function (result) {
-            _this.error = 'Username or password is incorrect';
+            _this.error = "Username or password is incorrect";
             _this.loading = false;
         });
     };
@@ -400,7 +394,7 @@ var LoginComponent = (function () {
 }());
 LoginComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'app-login',
+        selector: "app-login",
         template: __webpack_require__("../../../../../src/app/components/login/login.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/login/login.component.scss")]
     }),
@@ -497,7 +491,7 @@ __decorate([
 ], NavigationComponent.prototype, "user", void 0);
 NavigationComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'app-navigation',
+        selector: "app-navigation",
         template: __webpack_require__("../../../../../src/app/components/navigation/navigation.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/navigation/navigation.component.scss")]
     }),
@@ -563,13 +557,13 @@ var RegisterComponent = (function () {
         this.toastrService = toastrService;
         this.model = {};
         this.loading = false;
-        this.error = '';
+        this.error = "";
     }
     RegisterComponent.prototype.ngOnInit = function () {
         // reset login status
         if (this.authenticationService.token) {
-            this.router.navigate(['/']);
-            this.toastrService.add('warning', 'You are already registered');
+            this.router.navigate(["/"]);
+            this.toastrService.add("warning", "You are already registered");
         }
         else {
             // this.authenticationService.logout();
@@ -581,14 +575,14 @@ var RegisterComponent = (function () {
         this.authenticationService.register(this.model.name, this.model.email, this.model.password, this.model.confirm)
             .subscribe(function (result) {
             if (result === true) {
-                _this.router.navigate(['/']);
+                _this.router.navigate(["/"]);
             }
             else {
-                _this.error = 'Sorry your account isn\'t created';
+                _this.error = "Sorry your account isn\'t created";
                 _this.loading = false;
             }
         }, function (data) {
-            _this.error = 'Sorry your account isn\'t created';
+            _this.error = "Sorry your account isn\'t created";
             _this.loading = false;
         });
     };
@@ -596,7 +590,7 @@ var RegisterComponent = (function () {
 }());
 RegisterComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'app-register',
+        selector: "app-register",
         template: __webpack_require__("../../../../../src/app/components/register/register.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/register/register.component.scss")]
     }),
@@ -669,7 +663,7 @@ var UserComponent = (function () {
 }());
 UserComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'app-user',
+        selector: "app-user",
         template: __webpack_require__("../../../../../src/app/components/user/user.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/user/user.component.scss")]
     }),
@@ -718,25 +712,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 
 var WelcomeComponent = (function () {
     function WelcomeComponent() {
         this.title = "App";
     }
-    WelcomeComponent.prototype.ngOnInit = function () {
-    };
     return WelcomeComponent;
 }());
 WelcomeComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'app-welcome',
+        selector: "app-welcome",
         template: __webpack_require__("../../../../../src/app/components/welcome/welcome.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/welcome/welcome.component.scss")]
-    }),
-    __metadata("design:paramtypes", [])
+    })
 ], WelcomeComponent);
 
 //# sourceMappingURL=C:/Users/nilse/Code/lablog/src/welcome.component.js.map
@@ -769,13 +757,13 @@ var AuthGuard = (function () {
         this.toastrService = toastrService;
     }
     AuthGuard.prototype.canActivate = function (next, state) {
-        if (localStorage.getItem('currentUser')) {
+        if (localStorage.getItem("currentUser")) {
             // logged in so return true
             return true;
         }
-        this.toastrService.add('warning', 'You are not allowed. Please log in!');
+        this.toastrService.add("warning", "You are not allowed. Please log in!");
         // not logged in so redirect to login page
-        this.router.navigate(['/login']);
+        this.router.navigate(["/login"]);
         return false;
     };
     return AuthGuard;
@@ -853,15 +841,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 var appRoutes = [
-    { path: 'login', component: __WEBPACK_IMPORTED_MODULE_1__components_login_login_component__["a" /* LoginComponent */] },
-    { path: 'register', component: __WEBPACK_IMPORTED_MODULE_3__components_register_register_component__["a" /* RegisterComponent */] },
-    { path: '', component: __WEBPACK_IMPORTED_MODULE_4__components_welcome_welcome_component__["a" /* WelcomeComponent */] },
-    { path: 'home', component: __WEBPACK_IMPORTED_MODULE_5__components_home_home_component__["a" /* HomeComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_6__guards_auth_guard__["a" /* AuthGuard */]] },
-    { path: 'user', component: __WEBPACK_IMPORTED_MODULE_7__components_user_user_component__["a" /* UserComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_6__guards_auth_guard__["a" /* AuthGuard */]] },
+    { path: "login", component: __WEBPACK_IMPORTED_MODULE_1__components_login_login_component__["a" /* LoginComponent */] },
+    { path: "register", component: __WEBPACK_IMPORTED_MODULE_3__components_register_register_component__["a" /* RegisterComponent */] },
+    { path: "", component: __WEBPACK_IMPORTED_MODULE_4__components_welcome_welcome_component__["a" /* WelcomeComponent */] },
+    { path: "home", component: __WEBPACK_IMPORTED_MODULE_5__components_home_home_component__["a" /* HomeComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_6__guards_auth_guard__["a" /* AuthGuard */]] },
+    { path: "user", component: __WEBPACK_IMPORTED_MODULE_7__components_user_user_component__["a" /* UserComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_6__guards_auth_guard__["a" /* AuthGuard */]] },
     // otherwise redirect to home
-    { path: '**', redirectTo: '' }
+    { path: "**", redirectTo: "" }
 ];
-var base = document.querySelector('#base');
+var base = document.querySelector("#base");
 var useHash = false;
 if (base) {
     useHash = true;
@@ -929,7 +917,7 @@ var AuthenticationService = (function () {
         this.userEvent = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
         this.userChange = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
         // set token if saved in local storage
-        var currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        var currentUser = JSON.parse(localStorage.getItem("currentUser"));
         this.token = currentUser && currentUser.token;
     }
     /**
@@ -941,7 +929,7 @@ var AuthenticationService = (function () {
      */
     AuthenticationService.prototype.login = function (email, password) {
         var _this = this;
-        return this.http.post(__WEBPACK_IMPORTED_MODULE_3__config_app__["a" /* app */].api_url + '/api/login', { email: email, password: password })
+        return this.http.post(__WEBPACK_IMPORTED_MODULE_3__config_app__["a" /* app */].api_url + "/api/login", { email: email, password: password })
             .map(function (response) {
             // login successful if there's a jwt token in the response
             var token = response.json() && response.json().meta.token;
@@ -951,7 +939,7 @@ var AuthenticationService = (function () {
                 _this.userEvent.emit(response.json());
                 var name = response.json().data.name ? response.json().data.name : "";
                 // store email and jwt token in local storage to keep user logged in between page refreshes
-                localStorage.setItem('currentUser', JSON.stringify({ name: name, email: email, token: token }));
+                localStorage.setItem("currentUser", JSON.stringify({ name: name, email: email, token: token }));
                 _this.getUser();
                 _this.userChange.emit(response.json());
                 // return true to indicate successful login
@@ -975,8 +963,8 @@ var AuthenticationService = (function () {
         }, function (error) {
             that.user = [];
             that.authenticated = false;
-            localStorage.removeItem('currentUser');
-            localStorage.removeItem('io');
+            localStorage.removeItem("currentUser");
+            localStorage.removeItem("io");
             _this.userChange.emit(null);
             that.logout();
         });
@@ -989,10 +977,10 @@ var AuthenticationService = (function () {
      */
     AuthenticationService.prototype.getUsers = function () {
         // add authorization header with jwt token
-        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({ 'Authorization': 'Bearer ' + this.token });
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({ "Authorization": "Bearer " + this.token });
         var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]({ headers: headers });
         // get users from api
-        return this.http.get(__WEBPACK_IMPORTED_MODULE_3__config_app__["a" /* app */].api_url + '/api/users', options)
+        return this.http.get(__WEBPACK_IMPORTED_MODULE_3__config_app__["a" /* app */].api_url + "/api/users", options)
             .map(function (response) { return response.json(); });
     };
     /**
@@ -1002,10 +990,10 @@ var AuthenticationService = (function () {
      */
     AuthenticationService.prototype.getAuthenticatedUser = function () {
         // add authorization header with jwt token
-        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({ 'Authorization': 'Bearer ' + this.token });
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({ "Authorization": "Bearer " + this.token });
         var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]({ headers: headers });
         // get users from api
-        return this.http.get(__WEBPACK_IMPORTED_MODULE_3__config_app__["a" /* app */].api_url + '/api/user', options)
+        return this.http.get(__WEBPACK_IMPORTED_MODULE_3__config_app__["a" /* app */].api_url + "/api/user", options)
             .map(function (response) { return response.json(); });
     };
     /**
@@ -1019,7 +1007,7 @@ var AuthenticationService = (function () {
      */
     AuthenticationService.prototype.register = function (name, email, password, confirm) {
         var _this = this;
-        return this.http.post(__WEBPACK_IMPORTED_MODULE_3__config_app__["a" /* app */].api_url + '/api/register', {
+        return this.http.post(__WEBPACK_IMPORTED_MODULE_3__config_app__["a" /* app */].api_url + "/api/register", {
             name: name,
             email: email,
             password: password,
@@ -1036,7 +1024,7 @@ var AuthenticationService = (function () {
                 var id = response.json().id ? response.json().id : 0;
                 var user = { id: id, name: name_1, email: email, token: token };
                 // store username and jwt token in local storage to keep user logged in between page refreshes
-                localStorage.setItem('currentUser', JSON.stringify(user));
+                localStorage.setItem("currentUser", JSON.stringify(user));
                 _this.user = user;
                 _this.authenticated = true;
                 _this.userChange.emit(_this.user);
@@ -1055,9 +1043,9 @@ var AuthenticationService = (function () {
     AuthenticationService.prototype.logout = function () {
         // clear token remove user from local storage to log user out
         this.token = null;
-        localStorage.removeItem('currentUser');
+        localStorage.removeItem("currentUser");
         this.userChange.emit(null);
-        this.toastrService.add('info', 'You are logged out!');
+        this.toastrService.add("info", "You are logged out!");
     };
     return AuthenticationService;
 }());
