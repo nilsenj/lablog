@@ -1,14 +1,16 @@
-import {Component, EventEmitter, OnInit, Output, ViewContainerRef} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output, ViewContainerRef} from "@angular/core";
 import {AuthenticationService} from "./services/authentication.service";
-import {User} from "./models/User";
-import {arrays} from "./helpers/arrays";
 import {ToastsManager} from "ng2-toastr";
 import {ToastrEvent, ToastrService} from "./services/toastr.service";
+interface IDataStore {
+    user: any;
+    authenticated: boolean;
+}
 
 @Component({
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css']
+    selector: "app-root",
+    templateUrl: "./app.component.html",
+    styleUrls: ["./app.component.css"]
 })
 export class AppComponent implements OnInit {
     user = [];
@@ -26,37 +28,38 @@ export class AppComponent implements OnInit {
 
     private onToastrAdded(item: ToastrEvent): void {
         // do something with added item
-        switch(item.name) {
-            case 'success':
+        switch (item.name) {
+            case "success":
                 this.showSuccess(item.message);
                 break;
-            case 'warning':
+            case "warning":
                 this.showWarning(item.message);
                 break;
-            case 'error':
+            case "error":
                 this.showError(item.message);
                 break;
-            case 'info':
+            case "info":
                 this.showInfo(item.message);
                 break;
-            case 'custom':
+            case "custom":
                 this.showCustom(item.message);
                 break;
         }
         this.toastrAdded = item;
     }
-    ngOnInit() {
+
+    ngOnInit(): void {
         // get users from secure api end point
         this.getUser();
         this.userChanged();
     }
 
-    userChanged(): void {
+    public userChanged(): void {
         this.userService.userChange.subscribe(data => {
             if (data) {
                 this.user = data;
                 this.authenticated = true;
-                let dataStore = {
+                let dataStore: IDataStore = {
                     user: this.user,
                     authenticated: this.authenticated
                 };
@@ -66,7 +69,7 @@ export class AppComponent implements OnInit {
                 this.authenticated = false;
                 this.userChange.emit(null);
             }
-        })
+        });
     }
 
     // get users from secure api end point
@@ -74,7 +77,7 @@ export class AppComponent implements OnInit {
         if (this.userService.token) {
             this.user = this.userService.getUser();
             this.authenticated = true;
-            let dataStore = {
+            let dataStore: IDataStore = {
                 user: this.user,
                 authenticated: this.authenticated
             };
@@ -85,24 +88,25 @@ export class AppComponent implements OnInit {
         }
     }
 
-    showSuccess(message: string) {
-        this.toastr.success(message, 'Success!');
+    public showSuccess(message: string): void {
+        this.toastr.success(message, "Success!");
     }
 
-    showError(message: string) {
-        this.toastr.error(message, 'Oops!');
+    public showError(message: string): void {
+        this.toastr.error(message, "Oops!");
     }
 
-    showWarning(message: string) {
-        this.toastr.warning(message, 'Alert!');
+    public showWarning(message: string): void {
+        this.toastr.warning(message, "Alert!");
     }
 
-    showInfo(message: string) {
+    public showInfo(message: string): void {
         this.toastr.info(message);
     }
 
-    showCustom(message) {
-        this.toastr.custom('<span style="color: red">Message in red.</span>', null, {enableHTML: true});
+    public showCustom(message: string): void {
+        this.toastr.custom("<span style=\"color: red\">Message in red.</span>",
+            null, {enableHTML: true});
     }
 
 }
