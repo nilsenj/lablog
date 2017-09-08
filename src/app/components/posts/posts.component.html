@@ -1,5 +1,5 @@
 <div class="posts container">
-    <div class="post-item" *ngFor="let post of posts" class="row block">
+    <div *ngFor="let post of posts" class="row block">
         <div class="row">
             <div class="col-lg-12">
                 <a [routerLink]="['/post/', post.id]" class="header clearfix">{{post.name}}</a>
@@ -16,4 +16,10 @@
         </div>
         <hr style="border: dashed 1px darkgrey; width: 100%">
     </div>
+    <app-pagination [pagination]="pagination"
+                    [page]="page"
+                    (pageUpdated)="pageUpdated($event)">
+                    (click)="all(pagination.current_page)"
+                    (offset)="4">
+    </app-pagination>
 </div>

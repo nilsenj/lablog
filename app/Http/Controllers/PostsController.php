@@ -24,8 +24,9 @@ class PostsController extends Controller
      */
     public function index(Request $request)
     {
-        $posts = $this->post->all();
-        $data = compact('posts');
+        $items = $this->post->paginate(10);
+        $count = $this->post->count();
+        $data = compact('items', 'count');
 
         return response()->json($data);
     }

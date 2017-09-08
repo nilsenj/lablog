@@ -195,12 +195,14 @@ var _a, _b, _c, _d;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_posts_posts_component__ = __webpack_require__("../../../../../src/app/components/posts/posts.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__services_post_service__ = __webpack_require__("../../../../../src/app/services/post.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__components_post_post_component__ = __webpack_require__("../../../../../src/app/components/post/post.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__components_pagination_pagination_component__ = __webpack_require__("../../../../../src/app/components/pagination/pagination.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -238,7 +240,8 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_12__components_navigation_navigation_component__["a" /* NavigationComponent */],
             __WEBPACK_IMPORTED_MODULE_13__components_user_user_component__["a" /* UserComponent */],
             __WEBPACK_IMPORTED_MODULE_18__components_posts_posts_component__["a" /* PostsComponent */],
-            __WEBPACK_IMPORTED_MODULE_20__components_post_post_component__["a" /* PostComponent */]
+            __WEBPACK_IMPORTED_MODULE_20__components_post_post_component__["a" /* PostComponent */],
+            __WEBPACK_IMPORTED_MODULE_21__components_pagination_pagination_component__["a" /* PaginationComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["BrowserModule"],
@@ -407,7 +410,7 @@ LoginComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/components/login/login.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/login/login.component.scss")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_authentication_service__["a" /* AuthenticationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_authentication_service__["a" /* AuthenticationService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__services_toastr_service__["a" /* ToastrService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_toastr_service__["a" /* ToastrService */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_authentication_service__["a" /* AuthenticationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_authentication_service__["a" /* AuthenticationService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__services_toastr_service__["a" /* ToastrService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_toastr_service__["a" /* ToastrService */]) === "function" && _c || Object])
 ], LoginComponent);
 
 var _a, _b, _c;
@@ -512,6 +515,135 @@ var _a;
 
 /***/ }),
 
+/***/ "../../../../../src/app/components/pagination/pagination.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<ul class=\"pagination\" *ngIf=\"pagination && pagination.current_page && pagination.last_page\">\n  <li *ngIf=\"pagination.current_page > 1\">\n    <a role=\"link\" aria-label=\"Previous\" class=\"btn btn-dark btn-sm\" [routerLink]=\"['/posts']\" [queryParams]=\"{ page: this.page - 1 }\">\n         <span aria-hidden=\"true\">←</span>\n    </a>\n  </li>\n  <li *ngFor=\"let page of pagesNumber()\" [ngClass]=\"{'active': page == pagination.current_page}\">\n    <a [routerLink]=\"['/posts']\" [queryParams]=\"{ page: page }\" class=\"btn btn-dark btn-sm\">{{ page }}</a>\n  </li>\n  <li *ngIf=\"pagination.current_page < pagination.last_page\">\n    <button role=\"link\" aria-label=\"Next\" class=\"btn btn-dark btn-sm\" [routerLink]=\"['/posts']\" [queryParams]=\"{ page: this.page + 1 }\">\n      <span aria-hidden=\"true\">→</span>\n    </button>\n  </li>\n</ul>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/pagination/pagination.component.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".pagination li.active a {\n  font-weight: 700;\n  background: #0099e5; }\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/pagination/pagination.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PaginationComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var PaginationComponent = (function () {
+    function PaginationComponent(router) {
+        this.router = router;
+        this.offset = 4;
+        this.pageUpdated = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+    }
+    PaginationComponent.prototype.ngOnInit = function () {
+    };
+    PaginationComponent.prototype.pagesNumber = function () {
+        if (!this.pagination.to) {
+            return [];
+        }
+        var from = this.pagination.current_page - this.offset;
+        if (from < 1) {
+            from = 1;
+        }
+        var to = from + (this.offset * 2);
+        if (to >= this.pagination.last_page) {
+            to = this.pagination.last_page;
+        }
+        var pagesArray = [];
+        for (from = 1; from <= to; from++) {
+            pagesArray.push(from);
+        }
+        return pagesArray;
+    };
+    PaginationComponent.prototype.ngOnChanges = function (changes) {
+        // only run when property "data" changed
+        if (changes['page']) {
+            this.pageUpdated.emit(this.page);
+        }
+    };
+    PaginationComponent.prototype.changePage = function (page) {
+        this.pagination.current_page = page;
+        if (page > 1) {
+            this.goToPage(page);
+        }
+        else {
+            this.goToPage(1);
+        }
+    };
+    /**
+     *
+     * @param {number} pageNum
+     */
+    PaginationComponent.prototype.goToPage = function (pageNum) {
+        this.router.navigate(["posts"], { queryParams: { page: pageNum } });
+    };
+    PaginationComponent.prototype.previousPage = function () {
+        this.router.navigate(["posts"], { queryParams: { page: this.page - 1 } });
+    };
+    PaginationComponent.prototype.nextPage = function () {
+        this.router.navigate(["posts"], { queryParams: { page: this.page + 1 } });
+    };
+    return PaginationComponent;
+}());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+    __metadata("design:type", Object)
+], PaginationComponent.prototype, "pagination", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+    __metadata("design:type", Number)
+], PaginationComponent.prototype, "offset", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+    __metadata("design:type", Number)
+], PaginationComponent.prototype, "page", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
+    __metadata("design:type", Object)
+], PaginationComponent.prototype, "pageUpdated", void 0);
+PaginationComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: "app-pagination",
+        template: __webpack_require__("../../../../../src/app/components/pagination/pagination.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/components/pagination/pagination.component.scss")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _a || Object])
+], PaginationComponent);
+
+var _a;
+//# sourceMappingURL=C:/Users/nilse/Code/lablog/src/pagination.component.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/components/post/post.component.html":
 /***/ (function(module, exports) {
 
@@ -576,7 +708,7 @@ PostComponent = __decorate([
 /***/ "../../../../../src/app/components/posts/posts.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"posts container\">\n    <div class=\"post-item\" *ngFor=\"let post of posts\" class=\"row block\">\n        <div class=\"row\">\n            <div class=\"col-lg-12\">\n                <a [routerLink]=\"['/post/', post.id]\" class=\"header clearfix\">{{post.name}}</a>\n                <div class=\"card-block\">\n                    <img src=\"{{post.image_url}}\" alt=\"{{ post.name }}\" class=\"img-thumbnail\">\n                    <p>\n                        {{ post.body | slice:0:200 }}\n                    </p>\n                    <span class=\"text-muted float-left text-left\">{{post.created}}</span>\n                    <a [routerLink]=\"['/post/', post.id]\"\n                       class=\"btn btn-dark btn-sm float-right text-right\">go to post</a>\n                </div>\n            </div>\n        </div>\n        <hr style=\"border: dashed 1px darkgrey; width: 100%\">\n    </div>\n</div>"
+module.exports = "<div class=\"posts container\">\n    <div *ngFor=\"let post of posts\" class=\"row block\">\n        <div class=\"row\">\n            <div class=\"col-lg-12\">\n                <a [routerLink]=\"['/post/', post.id]\" class=\"header clearfix\">{{post.name}}</a>\n                <div class=\"card-block\">\n                    <img src=\"{{post.image_url}}\" alt=\"{{ post.name }}\" class=\"img-thumbnail\">\n                    <p>\n                        {{ post.body | slice:0:200 }}\n                    </p>\n                    <span class=\"text-muted float-left text-left\">{{post.created}}</span>\n                    <a [routerLink]=\"['/post/', post.id]\"\n                       class=\"btn btn-dark btn-sm float-right text-right\">go to post</a>\n                </div>\n            </div>\n        </div>\n        <hr style=\"border: dashed 1px darkgrey; width: 100%\">\n    </div>\n    <app-pagination [pagination]=\"pagination\"\n                    [page]=\"page\"\n                    (pageUpdated)=\"pageUpdated($event)\">\n                    (click)=\"all(pagination.current_page)\"\n                    (offset)=\"4\">\n    </app-pagination>\n</div>"
 
 /***/ }),
 
@@ -606,6 +738,7 @@ module.exports = module.exports.toString();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_post_service__ = __webpack_require__("../../../../../src/app/services/post.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_toastr_service__ = __webpack_require__("../../../../../src/app/services/toastr.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -618,16 +751,37 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var PostsComponent = (function () {
-    function PostsComponent(postService, toastrService) {
+    function PostsComponent(postService, route, toastrService) {
         this.postService = postService;
+        this.route = route;
         this.toastrService = toastrService;
     }
     PostsComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.postService.getPosts().subscribe(function (data) {
-            _this.posts = data.posts;
-        }, function (error) {
+        this.sub = this.route.queryParams.subscribe(function (params) {
+            var page = +params['page'];
+            if (!page) {
+                page = 1;
+            }
+            _this.page = page;
+        });
+        this.all(this.page);
+    };
+    PostsComponent.prototype.pageUpdated = function (page) {
+        window.scrollTo(0, 0);
+        this.all(page);
+    };
+    PostsComponent.prototype.all = function (page) {
+        var _this = this;
+        this.postService.getPosts(page).subscribe(function (response) {
+            // get body data
+            _this.posts = response.items.data;
+            delete (response.items.data);
+            _this.pagination = response.items;
+        }, function (response) {
+            // error callback
             _this.toastrService.add("error", "Error during posts render");
         });
     };
@@ -639,10 +793,10 @@ PostsComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/components/posts/posts.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/posts/posts.component.scss")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_post_service__["a" /* PostService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_post_service__["a" /* PostService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_toastr_service__["a" /* ToastrService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_toastr_service__["a" /* ToastrService */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_post_service__["a" /* PostService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_post_service__["a" /* PostService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_router__["a" /* ActivatedRoute */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__services_toastr_service__["a" /* ToastrService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_toastr_service__["a" /* ToastrService */]) === "function" && _c || Object])
 ], PostsComponent);
 
-var _a, _b;
+var _a, _b, _c;
 //# sourceMappingURL=C:/Users/nilse/Code/lablog/src/posts.component.js.map
 
 /***/ }),
@@ -738,7 +892,7 @@ RegisterComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/components/register/register.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/register/register.component.scss")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_authentication_service__["a" /* AuthenticationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_authentication_service__["a" /* AuthenticationService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__services_toastr_service__["a" /* ToastrService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_toastr_service__["a" /* ToastrService */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_authentication_service__["a" /* AuthenticationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_authentication_service__["a" /* AuthenticationService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__services_toastr_service__["a" /* ToastrService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_toastr_service__["a" /* ToastrService */]) === "function" && _c || Object])
 ], RegisterComponent);
 
 var _a, _b, _c;
@@ -914,7 +1068,7 @@ var AuthGuard = (function () {
 }());
 AuthGuard = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_toastr_service__["a" /* ToastrService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_toastr_service__["a" /* ToastrService */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_toastr_service__["a" /* ToastrService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_toastr_service__["a" /* ToastrService */]) === "function" && _b || Object])
 ], AuthGuard);
 
 var _a, _b;
@@ -1012,10 +1166,10 @@ var AppRouterModule = (function () {
 AppRouterModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
         imports: [
-            __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* RouterModule */].forRoot(appRoutes, { useHash: useHash })
+            __WEBPACK_IMPORTED_MODULE_2__angular_router__["c" /* RouterModule */].forRoot(appRoutes, { useHash: useHash })
         ],
         exports: [
-            __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* RouterModule */]
+            __WEBPACK_IMPORTED_MODULE_2__angular_router__["c" /* RouterModule */]
         ],
         declarations: []
     })
@@ -1259,12 +1413,12 @@ var PostService = (function () {
      *
      * @returns {Observable<R>}
      */
-    PostService.prototype.getPosts = function () {
+    PostService.prototype.getPosts = function (page) {
         // add authorization header with jwt token
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({ "Authorization": "Bearer " + this.token });
         var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]({ headers: headers });
         // get users from api
-        return this.http.get(__WEBPACK_IMPORTED_MODULE_3__config_app__["a" /* app */].api_url + "/api/blog/index", options)
+        return this.http.get(__WEBPACK_IMPORTED_MODULE_3__config_app__["a" /* app */].api_url + "/api/blog/index?page=" + page, options)
             .map(function (response) { return response.json(); });
     };
     /**

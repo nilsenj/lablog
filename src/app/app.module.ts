@@ -19,6 +19,7 @@ import {CustomToastr} from "./support/CustomToastr";
 import { PostsComponent } from "./components/posts/posts.component";
 import {PostService} from "./services/post.service";
 import { PostComponent } from "./components/post/post.component";
+import { PaginationComponent } from "./components/pagination/pagination.component";
 
 @NgModule({
     declarations: [
@@ -30,7 +31,8 @@ import { PostComponent } from "./components/post/post.component";
         NavigationComponent,
         UserComponent,
         PostsComponent,
-        PostComponent
+        PostComponent,
+        PaginationComponent
     ],
     imports: [
         BrowserModule,
