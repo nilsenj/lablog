@@ -192,12 +192,18 @@ var _a, _b, _c, _d;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__angular_platform_browser_animations__ = __webpack_require__("../../../platform-browser/@angular/platform-browser/animations.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__services_toastr_service__ = __webpack_require__("../../../../../src/app/services/toastr.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__support_CustomToastr__ = __webpack_require__("../../../../../src/app/support/CustomToastr.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_posts_posts_component__ = __webpack_require__("../../../../../src/app/components/posts/posts.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__services_post_service__ = __webpack_require__("../../../../../src/app/services/post.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__components_post_post_component__ = __webpack_require__("../../../../../src/app/components/post/post.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
+
 
 
 
@@ -230,7 +236,9 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_5__components_home_home_component__["a" /* HomeComponent */],
             __WEBPACK_IMPORTED_MODULE_6__components_welcome_welcome_component__["a" /* WelcomeComponent */],
             __WEBPACK_IMPORTED_MODULE_12__components_navigation_navigation_component__["a" /* NavigationComponent */],
-            __WEBPACK_IMPORTED_MODULE_13__components_user_user_component__["a" /* UserComponent */]
+            __WEBPACK_IMPORTED_MODULE_13__components_user_user_component__["a" /* UserComponent */],
+            __WEBPACK_IMPORTED_MODULE_18__components_posts_posts_component__["a" /* PostsComponent */],
+            __WEBPACK_IMPORTED_MODULE_20__components_post_post_component__["a" /* PostComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["BrowserModule"],
@@ -245,6 +253,7 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_10__guards_auth_guard__["a" /* AuthGuard */],
             __WEBPACK_IMPORTED_MODULE_16__services_toastr_service__["a" /* ToastrService */],
             { provide: __WEBPACK_IMPORTED_MODULE_14_ng2_toastr__["ToastOptions"], useClass: __WEBPACK_IMPORTED_MODULE_17__support_CustomToastr__["a" /* CustomToastr */] },
+            __WEBPACK_IMPORTED_MODULE_19__services_post_service__["a" /* PostService */]
         ],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_2__app_component__["a" /* AppComponent */]]
     })
@@ -409,7 +418,7 @@ var _a, _b, _c;
 /***/ "../../../../../src/app/components/navigation/navigation.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-lg navbar-dark bg-primary\">\r\n  <a class=\"navbar-brand\" [routerLink]=\"['/']\">App</a>\r\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarNav\" aria-controls=\"navbarNav\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n  <div class=\"collapse navbar-collapse\" id=\"navbarNav\">\r\n    <ul class=\"navbar-nav\">\r\n      <li class=\"nav-item active\">\r\n        <a class=\"nav-link\" [routerLink]=\"['/home']\">Home <span class=\"sr-only\">(current)</span></a>\r\n      </li>\r\n      <li class=\"nav-item\" *ngIf=\"authenticated\">\r\n          <a class=\"nav-link\" [routerLink]=\"['/user']\">Hello, {{user['name']}}</a>\r\n      </li>\r\n      <li class=\"nav-item\" *ngIf=\"!authenticated\">\r\n        <a class=\"nav-link\" [routerLink]=\"['/register']\">Register</a>\r\n      </li>\r\n      <li class=\"nav-item\" *ngIf=\"!authenticated\">\r\n        <a class=\"nav-link\">|</a>\r\n      </li>\r\n      <li class=\"nav-item\" *ngIf=\"!authenticated\">\r\n        <a class=\"nav-link\" [routerLink]=\"['/login']\">Login</a>\r\n      </li>\r\n      <li class=\"nav-item\" *ngIf=\"authenticated\">\r\n        <a class=\"nav-link\" [routerLink]=\"['/login']\">Logout</a>\r\n      </li>\r\n\r\n    </ul>\r\n  </div>\r\n</nav>"
+module.exports = "<nav class=\"navbar navbar-expand-lg navbar-dark bg-primary\">\r\n    <a class=\"navbar-brand\" [routerLink]=\"['/']\">App</a>\r\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarNav\"\r\n            aria-controls=\"navbarNav\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n        <span class=\"navbar-toggler-icon\"></span>\r\n    </button>\r\n    <div class=\"collapse navbar-collapse\" id=\"navbarNav\">\r\n        <ul class=\"navbar-nav\">\r\n            <li class=\"nav-item active\">\r\n                <a class=\"nav-link\" [routerLink]=\"['/home']\">Home <span class=\"sr-only\">(current)</span></a>\r\n            </li>\r\n            <li class=\"nav-item\" *ngIf=\"authenticated\">\r\n                <a class=\"nav-link\" [routerLink]=\"['/posts']\">Posts</a>\r\n            </li>\r\n            <li class=\"nav-item\" *ngIf=\"authenticated\">\r\n                <a class=\"nav-link\" [routerLink]=\"['/user']\">Hello, {{user['name']}}</a>\r\n            </li>\r\n            <li class=\"nav-item\" *ngIf=\"!authenticated\">\r\n                <a class=\"nav-link\" [routerLink]=\"['/register']\">Register</a>\r\n            </li>\r\n            <li class=\"nav-item\" *ngIf=\"!authenticated\">\r\n                <a class=\"nav-link\">|</a>\r\n            </li>\r\n            <li class=\"nav-item\" *ngIf=\"!authenticated\">\r\n                <a class=\"nav-link\" [routerLink]=\"['/login']\">Login</a>\r\n            </li>\r\n            <li class=\"nav-item\" *ngIf=\"authenticated\">\r\n                <a class=\"nav-link\" [routerLink]=\"['/login']\">Logout</a>\r\n            </li>\r\n\r\n        </ul>\r\n    </div>\r\n</nav>"
 
 /***/ }),
 
@@ -500,6 +509,141 @@ NavigationComponent = __decorate([
 
 var _a;
 //# sourceMappingURL=C:/Users/nilse/Code/lablog/src/navigation.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/post/post.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<p>\n  post works!\n</p>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/post/post.component.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/post/post.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PostComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+var PostComponent = (function () {
+    function PostComponent() {
+    }
+    PostComponent.prototype.ngOnInit = function () {
+    };
+    return PostComponent;
+}());
+PostComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: 'app-post',
+        template: __webpack_require__("../../../../../src/app/components/post/post.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/components/post/post.component.scss")]
+    }),
+    __metadata("design:paramtypes", [])
+], PostComponent);
+
+//# sourceMappingURL=C:/Users/nilse/Code/lablog/src/post.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/posts/posts.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"posts container\">\n    <div class=\"post-item\" *ngFor=\"let post of posts\" class=\"row block\">\n        <div class=\"row\">\n            <div class=\"col-lg-12\">\n                <a [routerLink]=\"['/post/', post.id]\" class=\"header clearfix\">{{post.name}}</a>\n                <div class=\"card-block\">\n                    <img src=\"{{post.image_url}}\" alt=\"{{ post.name }}\" class=\"img-thumbnail\">\n                    <p>\n                        {{ post.body | slice:0:200 }}\n                    </p>\n                    <span class=\"text-muted float-left text-left\">{{post.created}}</span>\n                    <a [routerLink]=\"['/post/', post.id]\"\n                       class=\"btn btn-dark btn-sm float-right text-right\">go to post</a>\n                </div>\n            </div>\n        </div>\n        <hr style=\"border: dashed 1px darkgrey; width: 100%\">\n    </div>\n</div>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/posts/posts.component.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/posts/posts.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PostsComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_post_service__ = __webpack_require__("../../../../../src/app/services/post.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_toastr_service__ = __webpack_require__("../../../../../src/app/services/toastr.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var PostsComponent = (function () {
+    function PostsComponent(postService, toastrService) {
+        this.postService = postService;
+        this.toastrService = toastrService;
+    }
+    PostsComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.postService.getPosts().subscribe(function (data) {
+            _this.posts = data.posts;
+        }, function (error) {
+            _this.toastrService.add("error", "Error during posts render");
+        });
+    };
+    return PostsComponent;
+}());
+PostsComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: "app-posts",
+        template: __webpack_require__("../../../../../src/app/components/posts/posts.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/components/posts/posts.component.scss")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_post_service__["a" /* PostService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_post_service__["a" /* PostService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_toastr_service__["a" /* ToastrService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_toastr_service__["a" /* ToastrService */]) === "function" && _b || Object])
+], PostsComponent);
+
+var _a, _b;
+//# sourceMappingURL=C:/Users/nilse/Code/lablog/src/posts.component.js.map
 
 /***/ }),
 
@@ -826,6 +970,8 @@ var User = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_home_home_component__ = __webpack_require__("../../../../../src/app/components/home/home.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__guards_auth_guard__ = __webpack_require__("../../../../../src/app/guards/auth.guard.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_user_user_component__ = __webpack_require__("../../../../../src/app/components/user/user.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_posts_posts_component__ = __webpack_require__("../../../../../src/app/components/posts/posts.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_post_post_component__ = __webpack_require__("../../../../../src/app/components/post/post.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -840,11 +986,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
+
 var appRoutes = [
     { path: "login", component: __WEBPACK_IMPORTED_MODULE_1__components_login_login_component__["a" /* LoginComponent */] },
     { path: "register", component: __WEBPACK_IMPORTED_MODULE_3__components_register_register_component__["a" /* RegisterComponent */] },
     { path: "", component: __WEBPACK_IMPORTED_MODULE_4__components_welcome_welcome_component__["a" /* WelcomeComponent */] },
     { path: "home", component: __WEBPACK_IMPORTED_MODULE_5__components_home_home_component__["a" /* HomeComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_6__guards_auth_guard__["a" /* AuthGuard */]] },
+    { path: "posts", component: __WEBPACK_IMPORTED_MODULE_8__components_posts_posts_component__["a" /* PostsComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_6__guards_auth_guard__["a" /* AuthGuard */]] },
+    { path: "post/:id", component: __WEBPACK_IMPORTED_MODULE_9__components_post_post_component__["a" /* PostComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_6__guards_auth_guard__["a" /* AuthGuard */]] },
     { path: "user", component: __WEBPACK_IMPORTED_MODULE_7__components_user_user_component__["a" /* UserComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_6__guards_auth_guard__["a" /* AuthGuard */]] },
     // otherwise redirect to home
     { path: "**", redirectTo: "" }
@@ -1072,6 +1222,77 @@ var _a, _b;
 
 /***/ }),
 
+/***/ "../../../../../src/app/services/post.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PostService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__config_app__ = __webpack_require__("../../../../../src/config/app.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
+
+
+
+var PostService = (function () {
+    function PostService(http) {
+        this.http = http;
+        var currentUser = JSON.parse(localStorage.getItem("currentUser"));
+        this.token = currentUser && currentUser.token;
+    }
+    /**
+     * get all users
+     *
+     * @returns {Observable<R>}
+     */
+    PostService.prototype.getPosts = function () {
+        // add authorization header with jwt token
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({ "Authorization": "Bearer " + this.token });
+        var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]({ headers: headers });
+        // get users from api
+        return this.http.get(__WEBPACK_IMPORTED_MODULE_3__config_app__["a" /* app */].api_url + "/api/blog/index", options)
+            .map(function (response) { return response.json(); });
+    };
+    /**
+     * get all users
+     *
+     * @returns {Observable<R>}
+     */
+    PostService.prototype.findPost = function (id) {
+        // add authorization header with jwt token
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({ "Authorization": "Bearer " + this.token });
+        var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]({ headers: headers });
+        // get users from api
+        return this.http.get(__WEBPACK_IMPORTED_MODULE_3__config_app__["a" /* app */].api_url + "/api/blog/" + id, options)
+            .map(function (response) { return response.json(); });
+    };
+    return PostService;
+}());
+PostService = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+    __param(0, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Inject"])(__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */])),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object])
+], PostService);
+
+var _a;
+//# sourceMappingURL=C:/Users/nilse/Code/lablog/src/post.service.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/services/toastr.service.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1143,7 +1364,7 @@ var CustomToastr = (function (_super) {
     __extends(CustomToastr, _super);
     function CustomToastr() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.positionClass = 'toast-bottom-right'; // you can override any options available
+        _this.positionClass = "toast-bottom-right"; // you can override any options available
         _this.newestOnTop = false;
         _this.showCloseButton = true;
         return _this;

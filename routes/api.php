@@ -43,5 +43,23 @@ Route::group(['middleware' => ['api'], 'as' => 'api.'], function () {
         Route::get('/user', [
             'uses' => 'UserController@index',
         ]);
+        Route::group(['prefix' => 'blog', 'as' => 'blog.'], function () {
+            Route::get('/index', [
+                'uses' => 'PostsController@index',
+            ]);
+            Route::get('/{id}', [
+                'uses' => 'PostsController@show',
+            ]);
+            Route::post('/store', [
+                'uses' => 'PostsController@store',
+            ]);
+            Route::put('/update/{id}', [
+                'uses' => 'PostsController@update',
+            ]);
+            Route::delete('/{id}', [
+                'uses' => 'PostsController@delete',
+                'middleware' => 'AllowDeletePost'
+            ]);
+        });
     });
 });

@@ -10,12 +10,15 @@ import {HttpModule} from "@angular/http";
 import {FormsModule} from "@angular/forms";
 import {AuthGuard} from "./guards/auth.guard";
 import {AuthenticationService} from "./services/authentication.service";
-import {NavigationComponent} from './components/navigation/navigation.component';
-import {UserComponent} from './components/user/user.component';
+import {NavigationComponent} from "./components/navigation/navigation.component";
+import {UserComponent} from "./components/user/user.component";
 import {ToastModule, ToastOptions} from "ng2-toastr";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ToastrService} from "./services/toastr.service";
 import {CustomToastr} from "./support/CustomToastr";
+import { PostsComponent } from "./components/posts/posts.component";
+import {PostService} from "./services/post.service";
+import { PostComponent } from "./components/post/post.component";
 
 @NgModule({
     declarations: [
@@ -25,7 +28,9 @@ import {CustomToastr} from "./support/CustomToastr";
         HomeComponent,
         WelcomeComponent,
         NavigationComponent,
-        UserComponent
+        UserComponent,
+        PostsComponent,
+        PostComponent
     ],
     imports: [
         BrowserModule,
@@ -40,6 +45,7 @@ import {CustomToastr} from "./support/CustomToastr";
         AuthGuard,
         ToastrService,
         {provide: ToastOptions, useClass: CustomToastr},
+        PostService
     ],
     bootstrap: [AppComponent]
 })
