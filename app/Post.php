@@ -21,7 +21,8 @@ class Post extends Model
         'name',
         'body',
         'image',
-        'user_id'
+        'user_id',
+        'available'
     ];
 
     /**
@@ -29,7 +30,8 @@ class Post extends Model
      */
     protected $appends = [
         'image_url',
-        'created'];
+        'created'
+    ];
 
     /**
      * @var array
@@ -61,7 +63,7 @@ class Post extends Model
      */
     public function getImageUrlAttribute()
     {
-        if($this->image) {
+        if ($this->image) {
             return url('assets/images/' . $this->image);
         } else {
             return url('assets/images/notfound.jpg');
@@ -76,8 +78,22 @@ class Post extends Model
         return $this->created_at->diffForHumans();
     }
 
+    /**
+     * @param $query
+     * @param $user_id
+     * @return mixed
+     */
     public function scopeUsers($query, $user_id)
     {
         return $query->where('user_id', $user_id);
+    }
+
+    /**
+     * @param $query
+     * @return mixed
+     */
+    public function scopePublished($query)
+    {
+        return $query->where('available', true);
     }
 }

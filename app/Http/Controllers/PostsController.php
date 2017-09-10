@@ -24,7 +24,8 @@ class PostsController extends Controller
      */
     public function index(Request $request)
     {
-        $items = $this->post->paginate(10);
+        $items = $this->post->latest()->published()
+            ->paginate(10);
         $count = $this->post->count();
         $data = compact('items', 'count');
 

@@ -1,7 +1,7 @@
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {LoginComponent} from "../../components/login/login.component";
-import {RouterModule, Routes} from "@angular/router";
+import {CanActivate, RouterModule, Routes} from "@angular/router";
 import {RegisterComponent} from "../../components/register/register.component";
 import {WelcomeComponent} from "../../components/welcome/welcome.component";
 import {HomeComponent} from "../../components/home/home.component";
@@ -10,6 +10,7 @@ import {UserComponent} from "../../components/user/user.component";
 import {PostsComponent} from "../../components/posts/posts.component";
 import {PostComponent} from "../../components/post/post.component";
 import {PersonalPostsComponent} from "../../components/personal-posts/personal-posts.component";
+import {PostCreateComponent} from "../../components/post-create/post-create.component";
 
 const appRoutes: Routes = [
     {path: "login", component: LoginComponent},
@@ -18,6 +19,7 @@ const appRoutes: Routes = [
     {path: "home", component: HomeComponent, canActivate: [AuthGuard]},
     {path: "posts", component: PostsComponent, canActivate: []},
     {path: "post/:id", component: PostComponent, canActivate: []},
+    {path: "posts/create", component: PostCreateComponent, canActivate: [AuthGuard]},
     {path: "posts/personal", component: PersonalPostsComponent, canActivate: [AuthGuard]},
     {path: "user", component: UserComponent, canActivate: [AuthGuard]},
 

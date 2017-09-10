@@ -10,6 +10,7 @@
     </head>
     <body>
     <app-root></app-root>
+    <script src="{{asset('dist/assets/ckeditor/ckeditor.js')}}"></script>
     <script type="text/javascript" src="{{asset('dist/inline.bundle.js')}}"></script>
     <script type="text/javascript" src="{{asset('dist/polyfills.bundle.js')}}"></script>
     <script type="text/javascript" src="{{asset('dist/styles.bundle.js')}}"></script>

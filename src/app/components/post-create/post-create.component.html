@@ -1,0 +1,50 @@
+<h3 class="text-muted">Create your post</h3>
+<form *ngIf="post" [formGroup]="postForm">
+    <div class="form-group">
+        <label class="center-block w-100">Name:
+            <input placeholder="please type the name of the post (min:2, max:120)" class="form-control" [(ngModel)]="post.name" formControlName="name">
+        </label>
+        <app-control-messages [control]="postForm.controls.name"></app-control-messages>
+    </div>
+    <div class="form-group">
+        <label class="center-block  w-100">Body:
+            <ckeditor
+                    formControlName="body"
+                    [(ngModel)]="post.body"
+                    [config]="{uiColor: '#343a40'}"
+                    [readonly]="false"
+                    (change)="onChange($event)"
+                    (ready)="onReady($event)"
+                    (focus)="onFocus($event)"
+                    (blur)="onBlur($event)"
+                    debounce="500">
+            </ckeditor>
+        </label>
+        <app-control-messages [control]="postForm.controls.body"></app-control-messages>
+    </div>
+    <div class="form-group">
+        <input id="available" type="hidden" formControlName="available" name="available"
+               [(ngModel)]="post.available">
+        <div>
+            <label class="w-100">Available:
+                <span class="clearfix"></span>
+                <input class="" type="checkbox"
+                       [checked]="post.available === toggles[0].value"
+                       (change)="$event.target.checked? (post.available = toggles[0].value) : (post.available = toggles[1].value)">
+                <span class="form-check-inline">
+                    {{ getDisplayToggles() }}
+                </span>
+            </label>
+        </div>
+        <app-control-messages [control]="postForm.controls.available"></app-control-messages>
+    </div>
+    <div class="form-group">
+        <button [disabled]="loading" (click)="savePost()" class="btn btn-primary">Create Post</button>
+        <img *ngIf="loading"
+             src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+    </div>
+    <div *ngIf="showDebug" class="debug">
+        <p>Form value: {{ postForm.value | json }}</p>
+        <p>Form status: {{ postForm.status | json }}</p>
+    </div>
+</form>

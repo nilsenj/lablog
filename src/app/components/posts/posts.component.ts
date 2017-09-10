@@ -15,10 +15,18 @@ export class PostsComponent implements OnInit {
     public pagination;
     public sub;
     public page;
-
+    public authenticated: boolean = false;
+    public user = {};
     constructor(public postService: PostService,
                 private route: ActivatedRoute,
                 private toastrService: ToastrService) {
+        let user = JSON.parse(localStorage.getItem("currentUser"));
+        if(user && user.token) {
+            this.authenticated = true;
+        } else {
+            this.authenticated = false;
+        }
+        this.user = user;
     }
 
     ngOnInit(): void {

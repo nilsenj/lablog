@@ -9,9 +9,11 @@
                     <p>
                         {{ post.body | slice:0:200 }}
                     </p>
-                    <span class="text-muted float-left text-left">{{post.created}}</span>
+                    <span class="text-muted float-left text-left ">{{post.created}}</span>
                     <a [routerLink]="['/post/', post.id]"
-                       class="btn btn-dark btn-sm float-right text-right">go to post</a>
+                       class="btn btn-dark btn-sm float-right text-right m-1">go to post</a>
+                    <a *ngIf="authenticated && post.user.email === user.email" [routerLink]="['/post/update/', post.id]"
+                       class="btn btn-info btn-sm float-right text-right m-1">edit post</a>
                 </div>
             </div>
         </div>
@@ -20,7 +22,7 @@
     <app-pagination [pagination]="pagination"
                     [page]="page"
                     (pageUpdated)="pageUpdated($event)">
-                    (click)="all(pagination.current_page)"
-                    (offset)="4">
+        (click)="all(pagination.current_page)"
+        (offset)="4">
     </app-pagination>
 </div>

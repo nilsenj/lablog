@@ -7,7 +7,7 @@ import {HomeComponent} from './components/home/home.component';
 import {WelcomeComponent} from './components/welcome/welcome.component';
 import {AppRouterModule} from "./modules/router/approuter.module";
 import {HttpModule} from "@angular/http";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AuthGuard} from "./guards/auth.guard";
 import {AuthenticationService} from "./services/authentication.service";
 import {NavigationComponent} from "./components/navigation/navigation.component";
@@ -22,7 +22,14 @@ import { PostComponent } from "./components/post/post.component";
 import { PaginationComponent } from "./components/pagination/pagination.component";
 import { PostNavComponent } from "./components/post-nav/post-nav.component";
 import {DisqusModule} from "ngx-disqus";
-import { PersonalPostsComponent } from './components/personal-posts/personal-posts.component';
+import { PersonalPostsComponent }
+from "./components/personal-posts/personal-posts.component";
+import { PostCreateComponent }
+from "./components/post-create/post-create.component";
+import { ControlMessagesComponent } from "./components/control-messages/control-messages.component";
+import {ValidationService} from "./services/validation.service";
+import { CKEditorModule } from "ng2-ckeditor";
+import { KeepHtmlPipe } from './pipes/keep-html.pipe';
 
 @NgModule({
     declarations: [
@@ -37,23 +44,29 @@ import { PersonalPostsComponent } from './components/personal-posts/personal-pos
         PostComponent,
         PaginationComponent,
         PostNavComponent,
-        PersonalPostsComponent
+        PersonalPostsComponent,
+        PostCreateComponent,
+        ControlMessagesComponent,
+        KeepHtmlPipe
     ],
     imports: [
         BrowserModule,
         FormsModule,
+        ReactiveFormsModule,
         HttpModule,
         AppRouterModule,
         BrowserAnimationsModule,
         ToastModule.forRoot(),
-        DisqusModule.forRoot("blog-dev-6")
+        DisqusModule.forRoot("blog-dev-6"),
+        CKEditorModule
     ],
     providers: [
         AuthenticationService,
         AuthGuard,
         ToastrService,
         {provide: ToastOptions, useClass: CustomToastr},
-        PostService
+        PostService,
+        ValidationService
     ],
     bootstrap: [AppComponent]
 })

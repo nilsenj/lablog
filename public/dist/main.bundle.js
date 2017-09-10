@@ -199,12 +199,23 @@ var _a, _b, _c, _d;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__components_post_nav_post_nav_component__ = __webpack_require__("../../../../../src/app/components/post-nav/post-nav.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23_ngx_disqus__ = __webpack_require__("../../../../ngx-disqus/ngx-disqus.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__components_personal_posts_personal_posts_component__ = __webpack_require__("../../../../../src/app/components/personal-posts/personal-posts.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__components_post_create_post_create_component__ = __webpack_require__("../../../../../src/app/components/post-create/post-create.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__components_control_messages_control_messages_component__ = __webpack_require__("../../../../../src/app/components/control-messages/control-messages.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__services_validation_service__ = __webpack_require__("../../../../../src/app/services/validation.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28_ng2_ckeditor__ = __webpack_require__("../../../../ng2-ckeditor/lib/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28_ng2_ckeditor___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_28_ng2_ckeditor__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__pipes_keep_html_pipe__ = __webpack_require__("../../../../../src/app/pipes/keep-html.pipe.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
+
+
+
 
 
 
@@ -249,29 +260,116 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_20__components_post_post_component__["a" /* PostComponent */],
             __WEBPACK_IMPORTED_MODULE_21__components_pagination_pagination_component__["a" /* PaginationComponent */],
             __WEBPACK_IMPORTED_MODULE_22__components_post_nav_post_nav_component__["a" /* PostNavComponent */],
-            __WEBPACK_IMPORTED_MODULE_24__components_personal_posts_personal_posts_component__["a" /* PersonalPostsComponent */]
+            __WEBPACK_IMPORTED_MODULE_24__components_personal_posts_personal_posts_component__["a" /* PersonalPostsComponent */],
+            __WEBPACK_IMPORTED_MODULE_25__components_post_create_post_create_component__["a" /* PostCreateComponent */],
+            __WEBPACK_IMPORTED_MODULE_26__components_control_messages_control_messages_component__["a" /* ControlMessagesComponent */],
+            __WEBPACK_IMPORTED_MODULE_29__pipes_keep_html_pipe__["a" /* KeepHtmlPipe */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["BrowserModule"],
-            __WEBPACK_IMPORTED_MODULE_9__angular_forms__["a" /* FormsModule */],
+            __WEBPACK_IMPORTED_MODULE_9__angular_forms__["FormsModule"],
+            __WEBPACK_IMPORTED_MODULE_9__angular_forms__["ReactiveFormsModule"],
             __WEBPACK_IMPORTED_MODULE_8__angular_http__["c" /* HttpModule */],
             __WEBPACK_IMPORTED_MODULE_7__modules_router_approuter_module__["a" /* AppRouterModule */],
             __WEBPACK_IMPORTED_MODULE_15__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
             __WEBPACK_IMPORTED_MODULE_14_ng2_toastr__["ToastModule"].forRoot(),
-            __WEBPACK_IMPORTED_MODULE_23_ngx_disqus__["a" /* DisqusModule */].forRoot("blog-dev-6")
+            __WEBPACK_IMPORTED_MODULE_23_ngx_disqus__["a" /* DisqusModule */].forRoot("blog-dev-6"),
+            __WEBPACK_IMPORTED_MODULE_28_ng2_ckeditor__["CKEditorModule"]
         ],
         providers: [
             __WEBPACK_IMPORTED_MODULE_11__services_authentication_service__["a" /* AuthenticationService */],
             __WEBPACK_IMPORTED_MODULE_10__guards_auth_guard__["a" /* AuthGuard */],
             __WEBPACK_IMPORTED_MODULE_16__services_toastr_service__["a" /* ToastrService */],
             { provide: __WEBPACK_IMPORTED_MODULE_14_ng2_toastr__["ToastOptions"], useClass: __WEBPACK_IMPORTED_MODULE_17__support_CustomToastr__["a" /* CustomToastr */] },
-            __WEBPACK_IMPORTED_MODULE_19__services_post_service__["a" /* PostService */]
+            __WEBPACK_IMPORTED_MODULE_19__services_post_service__["a" /* PostService */],
+            __WEBPACK_IMPORTED_MODULE_27__services_validation_service__["a" /* ValidationService */]
         ],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_2__app_component__["a" /* AppComponent */]]
     })
 ], AppModule);
 
 //# sourceMappingURL=C:/Users/nilse/Code/lablog/src/app.module.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/control-messages/control-messages.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"text-warning\" *ngIf=\"errorMessage !== null\">{{errorMessage}}</div>\n"
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/control-messages/control-messages.component.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/control-messages/control-messages.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ControlMessagesComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_validation_service__ = __webpack_require__("../../../../../src/app/services/validation.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var ControlMessagesComponent = (function () {
+    function ControlMessagesComponent() {
+    }
+    ControlMessagesComponent.prototype.ngOnInit = function () { };
+    Object.defineProperty(ControlMessagesComponent.prototype, "errorMessage", {
+        get: function () {
+            for (var propertyName in this.control.errors) {
+                if (this.control.errors.hasOwnProperty(propertyName) && this.control.touched) {
+                    return __WEBPACK_IMPORTED_MODULE_2__services_validation_service__["a" /* ValidationService */].getValidatorErrorMessage(propertyName, this.control.errors[propertyName]);
+                }
+            }
+            return null;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return ControlMessagesComponent;
+}());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_forms__["FormControl"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_forms__["FormControl"]) === "function" && _a || Object)
+], ControlMessagesComponent.prototype, "control", void 0);
+ControlMessagesComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: "app-control-messages",
+        template: __webpack_require__("../../../../../src/app/components/control-messages/control-messages.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/components/control-messages/control-messages.component.scss")]
+    }),
+    __metadata("design:paramtypes", [])
+], ControlMessagesComponent);
+
+var _a;
+//# sourceMappingURL=C:/Users/nilse/Code/lablog/src/control-messages.component.js.map
 
 /***/ }),
 
@@ -656,7 +754,7 @@ var _a;
 /***/ "../../../../../src/app/components/personal-posts/personal-posts.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-post-nav></app-post-nav>\n<h3 class=\"text-muted\">Your Posts</h3>\n<div class=\"posts container\">\n  <div *ngFor=\"let post of posts\" class=\"row block\">\n    <div class=\"row\">\n      <div class=\"col-lg-12\">\n        <a [routerLink]=\"['/post/', post.id]\" class=\"header clearfix\">{{post.name}}</a>\n        <div class=\"card-block\">\n          <img src=\"{{post.image_url}}\" alt=\"{{ post.name }}\" class=\"img-thumbnail\">\n          <p>\n            {{ post.body | slice:0:200 }}\n          </p>\n          <span class=\"text-muted float-left text-left\">{{post.created}}</span>\n          <a [routerLink]=\"['/post/', post.id]\"\n             class=\"btn btn-dark btn-sm float-right text-right\">go to post</a>\n        </div>\n      </div>\n    </div>\n    <hr style=\"border: dashed 1px darkgrey; width: 100%\">\n  </div>\n  <app-pagination [pagination]=\"pagination\"\n                  [page]=\"page\"\n                  (pageUpdated)=\"pageUpdated($event)\">\n    (click)=\"all(pagination.current_page)\"\n    (offset)=\"4\">\n  </app-pagination>\n</div>"
+module.exports = "<app-post-nav></app-post-nav>\n<h3 class=\"text-muted\">Your Posts</h3>\n<div class=\"posts container\">\n  <div *ngFor=\"let post of posts\" class=\"row block\">\n    <div class=\"row\">\n      <div class=\"col-lg-12\">\n        <a [routerLink]=\"['/post/', post.id]\" class=\"header clearfix\">{{post.name}}\n          <span class=\"badge badge-secondary bg-info\" *ngIf=\"post.available\">{{post.published}}</span>\n          <span class=\"badge badge-secondary bg-dark\" *ngIf=\"!post.available\">{{post.published}}</span>\n        </a>\n        <div class=\"card-block\">\n          <img src=\"{{post.image_url}}\" alt=\"{{ post.name }}\" class=\"img-thumbnail\">\n          <p>\n            {{ post.body | slice:0:200 }}\n          </p>\n          <span class=\"text-muted float-left text-left\">{{post.created}}</span>\n          <a [routerLink]=\"['/post/', post.id]\"\n             class=\"btn btn-dark btn-sm float-right text-right m-1\">go to post</a>\n          <a *ngIf=\"authenticated && post.user.email === user.email\" [routerLink]=\"['/post/update/', post.id]\"\n             class=\"btn btn-info btn-sm float-right text-right m-1\">edit post</a>\n        </div>\n      </div>\n    </div>\n    <hr style=\"border: dashed 1px darkgrey; width: 100%\">\n  </div>\n  <app-pagination [pagination]=\"pagination\"\n                  [page]=\"page\"\n                  (pageUpdated)=\"pageUpdated($event)\">\n    (click)=\"all(pagination.current_page)\"\n    (offset)=\"4\">\n  </app-pagination>\n</div>"
 
 /***/ }),
 
@@ -705,6 +803,17 @@ var PersonalPostsComponent = (function () {
         this.postService = postService;
         this.route = route;
         this.toastrService = toastrService;
+        this.published = "not published";
+        this.authenticated = false;
+        this.user = {};
+        var user = JSON.parse(localStorage.getItem("currentUser"));
+        if (user && user.token) {
+            this.authenticated = true;
+        }
+        else {
+            this.authenticated = false;
+        }
+        this.user = user;
     }
     PersonalPostsComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -726,6 +835,9 @@ var PersonalPostsComponent = (function () {
         this.postService.getPersonalPosts(page).subscribe(function (response) {
             // get body data
             _this.posts = response.items.data;
+            _this.posts.map(function (item) {
+                item.published = item.available ? "published" : "not published";
+            });
             delete (response.items.data);
             _this.pagination = response.items;
         }, function (response) {
@@ -746,6 +858,161 @@ PersonalPostsComponent = __decorate([
 
 var _a, _b, _c;
 //# sourceMappingURL=C:/Users/nilse/Code/lablog/src/personal-posts.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/post-create/post-create.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<h3 class=\"text-muted\">Create your post</h3>\r\n<form *ngIf=\"post\" [formGroup]=\"postForm\">\r\n    <div class=\"form-group\">\r\n        <label class=\"center-block w-100\">Name:\r\n            <input placeholder=\"please type the name of the post (min:2, max:120)\" class=\"form-control\" [(ngModel)]=\"post.name\" formControlName=\"name\">\r\n        </label>\r\n        <app-control-messages [control]=\"postForm.controls.name\"></app-control-messages>\r\n    </div>\r\n    <div class=\"form-group\">\r\n        <label class=\"center-block  w-100\">Body:\r\n            <ckeditor\r\n                    formControlName=\"body\"\r\n                    [(ngModel)]=\"post.body\"\r\n                    [config]=\"{uiColor: '#343a40'}\"\r\n                    [readonly]=\"false\"\r\n                    (change)=\"onChange($event)\"\r\n                    (ready)=\"onReady($event)\"\r\n                    (focus)=\"onFocus($event)\"\r\n                    (blur)=\"onBlur($event)\"\r\n                    debounce=\"500\">\r\n            </ckeditor>\r\n        </label>\r\n        <app-control-messages [control]=\"postForm.controls.body\"></app-control-messages>\r\n    </div>\r\n    <div class=\"form-group\">\r\n        <input id=\"available\" type=\"hidden\" formControlName=\"available\" name=\"available\"\r\n               [(ngModel)]=\"post.available\">\r\n        <div>\r\n            <label class=\"w-100\">Available:\r\n                <span class=\"clearfix\"></span>\r\n                <input class=\"\" type=\"checkbox\"\r\n                       [checked]=\"post.available === toggles[0].value\"\r\n                       (change)=\"$event.target.checked? (post.available = toggles[0].value) : (post.available = toggles[1].value)\">\r\n                <span class=\"form-check-inline\">\r\n                    {{ getDisplayToggles() }}\r\n                </span>\r\n            </label>\r\n        </div>\r\n        <app-control-messages [control]=\"postForm.controls.available\"></app-control-messages>\r\n    </div>\r\n    <div class=\"form-group\">\r\n        <button [disabled]=\"loading\" (click)=\"savePost()\" class=\"btn btn-primary\">Create Post</button>\r\n        <img *ngIf=\"loading\"\r\n             src=\"data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==\"/>\r\n    </div>\r\n    <div *ngIf=\"showDebug\" class=\"debug\">\r\n        <p>Form value: {{ postForm.value | json }}</p>\r\n        <p>Form status: {{ postForm.status | json }}</p>\r\n    </div>\r\n</form>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/post-create/post-create.component.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/post-create/post-create.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PostCreateComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_Post__ = __webpack_require__("../../../../../src/app/models/Post.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_post_service__ = __webpack_require__("../../../../../src/app/services/post.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_toastr_service__ = __webpack_require__("../../../../../src/app/services/toastr.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+
+
+var PostCreateComponent = (function () {
+    function PostCreateComponent(postBuilder, postService, toastrService, route) {
+        this.postBuilder = postBuilder;
+        this.postService = postService;
+        this.toastrService = toastrService;
+        this.route = route;
+        this.canSavePost = false;
+        this.loading = false;
+        this.toggles = [
+            { value: true, display: "Available" },
+            { value: false, display: "Not Available" },
+        ];
+        this.showDebug = false;
+    }
+    PostCreateComponent.prototype.ngOnInit = function () {
+        this.post = {
+            name: "",
+            body: "",
+            available: false
+        };
+        this.createForm();
+        if (this.postForm.valid) {
+            this.canSavePost = true;
+        }
+        else {
+            this.canSavePost = false;
+        }
+    };
+    PostCreateComponent.prototype.onChange = function () {
+    };
+    PostCreateComponent.prototype.onReady = function () {
+    };
+    PostCreateComponent.prototype.onFocus = function () {
+    };
+    PostCreateComponent.prototype.onBlur = function () {
+    };
+    PostCreateComponent.prototype.getDisplayToggles = function () {
+        if (this.post.available) {
+            return this.toggles[0].display;
+        }
+        else {
+            return this.toggles[1].display;
+        }
+    };
+    PostCreateComponent.prototype.savePost = function (form) {
+        var _this = this;
+        this.loading = true;
+        if (!this.postForm.valid) {
+            this.toastrService.add("error", "Form not valid! Try once more");
+        }
+        else {
+            this.postService.savePost(this.post).subscribe(function (response) {
+                _this.toastrService.add("success", "Your Post Has been saved!");
+                _this.route.navigate(["/post/", response.post.id]);
+            }, function (error) {
+                console.log(error);
+                _this.toastrService.add("error", "Code: " +
+                    error.status + "! Error during post save!" +
+                    "Reason: " + error.statusText);
+            });
+        }
+        this.loading = false;
+    };
+    PostCreateComponent.prototype.createForm = function () {
+        this.postForm = this.postBuilder.group({
+            name: [this.post.name, [
+                    __WEBPACK_IMPORTED_MODULE_2__angular_forms__["Validators"].required,
+                    __WEBPACK_IMPORTED_MODULE_2__angular_forms__["Validators"].minLength(2),
+                    __WEBPACK_IMPORTED_MODULE_2__angular_forms__["Validators"].maxLength(255)
+                ]
+            ],
+            body: [this.post.body, [
+                    __WEBPACK_IMPORTED_MODULE_2__angular_forms__["Validators"].required,
+                    __WEBPACK_IMPORTED_MODULE_2__angular_forms__["Validators"].minLength(120),
+                    __WEBPACK_IMPORTED_MODULE_2__angular_forms__["Validators"].maxLength(5000)
+                ]
+            ],
+            available: ["", __WEBPACK_IMPORTED_MODULE_2__angular_forms__["Validators"].required],
+        });
+    };
+    return PostCreateComponent;
+}());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__models_Post__["a" /* Post */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__models_Post__["a" /* Post */]) === "function" && _a || Object)
+], PostCreateComponent.prototype, "post", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+    __metadata("design:type", typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormGroup"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormGroup"]) === "function" && _b || Object)
+], PostCreateComponent.prototype, "postForm", void 0);
+PostCreateComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: "app-post-create",
+        template: __webpack_require__("../../../../../src/app/components/post-create/post-create.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/components/post-create/post-create.component.scss")]
+    }),
+    __metadata("design:paramtypes", [typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormBuilder"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormBuilder"]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__services_post_service__["a" /* PostService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_post_service__["a" /* PostService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__services_toastr_service__["a" /* ToastrService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_toastr_service__["a" /* ToastrService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_5__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__angular_router__["b" /* Router */]) === "function" && _f || Object])
+], PostCreateComponent);
+
+var _a, _b, _c, _d, _e, _f;
+//# sourceMappingURL=C:/Users/nilse/Code/lablog/src/post-create.component.js.map
 
 /***/ }),
 
@@ -828,7 +1095,7 @@ var _a;
 /***/ "../../../../../src/app/components/post/post.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-post-nav></app-post-nav>\n<div *ngIf=\"post\" class=\"posts container\">\n  <div class=\"row block\">\n    <div class=\"row\">\n      <div class=\"col-lg-12\">\n        <a [routerLink]=\"['/post/', post.id]\" class=\"header clearfix\">{{post.name}}</a>\n        <div class=\"card-block\">\n          <img src=\"{{post.image_url}}\" alt=\"{{ post.name }}\" class=\"img-thumbnail\">\n          <p>\n            {{ post.body }}\n          </p>\n          <span class=\"float-left text-left\">Created: </span>\n          <span class=\"text-muted float-left text-left\"> {{post.created}}</span>\n          <a [routerLink]=\"['/user/', post.user.id]\"\n             class=\"btn btn-link btn-sm float-right text-right\">{{post.user.name}}</a>\n          <span class=\"float-right text-right\">Writer:</span>\n        </div>\n        <disqus [identifier]=\"post.id\" [url]=\"'/post/' + post.id\" [lang]=\"'en'\"\n                (onNewComment)=\"onComment($event)\" (onReady)=\"onReady($event)\" (onPaginate)=\"onPaginate($event)\"></disqus>\n      </div>\n    </div>\n  </div>\n</div>"
+module.exports = "<app-post-nav></app-post-nav>\n<div *ngIf=\"post\" class=\"posts container\">\n  <div class=\"row block\">\n      <div class=\"col-lg-12\">\n        <a [routerLink]=\"['/post/', post.id]\" class=\"header clearfix\">{{post.name}}</a>\n        <a *ngIf=\"authenticated && post.user.email === user.email\" [routerLink]=\"['/post/update/', post.id]\"\n           class=\"btn btn-info btn-sm float-right text-right m-1\">edit post</a>\n        <a *ngIf=\"authenticated && post.user.email === user.email\" [routerLink]=\"['/post/delete/', post.id]\"\n           class=\"btn btn-danger btn-sm float-right text-right m-1\">delete post</a>\n        <div class=\"card-block\">\n          <img src=\"{{post.image_url}}\" alt=\"{{ post.name }}\" class=\"img-thumbnail\">\n          <div  class=\"clearfix\" [innerHTML]=\"post.body | keepHtml\"></div>\n          <span class=\"float-left text-left\">Created: </span>\n          <span class=\"text-muted float-left text-left\"> {{post.created}}</span>\n          <a [routerLink]=\"['/user/', post.user.id]\"\n             class=\"btn btn-link btn-sm float-right text-right\">{{post.user.name}}</a>\n          <span class=\"float-right text-right\">Writer:</span>\n        </div>\n        <disqus [identifier]=\"post.id\" [url]=\"'/post/' + post.id\" [lang]=\"'en'\"\n                (onNewComment)=\"onComment($event)\" (onReady)=\"onReady($event)\" (onPaginate)=\"onPaginate($event)\"></disqus>\n      </div>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -878,10 +1145,20 @@ var PostComponent = (function () {
         this.route = route;
         this.postService = postService;
         this.toastrService = toastrService;
+        this.authenticated = false;
+        this.user = {};
         this.sub = this.route.params.subscribe(function (params) {
             var id = +params['id'];
             _this.id = id;
         });
+        var user = JSON.parse(localStorage.getItem("currentUser"));
+        if (user && user.token) {
+            this.authenticated = true;
+        }
+        else {
+            this.authenticated = false;
+        }
+        this.user = user;
     }
     PostComponent.prototype.ngOnInit = function () {
         this.findPost(this.id);
@@ -921,7 +1198,7 @@ var _a, _b, _c;
 /***/ "../../../../../src/app/components/posts/posts.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-post-nav></app-post-nav>\n<div class=\"posts container\">\n    <div *ngFor=\"let post of posts\" class=\"row block\">\n        <div class=\"row\">\n            <div class=\"col-lg-12\">\n                <a [routerLink]=\"['/post/', post.id]\" class=\"header clearfix\">{{post.name}}</a>\n                <div class=\"card-block\">\n                    <img src=\"{{post.image_url}}\" alt=\"{{ post.name }}\" class=\"img-thumbnail\">\n                    <p>\n                        {{ post.body | slice:0:200 }}\n                    </p>\n                    <span class=\"text-muted float-left text-left\">{{post.created}}</span>\n                    <a [routerLink]=\"['/post/', post.id]\"\n                       class=\"btn btn-dark btn-sm float-right text-right\">go to post</a>\n                </div>\n            </div>\n        </div>\n        <hr style=\"border: dashed 1px darkgrey; width: 100%\">\n    </div>\n    <app-pagination [pagination]=\"pagination\"\n                    [page]=\"page\"\n                    (pageUpdated)=\"pageUpdated($event)\">\n                    (click)=\"all(pagination.current_page)\"\n                    (offset)=\"4\">\n    </app-pagination>\n</div>"
+module.exports = "<app-post-nav></app-post-nav>\n<div class=\"posts container\">\n    <div *ngFor=\"let post of posts\" class=\"row block\">\n        <div class=\"row\">\n            <div class=\"col-lg-12\">\n                <a [routerLink]=\"['/post/', post.id]\" class=\"header clearfix\">{{post.name}}</a>\n                <div class=\"card-block\">\n                    <img src=\"{{post.image_url}}\" alt=\"{{ post.name }}\" class=\"img-thumbnail\">\n                    <p>\n                        {{ post.body | slice:0:200 }}\n                    </p>\n                    <span class=\"text-muted float-left text-left \">{{post.created}}</span>\n                    <a [routerLink]=\"['/post/', post.id]\"\n                       class=\"btn btn-dark btn-sm float-right text-right m-1\">go to post</a>\n                    <a *ngIf=\"authenticated && post.user.email === user.email\" [routerLink]=\"['/post/update/', post.id]\"\n                       class=\"btn btn-info btn-sm float-right text-right m-1\">edit post</a>\n                </div>\n            </div>\n        </div>\n        <hr style=\"border: dashed 1px darkgrey; width: 100%\">\n    </div>\n    <app-pagination [pagination]=\"pagination\"\n                    [page]=\"page\"\n                    (pageUpdated)=\"pageUpdated($event)\">\n        (click)=\"all(pagination.current_page)\"\n        (offset)=\"4\">\n    </app-pagination>\n</div>"
 
 /***/ }),
 
@@ -970,6 +1247,16 @@ var PostsComponent = (function () {
         this.postService = postService;
         this.route = route;
         this.toastrService = toastrService;
+        this.authenticated = false;
+        this.user = {};
+        var user = JSON.parse(localStorage.getItem("currentUser"));
+        if (user && user.token) {
+            this.authenticated = true;
+        }
+        else {
+            this.authenticated = false;
+        }
+        this.user = user;
     }
     PostsComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -1309,6 +1596,29 @@ var arrays = {
 
 /***/ }),
 
+/***/ "../../../../../src/app/models/Post.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Post; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__User__ = __webpack_require__("../../../../../src/app/models/User.ts");
+
+var Post = (function () {
+    function Post() {
+        this.created_at = "";
+        this.user = new __WEBPACK_IMPORTED_MODULE_0__User__["a" /* User */];
+        this.created = null;
+        this.image = null;
+        this.image_link = null;
+        this.user_id = null;
+    }
+    return Post;
+}());
+
+//# sourceMappingURL=C:/Users/nilse/Code/lablog/src/Post.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/models/User.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1340,12 +1650,14 @@ var User = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_posts_posts_component__ = __webpack_require__("../../../../../src/app/components/posts/posts.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_post_post_component__ = __webpack_require__("../../../../../src/app/components/post/post.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_personal_posts_personal_posts_component__ = __webpack_require__("../../../../../src/app/components/personal-posts/personal-posts.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_post_create_post_create_component__ = __webpack_require__("../../../../../src/app/components/post-create/post-create.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -1364,6 +1676,7 @@ var appRoutes = [
     { path: "home", component: __WEBPACK_IMPORTED_MODULE_5__components_home_home_component__["a" /* HomeComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_6__guards_auth_guard__["a" /* AuthGuard */]] },
     { path: "posts", component: __WEBPACK_IMPORTED_MODULE_8__components_posts_posts_component__["a" /* PostsComponent */], canActivate: [] },
     { path: "post/:id", component: __WEBPACK_IMPORTED_MODULE_9__components_post_post_component__["a" /* PostComponent */], canActivate: [] },
+    { path: "posts/create", component: __WEBPACK_IMPORTED_MODULE_11__components_post_create_post_create_component__["a" /* PostCreateComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_6__guards_auth_guard__["a" /* AuthGuard */]] },
     { path: "posts/personal", component: __WEBPACK_IMPORTED_MODULE_10__components_personal_posts_personal_posts_component__["a" /* PersonalPostsComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_6__guards_auth_guard__["a" /* AuthGuard */]] },
     { path: "user", component: __WEBPACK_IMPORTED_MODULE_7__components_user_user_component__["a" /* UserComponent */], canActivate: [__WEBPACK_IMPORTED_MODULE_6__guards_auth_guard__["a" /* AuthGuard */]] },
     // otherwise redirect to home
@@ -1392,6 +1705,43 @@ AppRouterModule = __decorate([
 ], AppRouterModule);
 
 //# sourceMappingURL=C:/Users/nilse/Code/lablog/src/approuter.module.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/pipes/keep-html.pipe.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return KeepHtmlPipe; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__("../../../platform-browser/@angular/platform-browser.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var KeepHtmlPipe = (function () {
+    function KeepHtmlPipe(sanitizer) {
+        this.sanitizer = sanitizer;
+    }
+    KeepHtmlPipe.prototype.transform = function (content) {
+        return this.sanitizer.bypassSecurityTrustHtml(content);
+    };
+    return KeepHtmlPipe;
+}());
+KeepHtmlPipe = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Pipe"])({ name: "keepHtml", pure: false }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["DomSanitizer"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["DomSanitizer"]) === "function" && _a || Object])
+], KeepHtmlPipe);
+
+var _a;
+//# sourceMappingURL=C:/Users/nilse/Code/lablog/src/keep-html.pipe.js.map
 
 /***/ }),
 
@@ -1658,6 +2008,14 @@ var PostService = (function () {
         return this.http.get(__WEBPACK_IMPORTED_MODULE_3__config_app__["a" /* app */].api_url + "/api/blog/personal?page=" + page, options)
             .map(function (response) { return response.json(); });
     };
+    PostService.prototype.savePost = function (post) {
+        // add authorization header with jwt token
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({ "Authorization": "Bearer " + this.token });
+        var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]({ headers: headers });
+        // get users from api
+        return this.http.post(__WEBPACK_IMPORTED_MODULE_3__config_app__["a" /* app */].api_url + "/api/blog/store", post, options)
+            .map(function (response) { return response.json(); });
+    };
     return PostService;
 }());
 PostService = __decorate([
@@ -1717,6 +2075,70 @@ ToastrService = __decorate([
 ], ToastrService);
 
 //# sourceMappingURL=C:/Users/nilse/Code/lablog/src/toastr.service.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/services/validation.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ValidationService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var ValidationService = (function () {
+    function ValidationService() {
+    }
+    ValidationService.getValidatorErrorMessage = function (validatorName, validatorValue) {
+        var config = {
+            'required': 'Required',
+            'invalidCreditCard': 'Is invalid credit card number',
+            'invalidEmailAddress': 'Invalid email address',
+            'invalidPassword': 'Invalid password. Password must be at least 6 characters long, and contain a number.',
+            'minlength': "Minimum length " + validatorValue.requiredLength
+        };
+        return config[validatorName];
+    };
+    ValidationService.creditCardValidator = function (control) {
+        // Visa, MasterCard, American Express, Diners Club, Discover, JCB
+        if (control.value.match(/^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$/)) {
+            return null;
+        }
+        else {
+            return { 'invalidCreditCard': true };
+        }
+    };
+    ValidationService.emailValidator = function (control) {
+        // RFC 2822 compliant regex
+        if (control.value.match(/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/)) {
+            return null;
+        }
+        else {
+            return { 'invalidEmailAddress': true };
+        }
+    };
+    ValidationService.passwordValidator = function (control) {
+        // {6,100}           - Assert password is between 6 and 100 characters
+        // (?=.*[0-9])       - Assert a string has at least one number
+        if (control.value.match(/^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{6,100}$/)) {
+            return null;
+        }
+        else {
+            return { 'invalidPassword': true };
+        }
+    };
+    return ValidationService;
+}());
+ValidationService = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])()
+], ValidationService);
+
+//# sourceMappingURL=C:/Users/nilse/Code/lablog/src/validation.service.js.map
 
 /***/ }),
 

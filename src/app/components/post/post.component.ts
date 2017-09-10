@@ -13,7 +13,8 @@ export class PostComponent implements OnInit {
     public sub: any;
     public id: number;
     public post;
-
+    public authenticated: boolean = false;
+    public user = {};
     constructor(public route: ActivatedRoute,
                 public postService: PostService,
                 public toastrService: ToastrService) {
@@ -21,6 +22,13 @@ export class PostComponent implements OnInit {
             let id: number = +params['id'];
             this.id = id;
         });
+        let user = JSON.parse(localStorage.getItem("currentUser"));
+        if(user && user.token) {
+            this.authenticated = true;
+        } else {
+            this.authenticated = false;
+        }
+        this.user = user;
     }
 
     public ngOnInit(): void {

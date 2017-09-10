@@ -57,6 +57,7 @@ Route::group(['middleware' => ['api'], 'as' => 'api.'], function () {
                 'uses' => 'PostsController@delete',
                 'middleware' => 'AllowDeletePost'
             ]);
+
         });
     });
     Route::group(['prefix' => 'blog', 'as' => 'blog.'], function () {

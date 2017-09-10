@@ -15,10 +15,19 @@ export class PersonalPostsComponent implements OnInit {
     public pagination;
     public sub;
     public page;
-
+    public published: string = "not published";
+    public authenticated: boolean = false;
+    public user = {};
     constructor(public postService: PostService,
                 private route: ActivatedRoute,
                 private toastrService: ToastrService) {
+        let user = JSON.parse(localStorage.getItem("currentUser"));
+        if(user && user.token) {
+            this.authenticated = true;
+        } else {
+            this.authenticated = false;
+        }
+        this.user = user;
     }
 
     ngOnInit(): void {
@@ -41,6 +50,9 @@ export class PersonalPostsComponent implements OnInit {
         this.postService.getPersonalPosts(page).subscribe((response) => {
             // get body data
             this.posts = response.items.data;
+            this.posts.map((item) => {
+                item.published = item.available ? "published" : "not published";
+            });
             delete(response.items.data);
             this.pagination = response.items;
         }, response => {

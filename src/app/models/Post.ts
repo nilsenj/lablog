@@ -1,14 +1,15 @@
 import {User} from "./User";
 
 export class Post {
-    id?: string;
-    name: string;
-    body: string;
-    created_at: string;
-    created: string;
-    deleted_at: string;
-    user_id: string;
-    user: User;
-    image_url: string;
-    image: string;
+    id?: string;    public name: string;
+    public body: string;
+    public created_at?: string = "";
+    public user?: User = new User;
+    public available: boolean;
+    public created?: string = null;
+    public image?: string = null;
+    public image_link?: string = null;
+    public deleted_at?: string;
+    public user_id?: number = null;
+    public published?: string;
 }

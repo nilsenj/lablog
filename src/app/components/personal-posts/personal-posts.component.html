@@ -4,7 +4,10 @@
   <div *ngFor="let post of posts" class="row block">
     <div class="row">
       <div class="col-lg-12">
-        <a [routerLink]="['/post/', post.id]" class="header clearfix">{{post.name}}</a>
+        <a [routerLink]="['/post/', post.id]" class="header clearfix">{{post.name}}
+          <span class="badge badge-secondary bg-info" *ngIf="post.available">{{post.published}}</span>
+          <span class="badge badge-secondary bg-dark" *ngIf="!post.available">{{post.published}}</span>
+        </a>
         <div class="card-block">
           <img src="{{post.image_url}}" alt="{{ post.name }}" class="img-thumbnail">
           <p>
@@ -12,7 +15,9 @@
           </p>
           <span class="text-muted float-left text-left">{{post.created}}</span>
           <a [routerLink]="['/post/', post.id]"
-             class="btn btn-dark btn-sm float-right text-right">go to post</a>
+             class="btn btn-dark btn-sm float-right text-right m-1">go to post</a>
+          <a *ngIf="authenticated && post.user.email === user.email" [routerLink]="['/post/update/', post.id]"
+             class="btn btn-info btn-sm float-right text-right m-1">edit post</a>
         </div>
       </div>
     </div>

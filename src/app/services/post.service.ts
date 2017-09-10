@@ -52,4 +52,14 @@ export class PostService {
         return this.http.get(app.api_url + "/api/blog/personal?page=" + page, options)
             .map((response: Response) => response.json());
     }
+
+    savePost(post: Post): Observable<any> {
+        // add authorization header with jwt token
+        let headers = new Headers({"Authorization": "Bearer " + this.token});
+        let options = new RequestOptions({headers: headers});
+
+        // get users from api
+        return this.http.post(app.api_url + "/api/blog/store", post, options)
+            .map((response: Response) => response.json());
+    }
 }
