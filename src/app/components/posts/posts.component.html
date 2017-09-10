@@ -6,9 +6,7 @@
                 <a [routerLink]="['/post/', post.id]" class="header clearfix">{{post.name}}</a>
                 <div class="card-block">
                     <img src="{{post.image_url}}" alt="{{ post.name }}" class="img-thumbnail">
-                    <p>
-                        {{ post.body | slice:0:200 }}
-                    </p>
+                    <div  class="clearfix" [innerHTML]="post.body | slice:0:200 | keepHtml"></div>
                     <span class="text-muted float-left text-left ">{{post.created}}</span>
                     <a [routerLink]="['/post/', post.id]"
                        class="btn btn-dark btn-sm float-right text-right m-1">go to post</a>

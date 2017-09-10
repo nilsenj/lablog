@@ -6,7 +6,7 @@ export class KeepHtmlPipe implements PipeTransform {
     constructor(private sanitizer: DomSanitizer) {
     }
 
-    transform(content: any): SafeHtml {
+    transform(content: any) {
         return this.sanitizer.bypassSecurityTrustHtml(content);
     }
 }

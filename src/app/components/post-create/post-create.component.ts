@@ -86,13 +86,13 @@ export class PostCreateComponent implements OnInit {
                 Validators.required,
                 Validators.minLength(2),
                 Validators.maxLength(255)]
-            ], // <--- the FormControl called "name"
+            ],
             body: [this.post.body, [
                 Validators.required,
                 Validators.minLength(120),
                 Validators.maxLength(5000)]
-            ], // <--- the FormControl called "name"
-            available: ["", Validators.required], // <--- the FormControl called "name"
+            ],
+            available: ["", Validators.required],
         });
     }
 }
