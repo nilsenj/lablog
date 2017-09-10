@@ -20,6 +20,9 @@ import { PostsComponent } from "./components/posts/posts.component";
 import {PostService} from "./services/post.service";
 import { PostComponent } from "./components/post/post.component";
 import { PaginationComponent } from "./components/pagination/pagination.component";
+import { PostNavComponent } from "./components/post-nav/post-nav.component";
+import {DisqusModule} from "ngx-disqus";
+import { PersonalPostsComponent } from './components/personal-posts/personal-posts.component';
 
 @NgModule({
     declarations: [
@@ -32,7 +35,9 @@ import { PaginationComponent } from "./components/pagination/pagination.componen
         UserComponent,
         PostsComponent,
         PostComponent,
-        PaginationComponent
+        PaginationComponent,
+        PostNavComponent,
+        PersonalPostsComponent
     ],
     imports: [
         BrowserModule,
@@ -40,7 +45,8 @@ import { PaginationComponent } from "./components/pagination/pagination.componen
         HttpModule,
         AppRouterModule,
         BrowserAnimationsModule,
-        ToastModule.forRoot()
+        ToastModule.forRoot(),
+        DisqusModule.forRoot("blog-dev-6")
     ],
     providers: [
         AuthenticationService,

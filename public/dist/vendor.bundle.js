@@ -10818,6 +10818,236 @@ exports.ToastModule = ToastModule;
 
 /***/ }),
 
+/***/ "../../../../ngx-disqus/ngx-disqus.es5.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(global) {/* unused harmony export DisqusFactory */
+/* unused harmony export SHORTNAME */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DisqusModule; });
+/* unused harmony export ɵb */
+/* unused harmony export ɵa */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+
+
+var DisqusService = (function () {
+    /**
+     * @param {?} shortname
+     */
+    function DisqusService(shortname) {
+        this.shortname = shortname;
+    }
+    Object.defineProperty(DisqusService.prototype, "window", {
+        /**
+         * @return {?}
+         */
+        get: function () {
+            return _window();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return DisqusService;
+}());
+DisqusService.decorators = [
+    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"] },
+];
+/**
+ * @nocollapse
+ */
+DisqusService.ctorParameters = function () { return [
+    { type: undefined, decorators: [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Inject"], args: [SHORTNAME,] },] },
+]; };
+/**
+ * @return {?}
+ */
+function _window() {
+    return typeof window !== 'undefined' ? window : global;
+}
+
+var DisqusComponent = (function () {
+    /**
+     * @param {?} renderer
+     * @param {?} el
+     * @param {?} dService
+     */
+    function DisqusComponent(renderer, el, dService) {
+        this.renderer = renderer;
+        this.el = el;
+        this.dService = dService;
+        /**
+         * DISQUS events
+         */
+        this.onNewComment = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        this.onReady = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        this.onPaginate = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+    }
+    /**
+     * @return {?}
+     */
+    DisqusComponent.prototype.ngOnChanges = function () {
+        /** Reset Disqus if any input changed */
+        if (!this.dService.window.DISQUS) {
+            this.addDisqusScript();
+        }
+        else {
+            this.reset();
+        }
+    };
+    /**
+     * Add DISQUS script
+     * @return {?}
+     */
+    DisqusComponent.prototype.addDisqusScript = function () {
+        /** Set DISQUS config */
+        this.dService.window.disqus_config = this.getConfig();
+        var /** @type {?} */ disqusScript = this.renderer.createElement('script');
+        disqusScript.src = "//" + this.dService.shortname + ".disqus.com/embed.js";
+        disqusScript.async = true;
+        disqusScript.type = 'text/javascript';
+        this.renderer.setAttribute(disqusScript, 'data-timestamp', new Date().getTime().toString());
+        this.renderer.appendChild(this.el.nativeElement, disqusScript);
+    };
+    /**
+     * Reset DISQUS with the new config
+     * @return {?}
+     */
+    DisqusComponent.prototype.reset = function () {
+        this.dService.window.DISQUS.reset({
+            reload: true,
+            config: this.getConfig()
+        });
+    };
+    /**
+     * Create DISQUS config from inputs
+     * @return {?}
+     */
+    DisqusComponent.prototype.getConfig = function () {
+        var /** @type {?} */ self = this;
+        return function () {
+            this.page.identifier = self.identifier;
+            this.page.url = self.validateUrl(self.url);
+            this.page.title = self.title;
+            this.category_id = self.category;
+            this.language = self.language;
+            /* Available callbacks are afterRender, onInit, onNewComment, onPaginate, onReady, preData, preInit, preReset */
+            this.callbacks.onNewComment = [function (e) {
+                    self.onNewComment.emit(e);
+                }];
+            this.callbacks.onReady = [function (e) {
+                    self.onReady.emit(e);
+                }];
+            this.callbacks.onPaginate = [function (e) {
+                    self.onPaginate.emit(e);
+                }];
+        };
+    };
+    /**
+     * @param {?} url
+     * @return {?}
+     */
+    DisqusComponent.prototype.validateUrl = function (url) {
+        /** Validate URL input */
+        if (url) {
+            var /** @type {?} */ r = /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
+            if (r.test(url)) {
+                return url;
+            }
+            else {
+                console.warn('[Disqus]: Invalid URL, return undefined');
+            }
+        }
+        /** DISQUS will fallback to "Window.location.href" when URL is undefined */
+        return undefined;
+    };
+    /**
+     * @return {?}
+     */
+    DisqusComponent.prototype.ngOnDestroy = function () {
+        this.dService.window.DISQUS = undefined;
+        this.dService.window.disqus_config = undefined;
+    };
+    return DisqusComponent;
+}());
+DisqusComponent.decorators = [
+    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"], args: [{
+                selector: 'disqus',
+                template: '<div id="disqus_thread"></div>',
+                changeDetection: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ChangeDetectionStrategy"].OnPush
+            },] },
+];
+/**
+ * @nocollapse
+ */
+DisqusComponent.ctorParameters = function () { return [
+    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Renderer2"], },
+    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"], },
+    { type: DisqusService, },
+]; };
+DisqusComponent.propDecorators = {
+    'url': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"] },],
+    'identifier': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"] },],
+    'title': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"] },],
+    'category': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"] },],
+    'language': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"] },],
+    'onNewComment': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"] },],
+    'onReady': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"] },],
+    'onPaginate': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"] },],
+};
+
+/**
+ * Initialize Disqus with shortname
+ * @param {?} shortname
+ * @return {?}
+ */
+function DisqusFactory(shortname) {
+    return new DisqusService(shortname);
+}
+var SHORTNAME = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["InjectionToken"]('SHORTNAME');
+var DisqusModule = (function () {
+    function DisqusModule() {
+    }
+    /**
+     * @param {?} shortname
+     * @return {?}
+     */
+    DisqusModule.forRoot = function (shortname) {
+        return {
+            ngModule: DisqusModule,
+            providers: [
+                { provide: SHORTNAME, useValue: shortname },
+                {
+                    provide: DisqusService,
+                    useFactory: DisqusFactory,
+                    deps: [SHORTNAME]
+                }
+            ]
+        };
+    };
+    return DisqusModule;
+}());
+DisqusModule.decorators = [
+    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"], args: [{
+                declarations: [DisqusComponent],
+                exports: [DisqusComponent]
+            },] },
+];
+/**
+ * @nocollapse
+ */
+DisqusModule.ctorParameters = function () { return []; };
+
+/**
+ * Generated bundle index. Do not edit.
+ */
+
+
+//# sourceMappingURL=ngx-disqus.es5.js.map
+
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__("../../../../webpack/buildin/global.js")))
+
+/***/ }),
+
 /***/ "../../../../rxjs/BehaviorSubject.js":
 /***/ (function(module, exports, __webpack_require__) {
 

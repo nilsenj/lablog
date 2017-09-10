@@ -1,0 +1,22 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light"
+     *ngIf="authenticated" style="padding-left: 0!important;">
+  <a class="navbar-brand" routerLinkActive="active" [routerLink]="['/posts']">Posts Management</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse"
+          data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+          aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link btn btn-link" style="cursor: pointer;" (click)="goBack()">Back</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['/posts/create']" >Create Post</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="['/posts/personal']">Personal Posts</a>
+      </li>
+    </ul>
+  </div>
+</nav>

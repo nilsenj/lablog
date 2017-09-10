@@ -21,14 +21,15 @@ class Post extends Model
         'name',
         'body',
         'image',
-        'user_id',
-        'created'
+        'user_id'
     ];
 
     /**
      * @var array
      */
-    protected $appends = ['image_url'];
+    protected $appends = [
+        'image_url',
+        'created'];
 
     /**
      * @var array
@@ -61,9 +62,9 @@ class Post extends Model
     public function getImageUrlAttribute()
     {
         if($this->image) {
-            return asset('dist/assets/images/' . $this->image);
+            return url('assets/images/' . $this->image);
         } else {
-            return asset('dist/assets/images/notfound.jpg');
+            return url('assets/images/notfound.jpg');
         }
     }
 
@@ -73,5 +74,10 @@ class Post extends Model
     public function getCreatedAttribute()
     {
         return $this->created_at->diffForHumans();
+    }
+
+    public function scopeUsers($query, $user_id)
+    {
+        return $query->where('user_id', $user_id);
     }
 }

@@ -9,14 +9,16 @@ import {AuthGuard} from "../../guards/auth.guard";
 import {UserComponent} from "../../components/user/user.component";
 import {PostsComponent} from "../../components/posts/posts.component";
 import {PostComponent} from "../../components/post/post.component";
+import {PersonalPostsComponent} from "../../components/personal-posts/personal-posts.component";
 
 const appRoutes: Routes = [
     {path: "login", component: LoginComponent},
     {path: "register", component: RegisterComponent},
     {path: "", component: WelcomeComponent},
     {path: "home", component: HomeComponent, canActivate: [AuthGuard]},
-    {path: "posts", component: PostsComponent, canActivate: [AuthGuard]},
-    {path: "post/:id", component: PostComponent, canActivate: [AuthGuard]},
+    {path: "posts", component: PostsComponent, canActivate: []},
+    {path: "post/:id", component: PostComponent, canActivate: []},
+    {path: "posts/personal", component: PersonalPostsComponent, canActivate: [AuthGuard]},
     {path: "user", component: UserComponent, canActivate: [AuthGuard]},
 
     // otherwise redirect to home

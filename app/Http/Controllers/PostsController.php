@@ -32,6 +32,21 @@ class PostsController extends Controller
     }
 
     /**
+     * get personal posts
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function personal(Request $request)
+    {
+        $items = $this->post->users($request->user()->id)->paginate(10);
+        $count = $this->post->count();
+        $data = compact('items', 'count');
+
+        return response()->json($data);
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request $request

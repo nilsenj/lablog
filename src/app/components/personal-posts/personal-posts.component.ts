@@ -1,15 +1,15 @@
-import {Component, OnChanges, OnInit, Output, SimpleChanges} from "@angular/core";
-import {PostService} from "../../services/post.service";
+import {Component, OnInit} from "@angular/core";
 import {Post} from "../../models/Post";
-import {ToastrService} from "../../services/toastr.service";
+import {PostService} from "../../services/post.service";
 import {ActivatedRoute} from "@angular/router";
+import {ToastrService} from "../../services/toastr.service";
 
 @Component({
-    selector: "app-posts",
-    templateUrl: "./posts.component.html",
-    styleUrls: ["./posts.component.scss"]
+    selector: "app-personal-posts",
+    templateUrl: "./personal-posts.component.html",
+    styleUrls: ["./personal-posts.component.scss"]
 })
-export class PostsComponent implements OnInit {
+export class PersonalPostsComponent implements OnInit {
 
     public posts: Post[];
     public pagination;
@@ -38,7 +38,7 @@ export class PostsComponent implements OnInit {
     }
 
     public all(page: number): void {
-        this.postService.getPosts(page).subscribe((response) => {
+        this.postService.getPersonalPosts(page).subscribe((response) => {
             // get body data
             this.posts = response.items.data;
             delete(response.items.data);
@@ -48,5 +48,4 @@ export class PostsComponent implements OnInit {
             this.toastrService.add("error", "Error during posts render");
         });
     }
-
 }
