@@ -1,5 +1,6 @@
 /* SystemJS module definition */
-declare var module: NodeModule;
+declare let module: NodeModule;
+declare let jquery:any;
 interface NodeModule {
   id: string;
 }

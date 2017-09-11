@@ -73,4 +73,3 @@ export class PaginationComponent implements OnInit, OnChanges {
         this.router.navigate(["posts"], {queryParams: {page: this.page + 1}});
     }
 }
-

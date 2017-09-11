@@ -3,7 +3,6 @@ import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {RegisterComponent} from './components/register/register.component';
 import {LoginComponent} from './components/login/login.component';
-import {HomeComponent} from './components/home/home.component';
 import {WelcomeComponent} from './components/welcome/welcome.component';
 import {AppRouterModule} from "./modules/router/approuter.module";
 import {HttpModule} from "@angular/http";
@@ -30,13 +29,15 @@ import { ControlMessagesComponent } from "./components/control-messages/control-
 import {ValidationService} from "./services/validation.service";
 import { CKEditorModule } from "ng2-ckeditor";
 import { KeepHtmlPipe } from './pipes/keep-html.pipe';
+import { EditPostComponent } from './components/edit-post/edit-post.component';
+import { DeletePostComponent } from './components/delete-post/delete-post.component';
+import {UserAllowedToPostGuardGuard} from "./guards/user-allowed-to-post-guard.guard";
 
 @NgModule({
     declarations: [
         AppComponent,
         RegisterComponent,
         LoginComponent,
-        HomeComponent,
         WelcomeComponent,
         NavigationComponent,
         UserComponent,
@@ -47,7 +48,9 @@ import { KeepHtmlPipe } from './pipes/keep-html.pipe';
         PersonalPostsComponent,
         PostCreateComponent,
         ControlMessagesComponent,
-        KeepHtmlPipe
+        KeepHtmlPipe,
+        EditPostComponent,
+        DeletePostComponent
     ],
     imports: [
         BrowserModule,
@@ -63,6 +66,7 @@ import { KeepHtmlPipe } from './pipes/keep-html.pipe';
     providers: [
         AuthenticationService,
         AuthGuard,
+        UserAllowedToPostGuardGuard,
         ToastrService,
         {provide: ToastOptions, useClass: CustomToastr},
         PostService,

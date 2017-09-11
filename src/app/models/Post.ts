@@ -1,7 +1,8 @@
 import {User} from "./User";
 
 export class Post {
-    id?: string;    public name: string;
+    id?: number;
+    public name: string;
     public body: string;
     public created_at?: string = "";
     public user?: User = new User;

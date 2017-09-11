@@ -22,7 +22,7 @@ export class RegisterComponent implements OnInit {
     ngOnInit(): void {
         // reset login status
         if (this.authenticationService.token) {
-            this.router.navigate(["/"]);
+            this.router.navigate(["/posts"]);
             this.toastrService.add("warning", "You are already registered");
         } else {
             // this.authenticationService.logout();
@@ -38,7 +38,7 @@ export class RegisterComponent implements OnInit {
             this.model.confirm)
             .subscribe(result => {
                 if (result === true) {
-                    this.router.navigate(["/"]);
+                    this.router.navigate(["/posts"]);
                 } else {
                     this.error = "Sorry your account isn\'t created";
                     this.loading = false;

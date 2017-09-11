@@ -53,6 +53,12 @@ export class PostService {
             .map((response: Response) => response.json());
     }
 
+    /**
+     * save the post
+     *
+     * @param {Post} post
+     * @returns {Observable<any>}
+     */
     savePost(post: Post): Observable<any> {
         // add authorization header with jwt token
         let headers = new Headers({"Authorization": "Bearer " + this.token});
@@ -60,6 +66,31 @@ export class PostService {
 
         // get users from api
         return this.http.post(app.api_url + "/api/blog/store", post, options)
+            .map((response: Response) => response.json());
+    }
+    updatePost(post: Post): Observable<any> {
+        // add authorization header with jwt token
+        let headers = new Headers({"Authorization": "Bearer " + this.token});
+        let options = new RequestOptions({headers: headers});
+
+        // get users from api
+        return this.http.post(app.api_url + "/api/blog/update/" + post.id, post, options)
+            .map((response: Response) => response.json());
+    }
+
+    /**
+     * delete the post
+     *
+     * @param {number} id
+     * @returns {Observable<any>}
+     */
+    deletePost(id: number): Observable<any> {
+        // add authorization header with jwt token
+        let headers = new Headers({"Authorization": "Bearer " + this.token});
+        let options = new RequestOptions({headers: headers});
+
+        // get users from api
+        return this.http.delete(app.api_url + "/api/blog/" + id, options)
             .map((response: Response) => response.json());
     }
 }

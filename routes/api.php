@@ -54,7 +54,7 @@ Route::group(['middleware' => ['api'], 'as' => 'api.'], function () {
                 'uses' => 'PostsController@update',
             ]);
             Route::delete('/{id}', [
-                'uses' => 'PostsController@delete',
+                'uses' => 'PostsController@destroy',
                 'middleware' => 'AllowDeletePost'
             ]);
 

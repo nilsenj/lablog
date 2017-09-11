@@ -2,11 +2,13 @@
 <div *ngIf="post" class="posts container">
   <div class="row block">
       <div class="col-lg-12">
-        <a [routerLink]="['/post/', post.id]" class="header clearfix">{{post.name}}</a>
-        <a *ngIf="authenticated && post.user.email === user.email" [routerLink]="['/post/update/', post.id]"
+        <a [routerLink]="['/posts/', post.id]" class="header clearfix">{{post.name}}</a>
+        <a *ngIf="authenticated && post.user.email === user.email" [routerLink]="['/posts/update/', post.id]"
            class="btn btn-info btn-sm float-right text-right m-1">edit post</a>
-        <a *ngIf="authenticated && post.user.email === user.email" [routerLink]="['/post/delete/', post.id]"
-           class="btn btn-danger btn-sm float-right text-right m-1">delete post</a>
+        <app-delete-post
+                [(post)]="post"
+                *ngIf="authenticated && post.user.email === user.email">
+        </app-delete-post>
         <div class="card-block">
           <img src="{{post.image_url}}" alt="{{ post.name }}" class="img-thumbnail">
           <div  class="clearfix" [innerHTML]="post.body | keepHtml"></div>
@@ -16,8 +18,9 @@
              class="btn btn-link btn-sm float-right text-right">{{post.user.name}}</a>
           <span class="float-right text-right">Writer:</span>
         </div>
-        <disqus [identifier]="post.id" [url]="'/post/' + post.id" [lang]="'en'"
-                (onNewComment)="onComment($event)" (onReady)="onReady($event)" (onPaginate)="onPaginate($event)"></disqus>
+        <disqus [identifier]="post.id" [url]="'/posts/' + post.id" [lang]="'en'"
+                (onNewComment)="onComment($event)"
+                (onReady)="onReady($event)" (onPaginate)="onPaginate($event)"></disqus>
       </div>
   </div>
 </div>

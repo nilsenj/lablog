@@ -1,7 +1,7 @@
 <ul class="pagination" *ngIf="pagination && pagination.current_page && pagination.last_page">
   <li *ngIf="pagination.current_page > 1">
     <a role="link" aria-label="Previous" class="btn btn-dark btn-sm" [routerLink]="['/posts']" [queryParams]="{ page: this.page - 1 }">
-         <span aria-hidden="true">←</span>
+      <span aria-hidden="true">←</span>
     </a>
   </li>
   <li *ngFor="let page of pagesNumber()" [ngClass]="{'active': page == pagination.current_page}">
