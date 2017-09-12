@@ -32,7 +32,7 @@ let base = document.querySelector("#base");
 
 let useHash = false;
 if (base) {
-    useHash = true;
+    useHash = false;
 }
 
 @NgModule({

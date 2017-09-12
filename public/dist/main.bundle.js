@@ -1967,7 +1967,7 @@ var appRoutes = [
 var base = document.querySelector("#base");
 var useHash = false;
 if (base) {
-    useHash = true;
+    useHash = false;
 }
 var AppRouterModule = (function () {
     function AppRouterModule() {
@@ -2309,7 +2309,7 @@ var PostService = (function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({ "Authorization": "Bearer " + this.token });
         var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]({ headers: headers });
         // get users from api
-        return this.http.post(__WEBPACK_IMPORTED_MODULE_3__config_app__["a" /* app */].api_url + "/api/blog/update/" + post.id, post, options)
+        return this.http.put(__WEBPACK_IMPORTED_MODULE_3__config_app__["a" /* app */].api_url + "/api/blog/update/" + post.id, post, options)
             .map(function (response) { return response.json(); });
     };
     /**

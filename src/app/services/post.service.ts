@@ -74,7 +74,7 @@ export class PostService {
         let options = new RequestOptions({headers: headers});
 
         // get users from api
-        return this.http.post(app.api_url + "/api/blog/update/" + post.id, post, options)
+        return this.http.put(app.api_url + "/api/blog/update/" + post.id, post, options)
             .map((response: Response) => response.json());
     }
 
