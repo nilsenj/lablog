@@ -4,8 +4,8 @@
         <div class="row">
             <div class="col-lg-12">
                 <a [routerLink]="['/posts/', post.id]" class="header clearfix">{{post.name}}
-                    <span class="badge badge-secondary bg-info" *ngIf="post.available">{{post.published}}</span>
-                    <span class="badge badge-secondary bg-dark" *ngIf="!post.available">{{post.published}}</span>
+                    <span class="badge badge-secondary bg-info" *ngIf="post.available && (authenticated && post.user.email === user.email)">{{post.published}}</span>
+                    <span class="badge badge-secondary bg-dark" *ngIf="!post.available  && (authenticated && post.user.email === user.email)">{{post.published}}</span>
                 </a>
                 <div class="tag-block">
                     <strong class="text-muted">tags: </strong>

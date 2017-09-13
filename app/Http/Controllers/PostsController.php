@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Post;
 use Illuminate\Http\Request;
 use TagsCloud\Tagging\Model\Tag;
+use Tymon\JWTAuth\Exceptions\JWTException;
 
 class PostsController extends Controller
 {
@@ -91,8 +92,12 @@ class PostsController extends Controller
      */
     public function show(Request $request, $id)
     {
-        $user = \JWTAuth::parseToken()->authenticate();
-        $user->ip = $request->ip();
+        try {
+            $user = \JWTAuth::parseToken()->authenticate();
+            $user->ip = $request->ip();
+        } catch (JWTException $exception) {
+            $user = null;
+        }
         $post = $this->post->findOrFail($id);
         $post->view($user);
         $data = compact('post');
