@@ -9,6 +9,7 @@ export class Post {
     public user?: User = new User;
     public available: boolean;
     public created?: string = null;
+    public view_counter?: string = "";
     public image_url?: string;
     public deleted_at?: string;
     public user_id?: number = null;

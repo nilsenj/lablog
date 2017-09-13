@@ -31,13 +31,13 @@
                     <section [innerHTML]="post.body" highlight-js-content="pre code"></section>
 
                     <hr>
-                    <span class="float-left text-left"> Created: </span>
-                    <span class="text-muted float-left text-left"> {{post.created}}</span>
-                    <span class="float-left text-left"> Views: </span>
-                    <span class="text-muted float-left text-left"> {{post.view_counter.view_counter}}</span>
+                    <strong class="float-left text-left m-1"> Created: </strong>
+                    <strong class="text-muted float-left text-left  m-1"> {{post.created}}</strong>
+                    <strong class="float-left text-left  m-1"> Views: </strong>
+                    <strong class="text-muted float-left text-left m-1"> {{post.view_counter.view_counter}}</strong>
                     <a [routerLink]="['/user/', post.user.id]"
                        class="btn btn-link btn-sm float-right text-right">{{post.user.name}}</a>
-                    <span class="float-right text-right">Writer:</span>
+                    <strong class="float-right text-right">Writer:</strong>
                 </div>
                 <disqus [identifier]="post.id" [url]="'/posts/' + post.id" [lang]="'en'"
                         (onNewComment)="onComment($event)"

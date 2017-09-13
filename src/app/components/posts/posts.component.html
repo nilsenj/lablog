@@ -8,11 +8,17 @@
                    class="post-tag" [routerLink]="['posts/tagged/' + tag.tag_slug]">
                     {{tag.tag_slug}}
                 </a>
-                <strong class="float-right text-left"> Views: {{post.view_counter.view_counter}}</strong>
+
                 <div class="card-block">
                     <img src="{{post.image_url}}" alt="{{ post.name }}" class="img-thumbnail">
-                    <div  class="clearfix">{{post.preamble}}</div>
-                    <span class="text-muted float-left text-left ">{{post.created}}</span>
+                    <div class="clearfix">{{post.preamble}}</div>
+                    <strong class="float-left text-left  m-1"> Views: </strong>
+                    <strong class="text-muted float-left text-left m-1"> {{post.view_counter.view_counter}}</strong>
+                    <strong class="float-left text-left m-1"> Created: </strong>
+                    <strong class="text-muted float-left text-left  m-1"> {{post.created}}</strong>
+                    <strong class="float-left text-left  m-1">Writer:</strong>
+                    <a [routerLink]="['/user/', post.user.id]"
+                       class="btn btn-link btn-sm text-right">{{post.user.name}}</a>
                     <a [routerLink]="['/posts/', post.id]"
                        class="btn btn-dark btn-sm float-right text-right m-1">go to post</a>
                     <a *ngIf="authenticated && post.user.email === user.email"
@@ -25,8 +31,8 @@
     </div>
     <app-pagination [pagination]="pagination"
                     [page]="page"
-                    (pageUpdated)="pageUpdated($event)">
-        (click)="all(pagination.current_page)"
-        (offset)="4">
+                    (pageUpdated)="pageUpdated($event)"
+                    (click)="all(pagination.current_page)"
+                    (offset)="4">
     </app-pagination>
 </div>

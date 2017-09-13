@@ -1,6 +1,8 @@
-# lablog
+# Lablog
 For stream series! Channel https://www.youtube.com/badCoder
-###This is a full-stack combination of Laravel 5.4 and Angular4
+![lablog](https://raw.githubusercontent.com/nilsenj/lablog/master/src/assets/images/Screenshot.png)
+
+#This is a full-stack combination of Laravel 5.4 and Angular4
 to run it type `npm run serve`
 and launch your laravel app.
 It will build scripts and and watch for files changes! `hint` without live-reload
