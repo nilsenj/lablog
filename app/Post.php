@@ -65,9 +65,9 @@ class Post extends Model
     public function getImageUrlAttribute()
     {
         if ($this->image) {
-            return url('assets/images/' . $this->image);
+            return asset('images/' . $this->image);
         } else {
-            return url('assets/images/notfound.jpg');
+            return asset('images/notfound.jpg');
         }
     }
 
