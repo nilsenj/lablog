@@ -1345,14 +1345,6 @@ var PostCreateComponent = (function () {
             this.canSavePost = false;
         }
     };
-    PostCreateComponent.prototype.onChange = function () {
-    };
-    PostCreateComponent.prototype.onReady = function () {
-    };
-    PostCreateComponent.prototype.onFocus = function () {
-    };
-    PostCreateComponent.prototype.onBlur = function () {
-    };
     PostCreateComponent.prototype.getDisplayToggles = function () {
         if (this.post.available) {
             return this.toggles[0].display;
@@ -1372,7 +1364,6 @@ var PostCreateComponent = (function () {
                 if (_this.fileEvent) {
                     _this.fileUpload.fileUpload(_this.fileEvent, response.post)
                         .subscribe(function (data) {
-                        console.log("success");
                         _this.toastrService.add("success", "Your Post Has been saved!");
                         _this.route.navigate(["/posts/", response.post.id]);
                     }, function (error) {
@@ -1432,6 +1423,14 @@ var PostCreateComponent = (function () {
                 _this.tmpFileSrc = reader_1.result;
             };
         }
+    };
+    PostCreateComponent.prototype.onChange = function () {
+    };
+    PostCreateComponent.prototype.onReady = function () {
+    };
+    PostCreateComponent.prototype.onFocus = function () {
+    };
+    PostCreateComponent.prototype.onBlur = function () {
     };
     return PostCreateComponent;
 }());

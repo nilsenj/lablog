@@ -48,18 +48,6 @@ export class PostCreateComponent implements OnInit {
         }
     }
 
-    public onChange(): void {
-    }
-
-    public onReady(): void {
-    }
-
-    public onFocus(): void {
-    }
-
-    public onBlur(): void {
-    }
-
     public getDisplayToggles(): string {
         if (this.post.available) {
             return this.toggles[0].display;
@@ -79,7 +67,6 @@ export class PostCreateComponent implements OnInit {
                     this.fileUpload.fileUpload(this.fileEvent, response.post)
                         .subscribe(
                             data => {
-                                console.log("success");
                                 this.toastrService.add("success", "Your Post Has been saved!");
                                 this.route.navigate(["/posts/", response.post.id]);
                             },
@@ -139,5 +126,16 @@ export class PostCreateComponent implements OnInit {
                 this.tmpFileSrc = reader.result;
             };
         }
+    }
+    public onChange(): void {
+    }
+
+    public onReady(): void {
+    }
+
+    public onFocus(): void {
+    }
+
+    public onBlur(): void {
     }
 }
