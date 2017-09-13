@@ -32,9 +32,11 @@ import { KeepHtmlPipe } from './pipes/keep-html.pipe';
 import { EditPostComponent } from './components/edit-post/edit-post.component';
 import { DeletePostComponent } from './components/delete-post/delete-post.component';
 import {UserAllowedToPostGuardGuard} from "./guards/user-allowed-to-post-guard.guard";
-import { HighlightJsModule, HighlightJsService } from 'angular2-highlight-js';
+import { HighlightJsModule, HighlightJsService } from "angular2-highlight-js";
 import { ConfirmComponentComponent } from "./components/confirm-component/confirm-component.component";
 import { BootstrapModalModule } from "ng2-bootstrap-modal";
+import {FileUploadService} from "./services/file-upload.service";
+import { TagInputModule } from "ngx-chips";
 
 @NgModule({
     declarations: [
@@ -62,6 +64,7 @@ import { BootstrapModalModule } from "ng2-bootstrap-modal";
         ReactiveFormsModule,
         HttpModule,
         AppRouterModule,
+        TagInputModule,
         BrowserAnimationsModule,
         ToastModule.forRoot(),
         DisqusModule.forRoot("blog-dev-6"),
@@ -77,7 +80,8 @@ import { BootstrapModalModule } from "ng2-bootstrap-modal";
         {provide: ToastOptions, useClass: CustomToastr},
         PostService,
         ValidationService,
-        HighlightJsService
+        HighlightJsService,
+        FileUploadService
     ],
     entryComponents: [
         ConfirmComponentComponent

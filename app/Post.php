@@ -2,7 +2,9 @@
 
 namespace App;
 
+use App\Core\Traits\ViewCounterTrait;
 use Illuminate\Database\Eloquent\Model;
+use TagsCloud\Tagging\Taggable;
 
 /**
  * Class Post
@@ -10,6 +12,13 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Post extends Model
 {
+    use Taggable;
+    use ViewCounterTrait;
+
+    /**
+     * @var string
+     */
+    public $tagsPrefix = 'post';
     /**
      * @var string
      */
@@ -21,23 +30,23 @@ class Post extends Model
         'name',
         'preamble',
         'body',
-        'image',
         'user_id',
-        'available'
+        'available',
+        'image_url'
     ];
 
     /**
      * @var array
      */
     protected $appends = [
-        'image_url',
-        'created'
+        'created',
+        'view_counter'
     ];
 
     /**
      * @var array
      */
-    protected $with = ['user'];
+    protected $with = ['user', 'tagged'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -48,26 +57,25 @@ class Post extends Model
     }
 
     /**
-     * @param $value
-     */
-    public function setImageAttribute($value)
-    {
-        if ($value) {
-            $this->attributes['image'] = $value;
-        } else {
-            $this->attributes['image'] = "notfound.jpg";
-        }
-    }
-
-    /**
      * @return string
      */
     public function getImageUrlAttribute()
     {
-        if ($this->image) {
-            return asset('images/' . $this->image);
-        } else {
+        if (!$this->attributes['image_url']) {
             return asset('images/notfound.jpg');
+        }
+        return $this->attributes['image_url'];
+    }
+
+    /**
+     * @param $value
+     */
+    public function setImageUrlAttribute($value)
+    {
+        if (!$value) {
+            $this->attributes['image_url'] = asset('images/notfound.jpg');
+        } else {
+            $this->attributes['image_url'] = $value;
         }
     }
 
@@ -96,5 +104,30 @@ class Post extends Model
     public function scopePublished($query)
     {
         return $query->where('available', true);
+    }
+
+    /**
+     * @return string
+     */
+    public function getTaggedRelation()
+    {
+
+        return 'TagsCloud\Tagging\Model\PostTagged';
+    }
+
+    /**
+     * @return array
+     */
+    public function addTagsAttribute()
+    {
+        return $this->tagNames();
+    }
+
+    /**
+     * get first counter
+     */
+    public function getViewCounterAttribute()
+    {
+        return $this->get_counters()->first();
     }
 }

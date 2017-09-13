@@ -4,10 +4,13 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use TagsCloud\Tagging\Taggable;
 
 class User extends Authenticatable
 {
     use Notifiable;
+    use Taggable;
+    public $tagsPrefix = 'user';
 
     /**
      * The attributes that are mass assignable.
@@ -43,5 +46,13 @@ class User extends Authenticatable
     public function post()
     {
         return $this->hasMany(Post::class, 'user_id');
+    }
+
+    /**
+     * @return string
+     */
+    public function getTaggedRelation(){
+
+        return 'TagsCloud\Tagging\Model\UserTagged';
     }
 }

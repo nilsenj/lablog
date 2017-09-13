@@ -5,6 +5,8 @@ import {PostService} from "../../services/post.service";
 import {ToastrService} from "../../services/toastr.service";
 import {Router} from "@angular/router";
 import * as $ from "jquery";
+import {FileUploadService} from "../../services/file-upload.service";
+
 @Component({
     selector: "app-post-create",
     templateUrl: "./post-create.component.html",
@@ -13,6 +15,7 @@ import * as $ from "jquery";
 export class PostCreateComponent implements OnInit {
     @Input() public post: Post;
     @Input() public postForm: FormGroup;
+    public imageFile?: File;
     public canSavePost: boolean = false;
     public loading: boolean = false;
     public toggles = [
@@ -20,11 +23,14 @@ export class PostCreateComponent implements OnInit {
         {value: false, display: "Not Available"},
     ];
     public showDebug: boolean = false;
+    public fileEvent;
+    public tmpFileSrc: string = null;
 
     constructor(public postBuilder: FormBuilder,
                 public postService: PostService,
                 public toastrService: ToastrService,
-                public route: Router) {
+                public route: Router,
+                public fileUpload: FileUploadService) {
     }
 
     ngOnInit(): void {
@@ -69,8 +75,23 @@ export class PostCreateComponent implements OnInit {
                 "Form not valid! Try once more");
         } else {
             this.postService.savePost(this.post).subscribe((response) => {
-                this.toastrService.add("success", "Your Post Has been saved!");
-                this.route.navigate(["/posts/", response.post.id]);
+                if (this.fileEvent) {
+                    this.fileUpload.fileUpload(this.fileEvent, response.post)
+                        .subscribe(
+                            data => {
+                                console.log("success");
+                                this.toastrService.add("success", "Your Post Has been saved!");
+                                this.route.navigate(["/posts/", response.post.id]);
+                            },
+                            error => {
+                                this.toastrService.add("error", "Sorry! Your Post image has been updated!");
+                                this.route.navigate(["/posts/update/", response.post.id]);
+                            }
+                        );
+                } else {
+                    this.toastrService.add("success", "Your Post Has been saved!");
+                    this.route.navigate(["/posts/", response.post.id]);
+                }
             }, (error) => {
                 console.log(error);
                 this.toastrService.add("error", "Code: " +
@@ -98,7 +119,25 @@ export class PostCreateComponent implements OnInit {
                 Validators.minLength(120),
                 Validators.maxLength(5000)]
             ],
+            tagged: [this.post.tagged, []],
             available: ["", Validators.required],
         });
+    }
+
+    public fileChange(event): void {
+        this.fileEvent = event;
+        this.readInput();
+    }
+
+    public readInput(): void {
+        let input = this.fileEvent;
+        let that = this;
+        if (input.target.files && input.target.files[0]) {
+            let reader: FileReader = new FileReader();
+            reader.readAsDataURL(input.target.files[0]);
+            reader.onload = () => {
+                this.tmpFileSrc = reader.result;
+            };
+        }
     }
 }

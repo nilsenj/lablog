@@ -4,6 +4,10 @@ import {Post} from "../../models/Post";
 import {PostService} from "../../services/post.service";
 import {ToastrService} from "../../services/toastr.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {FileUploadService} from "../../services/file-upload.service";
+import {Observable} from "rxjs/Observable";
+import {app} from "../../../config/app";
+import {Http} from "@angular/http";
 
 @Component({
     selector: "app-edit-post",
@@ -26,12 +30,16 @@ export class EditPostComponent implements OnInit {
     public authenticated: boolean = false;
     public user = {};
     public showDebug: boolean = false;
+    public fileEvent;
+    public tmpFileSrc: string = null;
 
     constructor(public postBuilder: FormBuilder,
                 public postService: PostService,
                 public toastrService: ToastrService,
                 public route: Router,
-                public router: ActivatedRoute) {
+                public router: ActivatedRoute,
+                public fileUpload: FileUploadService,
+                private http: Http) {
 
         this.sub = this.router.params.subscribe(params => {
             let id: number = +params['id'];
@@ -86,8 +94,24 @@ export class EditPostComponent implements OnInit {
                 "Form not valid! Try once more");
         } else {
             this.postService.updatePost(this.post).subscribe((response) => {
-                this.toastrService.add("success", "Your Post Has been saved!");
-                this.route.navigate(["/posts/", response.post.id]);
+                if(this.fileEvent) {
+                    this.fileUpload.fileUpload(this.fileEvent, this.post)
+                        .subscribe(
+                            data => {
+                                console.log("success");
+                                this.toastrService.add("success", "Your Post Has been saved!");
+                                this.route.navigate(["/posts/", response.post.id]);
+                            },
+                            error => {
+                                this.toastrService.add("error", "Sorry! Your Post image has been updated!");
+                                this.route.navigate(["/posts/update/", response.post.id]);
+                                console.log(error);
+                            }
+                        );
+                } else {
+                    this.toastrService.add("success", "Your Post Has been saved!");
+                    this.route.navigate(["/posts/", response.post.id]);
+                }
             }, (error) => {
                 console.log(error);
                 this.toastrService.add("error", "Code: " +
@@ -115,8 +139,27 @@ export class EditPostComponent implements OnInit {
                 Validators.minLength(120),
                 Validators.maxLength(5000)]
             ],
+            tagged: [this.post.tagged, []
+            ],
             available: ["", Validators.required],
         });
+    }
+
+    public fileChange(event): void {
+        this.fileEvent = event;
+        this.readInput();
+    }
+
+    public readInput(): void {
+        let input = this.fileEvent;
+        let that = this;
+        if (input.target.files && input.target.files[0]) {
+            let reader: FileReader = new FileReader();
+            reader.readAsDataURL(input.target.files[0]);
+            reader.onload = () => {
+                this.tmpFileSrc = reader.result;
+            };
+        }
     }
 
     public findPost(id: number): void {
@@ -126,4 +169,11 @@ export class EditPostComponent implements OnInit {
             this.emitter.emit("received");
         });
     }
+
+    public requestAutocompleteItems(text: string): Observable<Response> {
+        let url = app.api_url + `/tagsPostSearch?q=${text}`;
+        return this.http
+            .get(url)
+            .map(data => data.json());
+    };
 }

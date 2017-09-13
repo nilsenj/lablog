@@ -212,12 +212,17 @@ var _a, _b, _c, _d;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__components_confirm_component_confirm_component_component__ = __webpack_require__("../../../../../src/app/components/confirm-component/confirm-component.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_34_ng2_bootstrap_modal__ = __webpack_require__("../../../../ng2-bootstrap-modal/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_34_ng2_bootstrap_modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_34_ng2_bootstrap_modal__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__services_file_upload_service__ = __webpack_require__("../../../../../src/app/services/file-upload.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36_ngx_chips__ = __webpack_require__("../../../../ngx-chips/dist/ngx-chips.bundle.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36_ngx_chips___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_36_ngx_chips__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -285,6 +290,7 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_8__angular_forms__["ReactiveFormsModule"],
             __WEBPACK_IMPORTED_MODULE_7__angular_http__["c" /* HttpModule */],
             __WEBPACK_IMPORTED_MODULE_6__modules_router_approuter_module__["a" /* AppRouterModule */],
+            __WEBPACK_IMPORTED_MODULE_36_ngx_chips__["TagInputModule"],
             __WEBPACK_IMPORTED_MODULE_14__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
             __WEBPACK_IMPORTED_MODULE_13_ng2_toastr__["ToastModule"].forRoot(),
             __WEBPACK_IMPORTED_MODULE_22_ngx_disqus__["a" /* DisqusModule */].forRoot("blog-dev-6"),
@@ -300,7 +306,8 @@ AppModule = __decorate([
             { provide: __WEBPACK_IMPORTED_MODULE_13_ng2_toastr__["ToastOptions"], useClass: __WEBPACK_IMPORTED_MODULE_16__support_CustomToastr__["a" /* CustomToastr */] },
             __WEBPACK_IMPORTED_MODULE_18__services_post_service__["a" /* PostService */],
             __WEBPACK_IMPORTED_MODULE_26__services_validation_service__["a" /* ValidationService */],
-            __WEBPACK_IMPORTED_MODULE_32_angular2_highlight_js__["HighlightJsService"]
+            __WEBPACK_IMPORTED_MODULE_32_angular2_highlight_js__["HighlightJsService"],
+            __WEBPACK_IMPORTED_MODULE_35__services_file_upload_service__["a" /* FileUploadService */]
         ],
         entryComponents: [
             __WEBPACK_IMPORTED_MODULE_33__components_confirm_component_confirm_component_component__["a" /* ConfirmComponentComponent */]
@@ -597,7 +604,7 @@ var _a, _b, _c, _d, _e;
 /***/ "../../../../../src/app/components/edit-post/edit-post.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-post-nav></app-post-nav>\n<h3 class=\"text-muted\">Edit your post</h3>\n<form *ngIf=\"post\" [formGroup]=\"postForm\">\n  <div  *ngIf=\"post.name\" class=\"form-group\">\n    <label class=\"center-block w-100\">Name:\n      <div class=\"badge badge-secondary\">symbols left: {{120 - post.name.length}}</div>\n      <input placeholder=\"please type the name of the post (min:2, max:120)\" class=\"form-control\" [(ngModel)]=\"post.name\" formControlName=\"name\">\n    </label>\n    <app-control-messages [control]=\"postForm.controls.name\"></app-control-messages>\n  </div>\n  <div *ngIf=\"post.preamble\" class=\"form-group\">\n    <label class=\"center-block w-100\">Preamble:\n      <div class=\"badge badge-secondary\">symbols left: {{500 - post.preamble.length}}</div>\n      <input placeholder=\"please type the preamble of the post (min:50, max:500)\" class=\"form-control\"\n             [(ngModel)]=\"post.preamble\" formControlName=\"preamble\">\n    </label>\n    <app-control-messages [control]=\"postForm.controls.preamble\"></app-control-messages>\n  </div>\n  <div *ngIf=\"post.body\" class=\"form-group\">\n    <label class=\"center-block  w-100\">Body:\n      <div class=\"badge badge-secondary\">symbols left: {{5000 - post.body.length}}</div>\n      <ckeditor\n              formControlName=\"body\"\n              [(ngModel)]=\"post.body\"\n              [config]=\"{uiColor: '#343a40',toolbar: [\n\t\t\t{ name: 'document', items: [ 'Source' ] },\n\t\t\t{ name: 'basicstyles', items: [ 'Bold', 'Italic' ] },\n\t\t\t{ name: 'paragraph', items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote' ] },\n\t\t\t{ name: 'links', items: [ 'Link', 'Unlink' ] },\n\t\t\t{ name: 'insert', items: [ 'CodeSnippet' ] },\n\t\t\t{ name: 'styles', items: [ 'Format', 'Styles' ] }],\n\t\t\tformat_tags: 'p;h1;h2;h3;pre',\n\t\t\tremovePlugins: 'image',\n\t\t\textraPlugins: 'codesnippet,youtube,codemirror',\n\t\t\tremoveDialogTabs: 'image:advanced;link:advanced;link:target'}\"\n              [readonly]=\"false\"\n              (change)=\"onChange($event)\"\n              (ready)=\"onReady($event)\"\n              (focus)=\"onFocus($event)\"\n              (blur)=\"onBlur($event)\"\n              debounce=\"500\">\n      </ckeditor>\n    </label>\n    <app-control-messages [control]=\"postForm.controls.body\"></app-control-messages>\n  </div>\n  <div class=\"form-group\">\n    <input id=\"available\" type=\"hidden\" formControlName=\"available\" name=\"available\"\n           [(ngModel)]=\"post.available\">\n    <div>\n      <label class=\"w-100\">Available:\n        <span class=\"clearfix\"></span>\n        <input class=\"\" type=\"checkbox\"\n               [checked]=\"post.available === toggles[0].value\"\n               (change)=\"$event.target.checked? (post.available = toggles[0].value) : (post.available = toggles[1].value)\">\n        <span class=\"form-check-inline\">\n                    {{ getDisplayToggles() }}\n                </span>\n      </label>\n    </div>\n    <app-control-messages [control]=\"postForm.controls.available\"></app-control-messages>\n  </div>\n  <div class=\"form-group\">\n    <button [disabled]=\"loading\" (click)=\"updatePost()\" class=\"btn btn-primary\">Update Post</button>\n    <img *ngIf=\"loading\"\n         src=\"data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==\"/>\n  </div>\n  <div *ngIf=\"showDebug\" class=\"debug\">\n    <p>Form value: {{ postForm.value | json }}</p>\n    <p>Form status: {{ postForm.status | json }}</p>\n  </div>\n</form>"
+module.exports = "<app-post-nav></app-post-nav>\n<h3 class=\"text-muted\">Edit your post</h3>\n<form *ngIf=\"post\" [formGroup]=\"postForm\">\n  <div  *ngIf=\"post.name\" class=\"form-group\">\n    <label class=\"center-block w-100\">Name:\n      <div class=\"badge badge-secondary\">symbols left: {{120 - post.name.length}}</div>\n      <input placeholder=\"please type the name of the post (min:2, max:120)\" class=\"form-control\" [(ngModel)]=\"post.name\"\n             formControlName=\"name\">\n    </label>\n    <app-control-messages [control]=\"postForm.controls.name\"></app-control-messages>\n  </div>\n  <tag-input *ngIf=\"post.tagged\" [(ngModel)]=\"post.tagged\"\n             [identifyBy]=\"'id'\"\n             [displayBy]=\"'tag_slug'\"\n             [theme]=\"'dark'\"\n             formControlName=\"tagged\">\n  </tag-input>\n  <div *ngIf=\"post.image_url\" class=\"form-group\">\n    <label class=\"center-block\">Upload Image:\n      <input type=\"file\" (change)=\"fileChange($event)\"\n             placeholder=\"Upload Post Image\" class=\"img-post-input\" accept=\".png,.jpeg,.jpg\">\n      <img *ngIf=\"!tmpFileSrc\" src=\"{{post.image_url}}\" class=\"img-post-thumbnail\">\n      <img *ngIf=\"tmpFileSrc\" src=\"{{tmpFileSrc}}\" class=\"img-post-thumbnail\">\n    </label>\n  </div>\n  <div *ngIf=\"post.preamble\" class=\"form-group\">\n    <label class=\"center-block w-100\">Preamble:\n      <div class=\"badge badge-secondary\">symbols left: {{500 - post.preamble.length}}</div>\n      <input placeholder=\"please type the preamble of the post (min:50, max:500)\" class=\"form-control\"\n             [(ngModel)]=\"post.preamble\" formControlName=\"preamble\">\n    </label>\n    <app-control-messages [control]=\"postForm.controls.preamble\"></app-control-messages>\n  </div>\n  <div *ngIf=\"post.body\" class=\"form-group\">\n    <label class=\"center-block  w-100\">Body:\n      <div class=\"badge badge-secondary\">symbols left: {{5000 - post.body.length}}</div>\n      <ckeditor\n              formControlName=\"body\"\n              [(ngModel)]=\"post.body\"\n              [config]=\"{uiColor: '#343a40',toolbar: [\n\t\t\t{ name: 'document', items: [ 'Source' ] },\n\t\t\t{ name: 'basicstyles', items: [ 'Bold', 'Italic' ] },\n\t\t\t{ name: 'paragraph', items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote' ] },\n\t\t\t{ name: 'links', items: [ 'Link', 'Unlink' ] },\n\t\t\t{ name: 'insert', items: [ 'CodeSnippet' ] },\n\t\t\t{ name: 'styles', items: [ 'Format', 'Styles' ] }],\n\t\t\tformat_tags: 'p;h1;h2;h3;pre',\n\t\t\tremovePlugins: 'image',\n\t\t\textraPlugins: 'codesnippet,youtube,codemirror',\n\t\t\tremoveDialogTabs: 'image:advanced;link:advanced;link:target'}\"\n              [readonly]=\"false\"\n              (change)=\"onChange($event)\"\n              (ready)=\"onReady($event)\"\n              (focus)=\"onFocus($event)\"\n              (blur)=\"onBlur($event)\"\n              debounce=\"500\">\n      </ckeditor>\n    </label>\n    <app-control-messages [control]=\"postForm.controls.body\"></app-control-messages>\n  </div>\n  <div class=\"form-group\">\n    <input id=\"available\" type=\"hidden\" formControlName=\"available\" name=\"available\"\n           [(ngModel)]=\"post.available\">\n    <div>\n      <label class=\"w-100\">Available:\n        <span class=\"clearfix\"></span>\n        <input class=\"\" type=\"checkbox\"\n               [checked]=\"post.available === toggles[0].value\"\n               (change)=\"$event.target.checked? (post.available = toggles[0].value) : (post.available = toggles[1].value)\">\n        <span class=\"form-check-inline\">\n                    {{ getDisplayToggles() }}\n                </span>\n      </label>\n    </div>\n    <app-control-messages [control]=\"postForm.controls.available\"></app-control-messages>\n  </div>\n  <div class=\"form-group\">\n    <button [disabled]=\"loading\" (click)=\"updatePost()\" class=\"btn btn-primary\">Update Post</button>\n    <img *ngIf=\"loading\"\n         src=\"data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==\"/>\n  </div>\n  <div *ngIf=\"showDebug\" class=\"debug\">\n    <p>Form value: {{ postForm.value | json }}</p>\n    <p>Form status: {{ postForm.status | json }}</p>\n  </div>\n</form>"
 
 /***/ }),
 
@@ -629,6 +636,9 @@ module.exports = module.exports.toString();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_post_service__ = __webpack_require__("../../../../../src/app/services/post.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_toastr_service__ = __webpack_require__("../../../../../src/app/services/toastr.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_file_upload_service__ = __webpack_require__("../../../../../src/app/services/file-upload.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__config_app__ = __webpack_require__("../../../../../src/config/app.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -643,14 +653,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
+
 var EditPostComponent = (function () {
-    function EditPostComponent(postBuilder, postService, toastrService, route, router) {
+    function EditPostComponent(postBuilder, postService, toastrService, route, router, fileUpload, http) {
         var _this = this;
         this.postBuilder = postBuilder;
         this.postService = postService;
         this.toastrService = toastrService;
         this.route = route;
         this.router = router;
+        this.fileUpload = fileUpload;
+        this.http = http;
         this.canSavePost = false;
         this.loading = false;
         this.emitter = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
@@ -661,6 +676,7 @@ var EditPostComponent = (function () {
         this.authenticated = false;
         this.user = {};
         this.showDebug = false;
+        this.tmpFileSrc = null;
         this.sub = this.router.params.subscribe(function (params) {
             var id = +params['id'];
             _this.id = id;
@@ -711,8 +727,22 @@ var EditPostComponent = (function () {
         }
         else {
             this.postService.updatePost(this.post).subscribe(function (response) {
-                _this.toastrService.add("success", "Your Post Has been saved!");
-                _this.route.navigate(["/posts/", response.post.id]);
+                if (_this.fileEvent) {
+                    _this.fileUpload.fileUpload(_this.fileEvent, _this.post)
+                        .subscribe(function (data) {
+                        console.log("success");
+                        _this.toastrService.add("success", "Your Post Has been saved!");
+                        _this.route.navigate(["/posts/", response.post.id]);
+                    }, function (error) {
+                        _this.toastrService.add("error", "Sorry! Your Post image has been updated!");
+                        _this.route.navigate(["/posts/update/", response.post.id]);
+                        console.log(error);
+                    });
+                }
+                else {
+                    _this.toastrService.add("success", "Your Post Has been saved!");
+                    _this.route.navigate(["/posts/", response.post.id]);
+                }
             }, function (error) {
                 console.log(error);
                 _this.toastrService.add("error", "Code: " +
@@ -742,8 +772,26 @@ var EditPostComponent = (function () {
                     __WEBPACK_IMPORTED_MODULE_1__angular_forms__["Validators"].maxLength(5000)
                 ]
             ],
+            tagged: [this.post.tagged, []
+            ],
             available: ["", __WEBPACK_IMPORTED_MODULE_1__angular_forms__["Validators"].required],
         });
+    };
+    EditPostComponent.prototype.fileChange = function (event) {
+        this.fileEvent = event;
+        this.readInput();
+    };
+    EditPostComponent.prototype.readInput = function () {
+        var _this = this;
+        var input = this.fileEvent;
+        var that = this;
+        if (input.target.files && input.target.files[0]) {
+            var reader_1 = new FileReader();
+            reader_1.readAsDataURL(input.target.files[0]);
+            reader_1.onload = function () {
+                _this.tmpFileSrc = reader_1.result;
+            };
+        }
     };
     EditPostComponent.prototype.findPost = function (id) {
         var _this = this;
@@ -753,6 +801,13 @@ var EditPostComponent = (function () {
             _this.emitter.emit("received");
         });
     };
+    EditPostComponent.prototype.requestAutocompleteItems = function (text) {
+        var url = __WEBPACK_IMPORTED_MODULE_6__config_app__["a" /* app */].api_url + ("/tagsPostSearch?q=" + text);
+        return this.http
+            .get(url)
+            .map(function (data) { return data.json(); });
+    };
+    ;
     return EditPostComponent;
 }());
 __decorate([
@@ -765,10 +820,10 @@ EditPostComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/components/edit-post/edit-post.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/edit-post/edit-post.component.scss")]
     }),
-    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_forms__["FormBuilder"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_forms__["FormBuilder"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__services_post_service__["a" /* PostService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_post_service__["a" /* PostService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__services_toastr_service__["a" /* ToastrService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_toastr_service__["a" /* ToastrService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_router__["b" /* Router */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_4__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_router__["a" /* ActivatedRoute */]) === "function" && _f || Object])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_forms__["FormBuilder"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_forms__["FormBuilder"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__services_post_service__["a" /* PostService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_post_service__["a" /* PostService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__services_toastr_service__["a" /* ToastrService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_toastr_service__["a" /* ToastrService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_router__["b" /* Router */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_4__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_router__["a" /* ActivatedRoute */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_5__services_file_upload_service__["a" /* FileUploadService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__services_file_upload_service__["a" /* FileUploadService */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_7__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__angular_http__["b" /* Http */]) === "function" && _h || Object])
 ], EditPostComponent);
 
-var _a, _b, _c, _d, _e, _f;
+var _a, _b, _c, _d, _e, _f, _g, _h;
 //# sourceMappingURL=C:/Users/nilse/Code/lablog/src/edit-post.component.js.map
 
 /***/ }),
@@ -1209,7 +1264,7 @@ var _a, _b, _c;
 /***/ "../../../../../src/app/components/post-create/post-create.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-post-nav></app-post-nav>\r\n<h3 class=\"text-muted\">Create your post</h3>\r\n<form *ngIf=\"post\" [formGroup]=\"postForm\">\r\n    <div class=\"form-group\">\r\n        <label class=\"center-block w-100\">Name:\r\n            <div class=\"badge badge-secondary\">symbols left: {{120 - post.name.length}}</div>\r\n            <input placeholder=\"please type the name of the post (min:2, max:120)\" class=\"form-control\"\r\n                   [(ngModel)]=\"post.name\" formControlName=\"name\">\r\n        </label>\r\n        <app-control-messages [control]=\"postForm.controls.name\"></app-control-messages>\r\n    </div>\r\n    <div class=\"form-group\">\r\n        <label class=\"center-block w-100\">Preamble:\r\n            <div class=\"badge badge-secondary\">symbols left: {{500 - post.preamble.length}}</div>\r\n            <input placeholder=\"please type the preamble of the post (min:50, max:500)\" class=\"form-control\"\r\n                   [(ngModel)]=\"post.preamble\" formControlName=\"preamble\">\r\n        </label>\r\n        <app-control-messages [control]=\"postForm.controls.preamble\"></app-control-messages>\r\n    </div>\r\n\r\n    <div class=\"form-group\">\r\n        <label class=\"center-block  w-100\">Body:\r\n            <div class=\"badge badge-secondary\">symbols left: {{5000 - post.body.length}}</div>\r\n            <ckeditor\r\n                    formControlName=\"body\"\r\n                    [(ngModel)]=\"post.body\"\r\n                    [config]=\"{uiColor: '#343a40',toolbar: [\r\n\t\t\t{ name: 'document', items: [ 'Source' ] },\r\n\t\t\t{ name: 'basicstyles', items: [ 'Bold', 'Italic' ] },\r\n\t\t\t{ name: 'paragraph', items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote' ] },\r\n\t\t\t{ name: 'links', items: [ 'Link', 'Unlink' ] },\r\n\t\t\t{ name: 'insert', items: [ 'CodeSnippet' ] },\r\n\t\t\t{ name: 'styles', items: [ 'Format', 'Styles' ] }],\r\n\t\t\tformat_tags: 'p;h1;h2;h3;pre',\r\n\t\t\tremovePlugins: 'image',\r\n\t\t\textraPlugins: 'codesnippet,youtube,codemirror',\r\n\t\t\tremoveDialogTabs: 'image:advanced;link:advanced;link:target'}\"\r\n                    [readonly]=\"false\"\r\n                    (change)=\"onChange($event)\"\r\n                    (ready)=\"onReady($event)\"\r\n                    (focus)=\"onFocus($event)\"\r\n                    (blur)=\"onBlur($event)\"\r\n                    debounce=\"500\">\r\n            </ckeditor>\r\n        </label>\r\n        <app-control-messages [control]=\"postForm.controls.body\"></app-control-messages>\r\n    </div>\r\n    <div class=\"form-group\">\r\n        <input id=\"available\" type=\"hidden\" formControlName=\"available\" name=\"available\"\r\n               [(ngModel)]=\"post.available\">\r\n        <div>\r\n            <label class=\"w-100\">Available:\r\n                <span class=\"clearfix\"></span>\r\n                <input class=\"\" type=\"checkbox\"\r\n                       [checked]=\"post.available === toggles[0].value\"\r\n                       (change)=\"$event.target.checked? (post.available = toggles[0].value) : (post.available = toggles[1].value)\">\r\n                <span class=\"form-check-inline\">\r\n                    {{ getDisplayToggles() }}\r\n                </span>\r\n            </label>\r\n        </div>\r\n        <app-control-messages [control]=\"postForm.controls.available\"></app-control-messages>\r\n    </div>\r\n    <div class=\"form-group\">\r\n        <button [disabled]=\"loading\" (click)=\"savePost()\" class=\"btn btn-primary\">Create Post</button>\r\n        <img *ngIf=\"loading\"\r\n             src=\"data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==\"/>\r\n    </div>\r\n    <div *ngIf=\"showDebug\" class=\"debug\">\r\n        <p>Form value: {{ postForm.value | json }}</p>\r\n        <p>Form status: {{ postForm.status | json }}</p>\r\n    </div>\r\n</form>"
+module.exports = "<app-post-nav></app-post-nav>\r\n<h3 class=\"text-muted\">Create your post</h3>\r\n<form *ngIf=\"post\" [formGroup]=\"postForm\">\r\n    <div class=\"form-group\">\r\n        <label class=\"center-block w-100\">Name:\r\n            <div class=\"badge badge-secondary\">symbols left: {{120 - post.name.length}}</div>\r\n            <input placeholder=\"please type the name of the post (min:2, max:120)\" class=\"form-control\"\r\n                   [(ngModel)]=\"post.name\" formControlName=\"name\">\r\n        </label>\r\n        <app-control-messages [control]=\"postForm.controls.name\"></app-control-messages>\r\n    </div>\r\n    <div *ngIf=\"post.image_url\" class=\"form-group\">\r\n        <label class=\"center-block\">Upload Image:\r\n            <img src=\"{{post.image_url}}\" class=\"thumbnail\">\r\n        </label>\r\n    </div>\r\n    <tag-input [(ngModel)]=\"post.tagged\"\r\n               [identifyBy]=\"'id'\"\r\n               [displayBy]=\"'tag_slug'\"\r\n               [theme]=\"'dark'\"\r\n               formControlName=\"tagged\">\r\n    </tag-input>\r\n    <div class=\"form-group\">\r\n        <label class=\"center-block\">Upload Image:\r\n            <input type=\"file\" (change)=\"fileChange($event)\"\r\n                   placeholder=\"Upload Post Image\" class=\"img-post-input\" accept=\".png,.jpeg,.jpg\">\r\n            <img *ngIf=\"!tmpFileSrc\" src=\"{{post.image_url}}\" class=\"img-post-thumbnail\">\r\n            <img *ngIf=\"tmpFileSrc\" src=\"{{tmpFileSrc}}\" class=\"img-post-thumbnail\">\r\n        </label>\r\n    </div>\r\n    <div class=\"form-group\">\r\n        <label class=\"center-block w-100\">Preamble:\r\n            <div class=\"badge badge-secondary\">symbols left: {{500 - post.preamble.length}}</div>\r\n            <input placeholder=\"please type the preamble of the post (min:50, max:500)\" class=\"form-control\"\r\n                   [(ngModel)]=\"post.preamble\" formControlName=\"preamble\">\r\n        </label>\r\n        <app-control-messages [control]=\"postForm.controls.preamble\"></app-control-messages>\r\n    </div>\r\n\r\n    <div class=\"form-group\">\r\n        <label class=\"center-block  w-100\">Body:\r\n            <div class=\"badge badge-secondary\">symbols left: {{5000 - post.body.length}}</div>\r\n            <ckeditor\r\n                    formControlName=\"body\"\r\n                    [(ngModel)]=\"post.body\"\r\n                    [config]=\"{uiColor: '#343a40',toolbar: [\r\n\t\t\t{ name: 'document', items: [ 'Source' ] },\r\n\t\t\t{ name: 'basicstyles', items: [ 'Bold', 'Italic' ] },\r\n\t\t\t{ name: 'paragraph', items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote' ] },\r\n\t\t\t{ name: 'links', items: [ 'Link', 'Unlink' ] },\r\n\t\t\t{ name: 'insert', items: [ 'CodeSnippet' ] },\r\n\t\t\t{ name: 'styles', items: [ 'Format', 'Styles' ] }],\r\n\t\t\tformat_tags: 'p;h1;h2;h3;pre',\r\n\t\t\tremovePlugins: 'image',\r\n\t\t\textraPlugins: 'codesnippet,youtube,codemirror',\r\n\t\t\tremoveDialogTabs: 'image:advanced;link:advanced;link:target'}\"\r\n                    [readonly]=\"false\"\r\n                    (change)=\"onChange($event)\"\r\n                    (ready)=\"onReady($event)\"\r\n                    (focus)=\"onFocus($event)\"\r\n                    (blur)=\"onBlur($event)\"\r\n                    debounce=\"500\">\r\n            </ckeditor>\r\n        </label>\r\n        <app-control-messages [control]=\"postForm.controls.body\"></app-control-messages>\r\n    </div>\r\n    <div class=\"form-group\">\r\n        <input id=\"available\" type=\"hidden\" formControlName=\"available\" name=\"available\"\r\n               [(ngModel)]=\"post.available\">\r\n        <div>\r\n            <label class=\"w-100\">Available:\r\n                <span class=\"clearfix\"></span>\r\n                <input class=\"\" type=\"checkbox\"\r\n                       [checked]=\"post.available === toggles[0].value\"\r\n                       (change)=\"$event.target.checked? (post.available = toggles[0].value) : (post.available = toggles[1].value)\">\r\n                <span class=\"form-check-inline\">\r\n                    {{ getDisplayToggles() }}\r\n                </span>\r\n            </label>\r\n        </div>\r\n        <app-control-messages [control]=\"postForm.controls.available\"></app-control-messages>\r\n    </div>\r\n    <div class=\"form-group\">\r\n        <button [disabled]=\"loading\" (click)=\"savePost()\" class=\"btn btn-primary\">Create Post</button>\r\n        <img *ngIf=\"loading\"\r\n             src=\"data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==\"/>\r\n    </div>\r\n    <div *ngIf=\"showDebug\" class=\"debug\">\r\n        <p>Form value: {{ postForm.value | json }}</p>\r\n        <p>Form status: {{ postForm.status | json }}</p>\r\n    </div>\r\n</form>"
 
 /***/ }),
 
@@ -1242,6 +1297,7 @@ module.exports = module.exports.toString();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_post_service__ = __webpack_require__("../../../../../src/app/services/post.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_toastr_service__ = __webpack_require__("../../../../../src/app/services/toastr.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_file_upload_service__ = __webpack_require__("../../../../../src/app/services/file-upload.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1257,12 +1313,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var PostCreateComponent = (function () {
-    function PostCreateComponent(postBuilder, postService, toastrService, route) {
+    function PostCreateComponent(postBuilder, postService, toastrService, route, fileUpload) {
         this.postBuilder = postBuilder;
         this.postService = postService;
         this.toastrService = toastrService;
         this.route = route;
+        this.fileUpload = fileUpload;
         this.canSavePost = false;
         this.loading = false;
         this.toggles = [
@@ -1270,6 +1328,7 @@ var PostCreateComponent = (function () {
             { value: false, display: "Not Available" },
         ];
         this.showDebug = false;
+        this.tmpFileSrc = null;
     }
     PostCreateComponent.prototype.ngOnInit = function () {
         this.post = {
@@ -1310,8 +1369,21 @@ var PostCreateComponent = (function () {
         }
         else {
             this.postService.savePost(this.post).subscribe(function (response) {
-                _this.toastrService.add("success", "Your Post Has been saved!");
-                _this.route.navigate(["/posts/", response.post.id]);
+                if (_this.fileEvent) {
+                    _this.fileUpload.fileUpload(_this.fileEvent, response.post)
+                        .subscribe(function (data) {
+                        console.log("success");
+                        _this.toastrService.add("success", "Your Post Has been saved!");
+                        _this.route.navigate(["/posts/", response.post.id]);
+                    }, function (error) {
+                        _this.toastrService.add("error", "Sorry! Your Post image has been updated!");
+                        _this.route.navigate(["/posts/update/", response.post.id]);
+                    });
+                }
+                else {
+                    _this.toastrService.add("success", "Your Post Has been saved!");
+                    _this.route.navigate(["/posts/", response.post.id]);
+                }
             }, function (error) {
                 console.log(error);
                 _this.toastrService.add("error", "Code: " +
@@ -1341,8 +1413,25 @@ var PostCreateComponent = (function () {
                     __WEBPACK_IMPORTED_MODULE_2__angular_forms__["Validators"].maxLength(5000)
                 ]
             ],
+            tagged: [this.post.tagged, []],
             available: ["", __WEBPACK_IMPORTED_MODULE_2__angular_forms__["Validators"].required],
         });
+    };
+    PostCreateComponent.prototype.fileChange = function (event) {
+        this.fileEvent = event;
+        this.readInput();
+    };
+    PostCreateComponent.prototype.readInput = function () {
+        var _this = this;
+        var input = this.fileEvent;
+        var that = this;
+        if (input.target.files && input.target.files[0]) {
+            var reader_1 = new FileReader();
+            reader_1.readAsDataURL(input.target.files[0]);
+            reader_1.onload = function () {
+                _this.tmpFileSrc = reader_1.result;
+            };
+        }
     };
     return PostCreateComponent;
 }());
@@ -1360,10 +1449,10 @@ PostCreateComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/components/post-create/post-create.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/post-create/post-create.component.scss")]
     }),
-    __metadata("design:paramtypes", [typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormBuilder"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormBuilder"]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__services_post_service__["a" /* PostService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_post_service__["a" /* PostService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__services_toastr_service__["a" /* ToastrService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_toastr_service__["a" /* ToastrService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_5__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__angular_router__["b" /* Router */]) === "function" && _f || Object])
+    __metadata("design:paramtypes", [typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormBuilder"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormBuilder"]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__services_post_service__["a" /* PostService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_post_service__["a" /* PostService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__services_toastr_service__["a" /* ToastrService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_toastr_service__["a" /* ToastrService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_5__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__angular_router__["b" /* Router */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_6__services_file_upload_service__["a" /* FileUploadService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__services_file_upload_service__["a" /* FileUploadService */]) === "function" && _g || Object])
 ], PostCreateComponent);
 
-var _a, _b, _c, _d, _e, _f;
+var _a, _b, _c, _d, _e, _f, _g;
 //# sourceMappingURL=C:/Users/nilse/Code/lablog/src/post-create.component.js.map
 
 /***/ }),
@@ -1447,7 +1536,7 @@ var _a;
 /***/ "../../../../../src/app/components/post/post.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-post-nav></app-post-nav>\n<div *ngIf=\"post\" class=\"posts container\">\n    <div class=\"row block\">\n        <div class=\"row\">\n            <div class=\"col-lg-12\">\n                <a [routerLink]=\"['/posts/', post.id]\" class=\"header clearfix\">{{post.name}}\n                    <span class=\"badge badge-secondary bg-info\" *ngIf=\"post.available\">{{post.published}}</span>\n                    <span class=\"badge badge-secondary bg-dark\" *ngIf=\"!post.available\">{{post.published}}</span>\n                </a>\n                <a *ngIf=\"authenticated && post.user.email === user.email\" [routerLink]=\"['/posts/update/', post.id]\"\n                   class=\"btn btn-info btn-sm float-right text-right m-1\">edit post</a>\n                <app-delete-post\n                        [(post)]=\"post\"\n                        *ngIf=\"authenticated && post.user.email === user.email\">\n                </app-delete-post>\n                <div class=\"card-block\">\n                    <img src=\"{{post.image_url}}\" alt=\"{{ post.name }}\" class=\"img-thumbnail\">\n                    <blockquote class=\"blockquote\">\n                        <p class=\"mb-0\">\n                            {{post.preamble}}\n                        </p>\n                        <footer class=\"blockquote-footer\">Preamble. Author: <cite title=\"{{post.user.name}}\"><a\n                                [routerLink]=\"['/user/', post.user.id]\">{{post.user.name}}</a></cite></footer>\n                    </blockquote>\n                    <!--<div  class=\"clearfix\" [innerHTML]=\"post.body | keepHtml\"></div>-->\n                    <section [innerHTML]=\"post.body\" highlight-js-content=\"pre code\"></section>\n                    <span class=\"float-left text-left\">Created: </span>\n                    <span class=\"text-muted float-left text-left\"> {{post.created}}</span>\n                    <a [routerLink]=\"['/user/', post.user.id]\"\n                       class=\"btn btn-link btn-sm float-right text-right\">{{post.user.name}}</a>\n                    <span class=\"float-right text-right\">Writer:</span>\n                </div>\n                <disqus [identifier]=\"post.id\" [url]=\"'/posts/' + post.id\" [lang]=\"'en'\"\n                        (onNewComment)=\"onComment($event)\"\n                        (onReady)=\"onReady($event)\" (onPaginate)=\"onPaginate($event)\"></disqus>\n            </div>\n        </div>\n    </div>\n</div>"
+module.exports = "<app-post-nav></app-post-nav>\n<div *ngIf=\"post\" class=\"posts container\">\n    <div class=\"row block\">\n        <div class=\"row\">\n            <div class=\"col-lg-12\">\n                <a [routerLink]=\"['/posts/', post.id]\" class=\"header clearfix\">{{post.name}}\n                    <span class=\"badge badge-secondary bg-info\" *ngIf=\"post.available\">{{post.published}}</span>\n                    <span class=\"badge badge-secondary bg-dark\" *ngIf=\"!post.available\">{{post.published}}</span>\n                </a>\n                <span class=\"text-muted\">tags: </span>\n                <a *ngFor=\"let tag of post.tagged\"\n                   class=\"post-tag\" [routerLink]=\"['posts/tagged/' + tag.tag_slug]\">\n                    {{tag.tag_slug}}\n                </a>\n                <a *ngIf=\"authenticated && post.user.email === user.email\" [routerLink]=\"['/posts/update/', post.id]\"\n                   class=\"btn btn-info btn-sm float-right text-right m-1\">edit post</a>\n                <app-delete-post\n                        [(post)]=\"post\"\n                        *ngIf=\"authenticated && post.user.email === user.email\">\n                </app-delete-post>\n                <div class=\"card-block\">\n                    <img src=\"{{post.image_url}}\" alt=\"{{ post.name }}\" class=\"img-thumbnail\">\n                    <blockquote class=\"blockquote\">\n                        <p class=\"mb-0\">\n                            {{post.preamble}}\n                        </p>\n                        <footer class=\"blockquote-footer\">Preamble. Author: <cite title=\"{{post.user.name}}\"><a\n                                [routerLink]=\"['/user/', post.user.id]\">{{post.user.name}}</a></cite></footer>\n                    </blockquote>\n                    <!--<div  class=\"clearfix\" [innerHTML]=\"post.body | keepHtml\"></div>-->\n                    <section [innerHTML]=\"post.body\" highlight-js-content=\"pre code\"></section>\n\n                    <hr>\n                    <span class=\"float-left text-left\"> Created: </span>\n                    <span class=\"text-muted float-left text-left\"> {{post.created}}</span>\n                    <span class=\"float-left text-left\"> Views: </span>\n                    <span class=\"text-muted float-left text-left\"> {{post.view_counter.view_counter}}</span>\n                    <a [routerLink]=\"['/user/', post.user.id]\"\n                       class=\"btn btn-link btn-sm float-right text-right\">{{post.user.name}}</a>\n                    <span class=\"float-right text-right\">Writer:</span>\n                </div>\n                <disqus [identifier]=\"post.id\" [url]=\"'/posts/' + post.id\" [lang]=\"'en'\"\n                        (onNewComment)=\"onComment($event)\"\n                        (onReady)=\"onReady($event)\"\n                        (onPaginate)=\"onPaginate($event)\"></disqus>\n            </div>\n        </div>\n    </div>\n</div>"
 
 /***/ }),
 
@@ -1554,7 +1643,7 @@ var _a, _b, _c;
 /***/ "../../../../../src/app/components/posts/posts.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-post-nav></app-post-nav>\n<div class=\"posts container\">\n    <div *ngFor=\"let post of posts\" class=\"row block\">\n        <div class=\"row\">\n            <div class=\"col-lg-12\">\n                <a [routerLink]=\"['/posts/', post.id]\" class=\"header clearfix\">{{post.name}}</a>\n                <div class=\"card-block\">\n                    <img src=\"{{post.image_url}}\" alt=\"{{ post.name }}\" class=\"img-thumbnail\">\n                    <div  class=\"clearfix\">{{post.preamble}}</div>\n                    <span class=\"text-muted float-left text-left \">{{post.created}}</span>\n                    <a [routerLink]=\"['/posts/', post.id]\"\n                       class=\"btn btn-dark btn-sm float-right text-right m-1\">go to post</a>\n                    <a *ngIf=\"authenticated && post.user.email === user.email\"\n                       [routerLink]=\"['/posts/update/', post.id]\"\n                       class=\"btn btn-info btn-sm float-right text-right m-1\">edit post</a>\n                </div>\n            </div>\n        </div>\n        <hr style=\"border: dashed 1px darkgrey; width: 100%\">\n    </div>\n    <app-pagination [pagination]=\"pagination\"\n                    [page]=\"page\"\n                    (pageUpdated)=\"pageUpdated($event)\">\n        (click)=\"all(pagination.current_page)\"\n        (offset)=\"4\">\n    </app-pagination>\n</div>"
+module.exports = "<app-post-nav></app-post-nav>\n<div class=\"posts container\">\n    <div *ngFor=\"let post of posts\" class=\"row block\">\n        <div class=\"row\">\n            <div class=\"col-lg-12\">\n                <a [routerLink]=\"['/posts/', post.id]\" class=\"header clearfix\">{{post.name}}</a>\n                <a *ngFor=\"let tag of post.tagged\"\n                   class=\"post-tag\" [routerLink]=\"['posts/tagged/' + tag.tag_slug]\">\n                    {{tag.tag_slug}}\n                </a>\n                <strong class=\"float-right text-left\"> Views: {{post.view_counter.view_counter}}</strong>\n                <div class=\"card-block\">\n                    <img src=\"{{post.image_url}}\" alt=\"{{ post.name }}\" class=\"img-thumbnail\">\n                    <div  class=\"clearfix\">{{post.preamble}}</div>\n                    <span class=\"text-muted float-left text-left \">{{post.created}}</span>\n                    <a [routerLink]=\"['/posts/', post.id]\"\n                       class=\"btn btn-dark btn-sm float-right text-right m-1\">go to post</a>\n                    <a *ngIf=\"authenticated && post.user.email === user.email\"\n                       [routerLink]=\"['/posts/update/', post.id]\"\n                       class=\"btn btn-info btn-sm float-right text-right m-1\">edit post</a>\n                </div>\n            </div>\n        </div>\n        <hr style=\"border: dashed 1px darkgrey; width: 100%\">\n    </div>\n    <app-pagination [pagination]=\"pagination\"\n                    [page]=\"page\"\n                    (pageUpdated)=\"pageUpdated($event)\">\n        (click)=\"all(pagination.current_page)\"\n        (offset)=\"4\">\n    </app-pagination>\n</div>"
 
 /***/ }),
 
@@ -2031,9 +2120,8 @@ var Post = (function () {
         this.created_at = "";
         this.user = new __WEBPACK_IMPORTED_MODULE_0__User__["a" /* User */];
         this.created = null;
-        this.image = null;
-        this.image_link = null;
         this.user_id = null;
+        this.tagged = [];
     }
     return Post;
 }());
@@ -2367,6 +2455,65 @@ var _a, _b;
 
 /***/ }),
 
+/***/ "../../../../../src/app/services/file-upload.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FileUploadService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__config_app__ = __webpack_require__("../../../../../src/config/app.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
+
+
+
+var FileUploadService = (function () {
+    function FileUploadService(http) {
+        this.http = http;
+        var currentUser = JSON.parse(localStorage.getItem("currentUser"));
+        this.token = currentUser && currentUser.token;
+    }
+    FileUploadService.prototype.fileUpload = function (event, post) {
+        var fileList = event.target.files;
+        if (fileList.length > 0) {
+            var file = fileList[0];
+            var formData = new FormData();
+            formData.append("file", file, file.name);
+            formData.append("post_id", post.id);
+            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({ "Authorization": "Bearer " + this.token });
+            var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]({ headers: headers });
+            // get users from api
+            return this.http.post(__WEBPACK_IMPORTED_MODULE_3__config_app__["a" /* app */].api_url + "/api/blog/file/uploadFile", formData, options)
+                .map(function (response) { return response.json(); });
+        }
+    };
+    return FileUploadService;
+}());
+FileUploadService = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+    __param(0, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Inject"])(__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */])),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object])
+], FileUploadService);
+
+var _a;
+//# sourceMappingURL=C:/Users/nilse/Code/lablog/src/file-upload.service.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/services/post.service.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2415,7 +2562,13 @@ var PostService = (function () {
      * @returns {Observable<R>}
      */
     PostService.prototype.findPost = function (id) {
-        // get users from api
+        if (this.token) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({ "Authorization": "Bearer " + this.token });
+            var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]({ headers: headers });
+            // get users from api
+            return this.http.get(__WEBPACK_IMPORTED_MODULE_3__config_app__["a" /* app */].api_url + "/api/blog/" + id, options)
+                .map(function (response) { return response.json(); });
+        }
         return this.http.get(__WEBPACK_IMPORTED_MODULE_3__config_app__["a" /* app */].api_url + "/api/blog/" + id)
             .map(function (response) { return response.json(); });
     };

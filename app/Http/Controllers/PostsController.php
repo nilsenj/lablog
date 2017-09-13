@@ -4,17 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use Illuminate\Http\Request;
+use TagsCloud\Tagging\Model\Tag;
 
 class PostsController extends Controller
 {
     protected $post;
+    /**
+     * @var Tag
+     */
+    private $tag;
 
     /**
      * PostsController constructor.
+     * @param Post $post
+     * @param Tag $tag
      */
-    public function __construct(Post $post)
+    public function __construct(Post $post, Tag $tag)
     {
         $this->post = $post;
+        $this->tag = $tag;
     }
 
     /**
@@ -58,6 +66,18 @@ class PostsController extends Controller
         $requestData = $request->except('user_id');
         $requestData['user_id'] = $request->user()->id;
         $post = $this->post->create($requestData);
+        $taglist = $requestData['tagged'];
+        $tags = [];
+        if (is_array($taglist)) {
+            foreach ($taglist as $tag) {
+                if (!empty($tag["tag_slug"])) {
+                    $tags[] = $tag['tag_slug'];
+                }
+            }
+        }
+        if (!empty($tags)) {
+            $post->tag($tags);
+        }
         $data = compact('post');
 
         return response()->json($data);
@@ -69,9 +89,12 @@ class PostsController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
+        $user = \JWTAuth::parseToken()->authenticate();
+        $user->ip = $request->ip();
         $post = $this->post->findOrFail($id);
+        $post->view($user);
         $data = compact('post');
 
         return response()->json($data);
@@ -90,6 +113,20 @@ class PostsController extends Controller
         $requestData['user_id'] = $request->user()->id;
         $post = $this->post->findOrFail($id);
         $post->update($requestData);
+        $taglist = $requestData['tagged'];
+        $tags = [];
+        if (is_array($taglist)) {
+            foreach ($taglist as $tag) {
+                if (!empty($tag["tag_slug"])) {
+                    $tags[] = $tag['tag_slug'];
+                }
+            }
+        }
+        if (!empty($tags)) {
+            $post->retag($tags);
+        } else {
+            $post->untag();
+        }
         $data = compact('post');
 
         return response()->json($data);
@@ -106,6 +143,7 @@ class PostsController extends Controller
         try {
             \DB::beginTransaction();
             $post = $this->post->findOrFail($id);
+            $post->tagged->sync([]);
             $deleted = $post->delete();
 
             if ($deleted) {
@@ -120,4 +158,5 @@ class PostsController extends Controller
             return response()->json(['msg' => $exception->getMessage()], $exception->getCode());
         }
     }
+
 }

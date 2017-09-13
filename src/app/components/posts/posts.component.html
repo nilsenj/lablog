@@ -4,6 +4,11 @@
         <div class="row">
             <div class="col-lg-12">
                 <a [routerLink]="['/posts/', post.id]" class="header clearfix">{{post.name}}</a>
+                <a *ngFor="let tag of post.tagged"
+                   class="post-tag" [routerLink]="['posts/tagged/' + tag.tag_slug]">
+                    {{tag.tag_slug}}
+                </a>
+                <strong class="float-right text-left"> Views: {{post.view_counter.view_counter}}</strong>
                 <div class="card-block">
                     <img src="{{post.image_url}}" alt="{{ post.name }}" class="img-thumbnail">
                     <div  class="clearfix">{{post.preamble}}</div>

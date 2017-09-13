@@ -9,9 +9,9 @@ export class Post {
     public user?: User = new User;
     public available: boolean;
     public created?: string = null;
-    public image?: string = null;
-    public image_link?: string = null;
+    public image_url?: string;
     public deleted_at?: string;
     public user_id?: number = null;
     public published?: string;
+    public tagged?: any = [];
 }

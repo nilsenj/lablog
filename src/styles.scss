@@ -806,3 +806,27 @@
 .glyphicon-menu-up:before {
   content: "\e260";
 }
+
+.img-post-input {
+  padding-top: 10%;
+  width: 40%;
+}
+.img-post-thumbnail {
+  padding: .25rem;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: .25rem;
+  transition: all .2s ease-in-out;
+  max-width: 50%;
+  height: auto;
+  float: right;
+}
+
+.post-tag {
+  display: inline-block;
+  padding: 0.3em 0.9em;
+  margin: 0 0.5em 0.5em 0;
+  white-space: nowrap;
+  background-color: #f1f8ff;
+  border-radius: 3px;
+}

@@ -30,6 +30,7 @@
     "ng2-bootstrap-modal": "^1.0.1",
     "ng2-ckeditor": "^1.1.9",
     "ng2-toastr": "^4.1.2",
+    "ngx-chips": "^1.5.3",
     "ngx-disqus": "^2.2.1",
     "rxjs": "^5.4.2",
     "zone.js": "^0.8.14"

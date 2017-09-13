@@ -25,7 +25,7 @@ class PostsTableSeeder extends Seeder
     {
         $faker = Faker\Factory::create();
         factory(\App\Post::class, 50)->create()->each(function(\App\Post $post) use ($faker) {
-            $post->image = $this->images[$faker->numberBetween(0, 8)];
+            $post->image_url = url('images/' . $this->images[$faker->numberBetween(0, 8)]);
             $post->user_id = $faker->numberBetween(1, \App\User::count());
             $post->available = $faker->numberBetween(0, 1);
             $post->save();

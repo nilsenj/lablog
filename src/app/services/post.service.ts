@@ -32,7 +32,13 @@ export class PostService {
      * @returns {Observable<R>}
      */
     findPost(id: number): Observable<any> {
-        // get users from api
+        if(this.token) {
+            let headers = new Headers({"Authorization": "Bearer " + this.token});
+            let options = new RequestOptions({headers: headers});
+            // get users from api
+            return this.http.get(app.api_url + "/api/blog/" + id, options)
+                .map((response: Response) => response.json());
+        }
         return this.http.get(app.api_url + "/api/blog/" + id)
             .map((response: Response) => response.json());
     }

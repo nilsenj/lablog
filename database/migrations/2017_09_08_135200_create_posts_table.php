@@ -24,8 +24,8 @@ class CreatePostsTable extends Migration
                 ->onDelete('cascade');
             $table->string('name', 255);
             $table->string('preamble', 500);
+            $table->text('image_url')->nullable();
             $table->longText('body');
-            $table->text('image')->nullable();
             $table->timestamps();
         });
     }

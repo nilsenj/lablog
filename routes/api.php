@@ -18,7 +18,7 @@ use Illuminate\Http\Request;
 //});
 
 Route::group(['middleware' => ['api'], 'as' => 'api.'], function () {
-    if(isset($_SERVER['HTTP_ORIGIN'])) {
+    if (isset($_SERVER['HTTP_ORIGIN'])) {
         $origin = !empty($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : "";
     } else {
         $origin = !empty($_SERVER['HTTP_HOST']) ? "http://" . $_SERVER['HTTP_HOST'] : "";
@@ -58,7 +58,19 @@ Route::group(['middleware' => ['api'], 'as' => 'api.'], function () {
                 'middleware' => 'AllowDeletePost'
             ]);
 
+            Route::group(['prefix' => 'file', 'as' => 'file.'], function () {
+                Route::post('/uploadFile', [
+                    'uses' => 'FileUploadController@uploadFile',
+                    'as' => 'images'
+                ]);
+            });
         });
+    });
+    Route::group(['prefix' => 'blog/file', 'as' => 'blog.file.'], function () {
+        Route::get('/images/{day}/{filename}', [
+            'uses' => 'FileUploadController@images',
+            'as' => 'images'
+        ]);
     });
     Route::group(['prefix' => 'blog', 'as' => 'blog.'], function () {
         Route::get('/index', [

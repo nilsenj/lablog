@@ -4,9 +4,24 @@
   <div  *ngIf="post.name" class="form-group">
     <label class="center-block w-100">Name:
       <div class="badge badge-secondary">symbols left: {{120 - post.name.length}}</div>
-      <input placeholder="please type the name of the post (min:2, max:120)" class="form-control" [(ngModel)]="post.name" formControlName="name">
+      <input placeholder="please type the name of the post (min:2, max:120)" class="form-control" [(ngModel)]="post.name"
+             formControlName="name">
     </label>
     <app-control-messages [control]="postForm.controls.name"></app-control-messages>
+  </div>
+  <tag-input *ngIf="post.tagged" [(ngModel)]="post.tagged"
+             [identifyBy]="'id'"
+             [displayBy]="'tag_slug'"
+             [theme]="'dark'"
+             formControlName="tagged">
+  </tag-input>
+  <div *ngIf="post.image_url" class="form-group">
+    <label class="center-block">Upload Image:
+      <input type="file" (change)="fileChange($event)"
+             placeholder="Upload Post Image" class="img-post-input" accept=".png,.jpeg,.jpg">
+      <img *ngIf="!tmpFileSrc" src="{{post.image_url}}" class="img-post-thumbnail">
+      <img *ngIf="tmpFileSrc" src="{{tmpFileSrc}}" class="img-post-thumbnail">
+    </label>
   </div>
   <div *ngIf="post.preamble" class="form-group">
     <label class="center-block w-100">Preamble:

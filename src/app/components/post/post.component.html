@@ -7,6 +7,11 @@
                     <span class="badge badge-secondary bg-info" *ngIf="post.available">{{post.published}}</span>
                     <span class="badge badge-secondary bg-dark" *ngIf="!post.available">{{post.published}}</span>
                 </a>
+                <span class="text-muted">tags: </span>
+                <a *ngFor="let tag of post.tagged"
+                   class="post-tag" [routerLink]="['posts/tagged/' + tag.tag_slug]">
+                    {{tag.tag_slug}}
+                </a>
                 <a *ngIf="authenticated && post.user.email === user.email" [routerLink]="['/posts/update/', post.id]"
                    class="btn btn-info btn-sm float-right text-right m-1">edit post</a>
                 <app-delete-post
@@ -24,15 +29,20 @@
                     </blockquote>
                     <!--<div  class="clearfix" [innerHTML]="post.body | keepHtml"></div>-->
                     <section [innerHTML]="post.body" highlight-js-content="pre code"></section>
-                    <span class="float-left text-left">Created: </span>
+
+                    <hr>
+                    <span class="float-left text-left"> Created: </span>
                     <span class="text-muted float-left text-left"> {{post.created}}</span>
+                    <span class="float-left text-left"> Views: </span>
+                    <span class="text-muted float-left text-left"> {{post.view_counter.view_counter}}</span>
                     <a [routerLink]="['/user/', post.user.id]"
                        class="btn btn-link btn-sm float-right text-right">{{post.user.name}}</a>
                     <span class="float-right text-right">Writer:</span>
                 </div>
                 <disqus [identifier]="post.id" [url]="'/posts/' + post.id" [lang]="'en'"
                         (onNewComment)="onComment($event)"
-                        (onReady)="onReady($event)" (onPaginate)="onPaginate($event)"></disqus>
+                        (onReady)="onReady($event)"
+                        (onPaginate)="onPaginate($event)"></disqus>
             </div>
         </div>
     </div>
