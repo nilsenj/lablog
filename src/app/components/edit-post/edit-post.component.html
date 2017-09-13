@@ -33,7 +33,7 @@
   </div>
   <div *ngIf="post.body" class="form-group">
     <label class="center-block  w-100">Body:
-      <div class="badge badge-secondary">symbols left: {{5000 - post.body.length}}</div>
+      <div class="badge badge-secondary">symbols left: {{50000 - post.body.length}}</div>
       <ckeditor
               formControlName="body"
               [(ngModel)]="post.body"

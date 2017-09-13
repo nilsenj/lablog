@@ -26,7 +26,7 @@ class UpdatePost extends FormRequest
         return [
             'name' => 'required|min:2|max:255',
             'preamble' => 'required|min:50|max:500',
-            'body' => 'required|min:50|max:5000|unique:posts',
+            'body' => 'required|min:120|max:50000|unique:posts',
             'available' => 'required|boolean'
         ];
     }

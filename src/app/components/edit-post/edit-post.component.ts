@@ -137,7 +137,7 @@ export class EditPostComponent implements OnInit {
             body: [this.post.body, [
                 Validators.required,
                 Validators.minLength(120),
-                Validators.maxLength(5000)]
+                Validators.maxLength(50000)]
             ],
             tagged: [this.post.tagged, []
             ],
