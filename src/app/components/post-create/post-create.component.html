@@ -2,16 +2,38 @@
 <form *ngIf="post" [formGroup]="postForm">
     <div class="form-group">
         <label class="center-block w-100">Name:
-            <input placeholder="please type the name of the post (min:2, max:120)" class="form-control" [(ngModel)]="post.name" formControlName="name">
+            <div class="badge badge-secondary">symbols left: {{120 - post.name.length}}</div>
+            <input placeholder="please type the name of the post (min:2, max:120)" class="form-control"
+                   [(ngModel)]="post.name" formControlName="name">
         </label>
         <app-control-messages [control]="postForm.controls.name"></app-control-messages>
     </div>
     <div class="form-group">
+        <label class="center-block w-100">Preamble:
+            <div class="badge badge-secondary">symbols left: {{500 - post.preamble.length}}</div>
+            <input placeholder="please type the preamble of the post (min:50, max:500)" class="form-control"
+                   [(ngModel)]="post.preamble" formControlName="preamble">
+        </label>
+        <app-control-messages [control]="postForm.controls.preamble"></app-control-messages>
+    </div>
+
+    <div class="form-group">
         <label class="center-block  w-100">Body:
+            <div class="badge badge-secondary">symbols left: {{5000 - post.body.length}}</div>
             <ckeditor
                     formControlName="body"
                     [(ngModel)]="post.body"
-                    [config]="{uiColor: '#343a40'}"
+                    [config]="{uiColor: '#343a40',toolbar: [
+			{ name: 'document', items: [ 'Source' ] },
+			{ name: 'basicstyles', items: [ 'Bold', 'Italic' ] },
+			{ name: 'paragraph', items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote' ] },
+			{ name: 'links', items: [ 'Link', 'Unlink' ] },
+			{ name: 'insert', items: [ 'CodeSnippet' ] },
+			{ name: 'styles', items: [ 'Format', 'Styles' ] }],
+			format_tags: 'p;h1;h2;h3;pre',
+			removePlugins: 'image',
+			extraPlugins: 'codesnippet,youtube,codemirror',
+			removeDialogTabs: 'image:advanced;link:advanced;link:target'}"
                     [readonly]="false"
                     (change)="onChange($event)"
                     (ready)="onReady($event)"

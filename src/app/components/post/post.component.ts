@@ -1,8 +1,10 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, EventEmitter, OnInit} from "@angular/core";
 import {ActivatedRoute, Router} from "@angular/router";
 import {PostService} from "../../services/post.service";
 import {Post} from "../../models/Post";
 import {ToastrService} from "../../services/toastr.service";
+import * as $ from "jquery";
+import * as hljs from "highlight.js/lib/index";
 
 @Component({
     selector: "app-post",
@@ -15,6 +17,9 @@ export class PostComponent implements OnInit {
     public post;
     public authenticated: boolean = false;
     public user = {};
+    public published: string = "not published";
+    public emitter = new EventEmitter();
+
     constructor(public route: ActivatedRoute,
                 public postService: PostService,
                 public toastrService: ToastrService) {
@@ -23,7 +28,7 @@ export class PostComponent implements OnInit {
             this.id = id;
         });
         let user = JSON.parse(localStorage.getItem("currentUser"));
-        if(user && user.token) {
+        if (user && user.token) {
             this.authenticated = true;
         } else {
             this.authenticated = false;
@@ -38,6 +43,8 @@ export class PostComponent implements OnInit {
     public findPost(id: number): void {
         this.postService.findPost(id).subscribe((data) => {
             this.post = data.post;
+            this.post.available = this.post.available ? true : false;
+            this.post.published = this.post.available ? "published" : "not published";
         });
     }
 

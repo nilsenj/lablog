@@ -1,26 +1,39 @@
 <app-post-nav></app-post-nav>
 <div *ngIf="post" class="posts container">
-  <div class="row block">
-      <div class="col-lg-12">
-        <a [routerLink]="['/posts/', post.id]" class="header clearfix">{{post.name}}</a>
-        <a *ngIf="authenticated && post.user.email === user.email" [routerLink]="['/posts/update/', post.id]"
-           class="btn btn-info btn-sm float-right text-right m-1">edit post</a>
-        <app-delete-post
-                [(post)]="post"
-                *ngIf="authenticated && post.user.email === user.email">
-        </app-delete-post>
-        <div class="card-block">
-          <img src="{{post.image_url}}" alt="{{ post.name }}" class="img-thumbnail">
-          <div  class="clearfix" [innerHTML]="post.body | keepHtml"></div>
-          <span class="float-left text-left">Created: </span>
-          <span class="text-muted float-left text-left"> {{post.created}}</span>
-          <a [routerLink]="['/user/', post.user.id]"
-             class="btn btn-link btn-sm float-right text-right">{{post.user.name}}</a>
-          <span class="float-right text-right">Writer:</span>
+    <div class="row block">
+        <div class="row">
+            <div class="col-lg-12">
+                <a [routerLink]="['/posts/', post.id]" class="header clearfix">{{post.name}}
+                    <span class="badge badge-secondary bg-info" *ngIf="post.available">{{post.published}}</span>
+                    <span class="badge badge-secondary bg-dark" *ngIf="!post.available">{{post.published}}</span>
+                </a>
+                <a *ngIf="authenticated && post.user.email === user.email" [routerLink]="['/posts/update/', post.id]"
+                   class="btn btn-info btn-sm float-right text-right m-1">edit post</a>
+                <app-delete-post
+                        [(post)]="post"
+                        *ngIf="authenticated && post.user.email === user.email">
+                </app-delete-post>
+                <div class="card-block">
+                    <img src="{{post.image_url}}" alt="{{ post.name }}" class="img-thumbnail">
+                    <blockquote class="blockquote">
+                        <p class="mb-0">
+                            {{post.preamble}}
+                        </p>
+                        <footer class="blockquote-footer">Preamble. Author: <cite title="{{post.user.name}}"><a
+                                [routerLink]="['/user/', post.user.id]">{{post.user.name}}</a></cite></footer>
+                    </blockquote>
+                    <!--<div  class="clearfix" [innerHTML]="post.body | keepHtml"></div>-->
+                    <section [innerHTML]="post.body" highlight-js-content="pre code"></section>
+                    <span class="float-left text-left">Created: </span>
+                    <span class="text-muted float-left text-left"> {{post.created}}</span>
+                    <a [routerLink]="['/user/', post.user.id]"
+                       class="btn btn-link btn-sm float-right text-right">{{post.user.name}}</a>
+                    <span class="float-right text-right">Writer:</span>
+                </div>
+                <disqus [identifier]="post.id" [url]="'/posts/' + post.id" [lang]="'en'"
+                        (onNewComment)="onComment($event)"
+                        (onReady)="onReady($event)" (onPaginate)="onPaginate($event)"></disqus>
+            </div>
         </div>
-        <disqus [identifier]="post.id" [url]="'/posts/' + post.id" [lang]="'en'"
-                (onNewComment)="onComment($event)"
-                (onReady)="onReady($event)" (onPaginate)="onPaginate($event)"></disqus>
-      </div>
-  </div>
+    </div>
 </div>

@@ -29,6 +29,7 @@ $factory->define(App\Post::class, function (Faker\Generator $faker) {
 
     return [
         'name' => $faker->name,
+        'preamble' => $faker->text(500),
         'body' => $faker->text(5000)
     ];
 });

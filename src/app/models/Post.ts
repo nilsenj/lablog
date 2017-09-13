@@ -3,6 +3,7 @@ import {User} from "./User";
 export class Post {
     id?: number;
     public name: string;
+    public preamble: string;
     public body: string;
     public created_at?: string = "";
     public user?: User = new User;

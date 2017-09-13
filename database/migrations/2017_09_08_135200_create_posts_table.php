@@ -23,6 +23,7 @@ class CreatePostsTable extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
             $table->string('name', 255);
+            $table->string('preamble', 500);
             $table->longText('body');
             $table->text('image')->nullable();
             $table->timestamps();

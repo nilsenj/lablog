@@ -20,10 +20,13 @@
       "prefix": "app",
       "styles": [
         "../node_modules/bootstrap/dist/css/bootstrap.min.css",
+        "../node_modules/highlight.js/styles/atom-one-light.css",
         "styles.scss"
       ],
       "allowJs": true,
-      "scripts": ["../node_modules/jquery/dist/jquery.min.js"],
+      "scripts": [
+        "../node_modules/jquery/dist/jquery.min.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",

@@ -32,6 +32,9 @@ import { KeepHtmlPipe } from './pipes/keep-html.pipe';
 import { EditPostComponent } from './components/edit-post/edit-post.component';
 import { DeletePostComponent } from './components/delete-post/delete-post.component';
 import {UserAllowedToPostGuardGuard} from "./guards/user-allowed-to-post-guard.guard";
+import { HighlightJsModule, HighlightJsService } from 'angular2-highlight-js';
+import { ConfirmComponentComponent } from "./components/confirm-component/confirm-component.component";
+import { BootstrapModalModule } from "ng2-bootstrap-modal";
 
 @NgModule({
     declarations: [
@@ -50,7 +53,8 @@ import {UserAllowedToPostGuardGuard} from "./guards/user-allowed-to-post-guard.g
         ControlMessagesComponent,
         KeepHtmlPipe,
         EditPostComponent,
-        DeletePostComponent
+        DeletePostComponent,
+        ConfirmComponentComponent
     ],
     imports: [
         BrowserModule,
@@ -61,7 +65,9 @@ import {UserAllowedToPostGuardGuard} from "./guards/user-allowed-to-post-guard.g
         BrowserAnimationsModule,
         ToastModule.forRoot(),
         DisqusModule.forRoot("blog-dev-6"),
-        CKEditorModule
+        CKEditorModule,
+        HighlightJsModule,
+        BootstrapModalModule.forRoot({container:document.body})
     ],
     providers: [
         AuthenticationService,
@@ -70,7 +76,11 @@ import {UserAllowedToPostGuardGuard} from "./guards/user-allowed-to-post-guard.g
         ToastrService,
         {provide: ToastOptions, useClass: CustomToastr},
         PostService,
-        ValidationService
+        ValidationService,
+        HighlightJsService
+    ],
+    entryComponents: [
+        ConfirmComponentComponent
     ],
     bootstrap: [AppComponent]
 })

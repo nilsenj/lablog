@@ -105,6 +105,11 @@ export class EditPostComponent implements OnInit {
                 Validators.minLength(2),
                 Validators.maxLength(255)]
             ],
+            preamble: [this.post.preamble, [
+                Validators.required,
+                Validators.minLength(50),
+                Validators.maxLength(500)]
+            ],
             body: [this.post.body, [
                 Validators.required,
                 Validators.minLength(120),
