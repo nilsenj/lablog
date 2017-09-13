@@ -31,6 +31,7 @@
                         <footer class="blockquote-footer">Preamble. Author: <cite title="{{post.user.name}}"><a
                                 [routerLink]="['/user/', post.user.id]">{{post.user.name}}</a></cite></footer>
                     </blockquote>
+                    <hr>
                     <!--<div  class="clearfix" [innerHTML]="post.body | keepHtml"></div>-->
                     <section [innerHTML]="post.body" highlight-js-content="pre code"></section>
 
