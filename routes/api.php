@@ -52,10 +52,11 @@ Route::group(['middleware' => ['api'], 'as' => 'api.'], function () {
             ]);
             Route::put('/update/{id}', [
                 'uses' => 'PostsController@update',
+                'middleware' => 'AllowOperatePost'
             ]);
             Route::delete('/{id}', [
                 'uses' => 'PostsController@destroy',
-                'middleware' => 'AllowDeletePost'
+                'middleware' => 'AllowOperatePost'
             ]);
 
             Route::group(['prefix' => 'file', 'as' => 'file.'], function () {

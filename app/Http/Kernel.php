@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\AllowDeletePost;
+use App\Http\Middleware\AllowOperatePost;
 use App\Http\Middleware\Cors;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -61,6 +62,6 @@ class Kernel extends HttpKernel
         'jwt.auth'              => \Tymon\JWTAuth\Middleware\GetUserFromToken::class,
         'jwt.refresh'           => \Tymon\JWTAuth\Middleware\RefreshToken::class,
         'cors'           => Cors::class,
-        'AllowDeletePost' => AllowDeletePost::class
+        'AllowOperatePost' => AllowOperatePost::class
     ];
 }

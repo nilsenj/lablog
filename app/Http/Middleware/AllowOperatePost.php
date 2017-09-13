@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use App\Post;
 use Closure;
 
-class AllowDeletePost
+class AllowOperatePost
 {
     /**
      * Handle an incoming request.
