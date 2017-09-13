@@ -7,11 +7,15 @@
                     <span class="badge badge-secondary bg-info" *ngIf="post.available">{{post.published}}</span>
                     <span class="badge badge-secondary bg-dark" *ngIf="!post.available">{{post.published}}</span>
                 </a>
-                <span class="text-muted">tags: </span>
-                <a *ngFor="let tag of post.tagged"
-                   class="post-tag" [routerLink]="['posts/tagged/' + tag.tag_slug]">
-                    {{tag.tag_slug}}
-                </a>
+                <div class="tag-block">
+                    <strong class="text-muted">tags: </strong>
+                    <a *ngFor="let tag of post.tagged"
+                       class="post-tag" [routerLink]="['posts/tagged/' + tag.tag_slug]">
+                        {{tag.tag_slug}}
+                    </a>
+                    <span class="text-muted" *ngIf="!post.tagged.length">no tags</span>
+                </div>
+
                 <a *ngIf="authenticated && post.user.email === user.email" [routerLink]="['/posts/update/', post.id]"
                    class="btn btn-info btn-sm float-right text-right m-1">edit post</a>
                 <app-delete-post

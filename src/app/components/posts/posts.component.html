@@ -4,10 +4,14 @@
         <div class="row">
             <div class="col-lg-12">
                 <a [routerLink]="['/posts/', post.id]" class="header clearfix">{{post.name}}</a>
-                <a *ngFor="let tag of post.tagged"
-                   class="post-tag" [routerLink]="['posts/tagged/' + tag.tag_slug]">
-                    {{tag.tag_slug}}
-                </a>
+                <div class="tag-block">
+                    <strong class="text-muted">tags: </strong>
+                    <a *ngFor="let tag of post.tagged"
+                       class="post-tag" [routerLink]="['posts/tagged/' + tag.tag_slug]">
+                        {{tag.tag_slug}}
+                    </a>
+                    <span class="text-muted" *ngIf="!post.tagged.length">no tags</span>
+                </div>
 
                 <div class="card-block">
                     <img src="{{post.image_url}}" alt="{{ post.name }}" class="img-thumbnail">
@@ -31,8 +35,6 @@
     </div>
     <app-pagination [pagination]="pagination"
                     [page]="page"
-                    (pageUpdated)="pageUpdated($event)"
-                    (click)="all(pagination.current_page)"
-                    (offset)="4">
+                    (pageUpdated)="pageUpdated($event)">
     </app-pagination>
 </div>

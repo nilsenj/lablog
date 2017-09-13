@@ -1,6 +1,7 @@
 import {AfterViewInit, Component, Inject, Input, OnInit} from "@angular/core";
 import {User} from "../../models/User";
 import {AuthenticationService} from "../../services/authentication.service";
+import {app} from "../../../config/app";
 
 @Component({
     selector: "app-navigation",
@@ -13,6 +14,7 @@ export class NavigationComponent implements OnInit {
     @Input() user: User[] = [];
     public authenticated: boolean = false;
     public authService;
+    public appName: string = app.name;
 
     constructor(authService: AuthenticationService) {
         this.authService = authService;
