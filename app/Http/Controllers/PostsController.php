@@ -148,7 +148,7 @@ class PostsController extends Controller
         try {
             \DB::beginTransaction();
             $post = $this->post->findOrFail($id);
-            $post->tagged->sync([]);
+            $post->untag();
             $deleted = $post->delete();
 
             if ($deleted) {
