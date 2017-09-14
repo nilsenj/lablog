@@ -14,12 +14,17 @@
             <img src="{{post.image_url}}" class="thumbnail">
         </label>
     </div>
-    <tag-input [(ngModel)]="post.tagged"
-               [identifyBy]="'id'"
-               [displayBy]="'tag_slug'"
-               [theme]="'dark'"
-               formControlName="tagged">
-    </tag-input>
+    <div class="form-group">
+        <label class="center-block  w-100">Post tags:
+            <tag-input [(ngModel)]="post.tagged"
+                       [identifyBy]="'id'"
+                       [displayBy]="'tag_slug'"
+                       [theme]="'dark'"
+                       [class]="'tag-block'"
+                       formControlName="tagged">
+            </tag-input>
+        </label>
+    </div>
     <div class="form-group">
         <label class="center-block">Upload Image:
             <input type="file" (change)="fileChange($event)"

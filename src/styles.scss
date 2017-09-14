@@ -832,3 +832,17 @@ body {
   height: auto;
   float: right;
 }
+.tag-block {
+  display: block;
+  flex-direction: row;
+  flex-wrap: wrap;
+  position: relative;
+  cursor: text;
+  border: 1px solid LIGHTGREY;
+  border-radius: 4px;
+  padding-left: 10px;
+  padding-top: 6px;
+}
+.dark.ng2-tag-input {
+  border-bottom: none !important;
+}
