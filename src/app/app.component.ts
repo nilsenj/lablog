@@ -2,6 +2,8 @@ import {Component, EventEmitter, OnInit, Output, ViewContainerRef} from "@angula
 import {AuthenticationService} from "./services/authentication.service";
 import {ToastsManager} from "ng2-toastr";
 import {ToastrEvent, ToastrService} from "./services/toastr.service";
+import {routeAnimation} from "./app.animations";
+
 interface IDataStore {
     user: any;
     authenticated: boolean;
@@ -10,6 +12,7 @@ interface IDataStore {
 @Component({
     selector: "app-root",
     templateUrl: "./app.component.html",
+    animations: [routeAnimation],
     styleUrls: ["./app.component.css"]
 })
 export class AppComponent implements OnInit {
@@ -26,26 +29,8 @@ export class AppComponent implements OnInit {
 
     }
 
-    private onToastrAdded(item: ToastrEvent): void {
-        // do something with added item
-        switch (item.name) {
-            case "success":
-                this.showSuccess(item.message);
-                break;
-            case "warning":
-                this.showWarning(item.message);
-                break;
-            case "error":
-                this.showError(item.message);
-                break;
-            case "info":
-                this.showInfo(item.message);
-                break;
-            case "custom":
-                this.showCustom(item.message);
-                break;
-        }
-        this.toastrAdded = item;
+    public getState(outlet): void {
+        return outlet.activatedRouteData.state;
     }
 
     ngOnInit(): void {
@@ -109,4 +94,25 @@ export class AppComponent implements OnInit {
             null, {enableHTML: true});
     }
 
+    private onToastrAdded(item: ToastrEvent): void {
+        // do something with added item
+        switch (item.name) {
+            case "success":
+                this.showSuccess(item.message);
+                break;
+            case "warning":
+                this.showWarning(item.message);
+                break;
+            case "error":
+                this.showError(item.message);
+                break;
+            case "info":
+                this.showInfo(item.message);
+                break;
+            case "custom":
+                this.showCustom(item.message);
+                break;
+        }
+        this.toastrAdded = item;
+    }
 }

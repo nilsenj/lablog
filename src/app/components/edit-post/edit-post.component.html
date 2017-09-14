@@ -1,7 +1,7 @@
 <app-post-nav></app-post-nav>
 <h3 class="text-muted">Edit your post</h3>
 <form *ngIf="post" [formGroup]="postForm">
-    <div *ngIf="post.name" class="form-group">
+    <div class="form-group">
         <label class="center-block w-100">Name:
             <div class="badge badge-secondary">symbols left: {{120 - post.name.length}}</div>
             <input placeholder="please type the name of the post (min:2, max:120)" class="form-control"
@@ -29,16 +29,17 @@
             <img *ngIf="tmpFileSrc" src="{{tmpFileSrc}}" class="img-post-thumbnail">
         </label>
     </div>
-    <div *ngIf="post.preamble" class="form-group">
+    <div class="form-group">
         <label class="center-block w-100">Preamble:
             <div class="badge badge-secondary">symbols left: {{500 - post.preamble.length}}</div>
-            <textarea placeholder="please type the preamble of the post (min:50, max:500)" class="form-control"
+            <textarea placeholder="please type the preamble of the post (min:50, max:500)"
+                      class="form-control"
                       [(ngModel)]="post.preamble" formControlName="preamble">
             </textarea>
         </label>
         <app-control-messages [control]="postForm.controls.preamble"></app-control-messages>
     </div>
-    <div *ngIf="post.body" class="form-group">
+    <div class="form-group">
         <label class="center-block  w-100">Body:
             <div class="badge badge-secondary">symbols left: {{50000 - post.body.length}}</div>
             <ckeditor
