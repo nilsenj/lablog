@@ -48,7 +48,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-navigation [(userChange)]=\"userChange\"></app-navigation>\r\n<div [@routeAnimation]=\"getState(o)\" style=\"margin-top:60px;\" class=\"container\">\r\n    <router-outlet #o=\"outlet\"></router-outlet>\r\n</div>"
+module.exports = "<app-navigation [(userChange)]=\"userChange\"></app-navigation>\r\n<div [@routeAnimation]=\"getState(o)\" style=\"margin-top:60px;\" class=\"container bg-light\">\r\n    <router-outlet #o=\"outlet\"></router-outlet>\r\n</div>"
 
 /***/ }),
 
