@@ -10,6 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/assets/static/{file}', function (Request $request, $file) {
+    return Storage::disk('assets')->get('static/' . $file);
+});
 
 Route::get('/assets/{file}', function (Request $request, $file) {
     return Storage::disk('assets')->get($file);
