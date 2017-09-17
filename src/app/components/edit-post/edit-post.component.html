@@ -1,6 +1,6 @@
 <app-post-nav></app-post-nav>
 <h3 class="text-muted">Edit your post</h3>
-<form *ngIf="post" [formGroup]="postForm">
+<form *ngIf="postLoaded" [formGroup]="postForm">
     <div class="form-group">
         <label class="center-block w-100">Name:
             <div class="badge badge-secondary">symbols left: {{120 - post.name.length}}</div>
@@ -10,7 +10,7 @@
         </label>
         <app-control-messages [control]="postForm.controls.name"></app-control-messages>
     </div>
-    <div *ngIf="post.tagged" class="form-group">
+    <div class="form-group">
         <label class="center-block  w-100">Post tags:
             <tag-input [(ngModel)]="post.tagged"
                        [identifyBy]="'id'"
@@ -21,7 +21,7 @@
             </tag-input>
         </label>
     </div>
-    <div *ngIf="post.image_url" class="form-group">
+    <div class="form-group">
         <label class="center-block">Upload Image:
             <input type="file" (change)="fileChange($event)"
                    placeholder="Upload Post Image" class="img-post-input" accept=".png,.jpeg,.jpg">

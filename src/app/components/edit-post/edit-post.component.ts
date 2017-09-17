@@ -32,7 +32,7 @@ export class EditPostComponent implements OnInit {
     public showDebug: boolean = false;
     public fileEvent;
     public tmpFileSrc: string = null;
-
+    public postLoaded: boolean = false;
     constructor(public postBuilder: FormBuilder,
                 public postService: PostService,
                 public toastrService: ToastrService,
@@ -64,6 +64,7 @@ export class EditPostComponent implements OnInit {
             } else {
                 this.canSavePost = false;
             }
+            this.postLoaded = true;
         });
     }
 
