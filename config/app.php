@@ -180,6 +180,7 @@ return [
         \Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         TagsCloud\Tagging\Providers\TaggingServiceProvider::class,
+        \Conner\Likeable\LikeableServiceProvider::class,
     ],
 
     /*

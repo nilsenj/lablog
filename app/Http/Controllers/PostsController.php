@@ -35,6 +35,19 @@ class PostsController extends Controller
     {
         $items = $this->post->latest()->published()
             ->paginate(10);
+        try {
+            $user = \JWTAuth::parseToken()->authenticate();
+        } catch (JWTException $exception) {
+            $user = null;
+        }
+        $items->getCollection()->map(function ($item) use ($user) {
+            if ($user) {
+                $item->isLiked = $item->liked($user->id);
+            } else {
+                $item->isLiked = false;
+            }
+        });
+
         $count = $this->post->count();
         $data = compact('items', 'count');
 
@@ -99,6 +112,11 @@ class PostsController extends Controller
             $user = null;
         }
         $post = $this->post->findOrFail($id);
+        if ($user) {
+            $post->isLiked = $post->liked($user->id);
+        } else {
+            $post->isLiked = false;
+        }
         $post->view($user);
         $data = compact('post');
 

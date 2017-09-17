@@ -235,12 +235,16 @@ var _a, _b, _c, _d;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__services_file_upload_service__ = __webpack_require__("../../../../../src/app/services/file-upload.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_36_ngx_chips__ = __webpack_require__("../../../../ngx-chips/dist/ngx-chips.bundle.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_36_ngx_chips___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_36_ngx_chips__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__components_like_like_component__ = __webpack_require__("../../../../../src/app/components/like/like.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__services_like_service__ = __webpack_require__("../../../../../src/app/services/like.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -302,7 +306,8 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_28__pipes_keep_html_pipe__["a" /* KeepHtmlPipe */],
             __WEBPACK_IMPORTED_MODULE_29__components_edit_post_edit_post_component__["a" /* EditPostComponent */],
             __WEBPACK_IMPORTED_MODULE_30__components_delete_post_delete_post_component__["a" /* DeletePostComponent */],
-            __WEBPACK_IMPORTED_MODULE_33__components_confirm_component_confirm_component_component__["a" /* ConfirmComponentComponent */]
+            __WEBPACK_IMPORTED_MODULE_33__components_confirm_component_confirm_component_component__["a" /* ConfirmComponentComponent */],
+            __WEBPACK_IMPORTED_MODULE_37__components_like_like_component__["a" /* LikeComponent */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["BrowserModule"],
@@ -327,7 +332,8 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_18__services_post_service__["a" /* PostService */],
             __WEBPACK_IMPORTED_MODULE_26__services_validation_service__["a" /* ValidationService */],
             __WEBPACK_IMPORTED_MODULE_32_angular2_highlight_js__["HighlightJsService"],
-            __WEBPACK_IMPORTED_MODULE_35__services_file_upload_service__["a" /* FileUploadService */]
+            __WEBPACK_IMPORTED_MODULE_35__services_file_upload_service__["a" /* FileUploadService */],
+            __WEBPACK_IMPORTED_MODULE_38__services_like_service__["a" /* LikeService */]
         ],
         entryComponents: [
             __WEBPACK_IMPORTED_MODULE_33__components_confirm_component_confirm_component_component__["a" /* ConfirmComponentComponent */]
@@ -845,6 +851,129 @@ EditPostComponent = __decorate([
 
 var _a, _b, _c, _d, _e, _f, _g, _h;
 //# sourceMappingURL=C:/Users/nilse/Code/lablog/src/edit-post.component.js.map
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/like/like.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<span class=\"like-block d-inline pull-right\" *ngIf=\"model\">\n<span *ngIf=\"token\" class=\"button block\">\n    <button *ngIf=\"isLiked\" (click)=\"likeToggle()\" class=\"like-btn\">\n</button>\n<button *ngIf=\"!isLiked\" (click)=\"likeToggle()\" class=\"like-hollow-btn\">\n</button>\n</span>\n    <span *ngIf=\"!token\">\n    <i class=\"like-hollow-btn\" style=\"display: inline-block;\"></i>\n    </span>\n    <strong class=\"text-info\">{{like_counter}}</strong>\n</span>"
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/like/like.component.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".like-block {\n  display: inline-block !important;\n  width: 29%;\n  text-align: right; }\n\n.like-btn {\n  background: transparent;\n  background-image: url(\"http://lablog.dev/images/like.svg\");\n  width: 20px;\n  height: 20px;\n  background-size: 20px 20px;\n  outline: none;\n  border: none;\n  cursor: pointer; }\n\n.like-hollow-btn {\n  background: transparent;\n  background-image: url(\"http://lablog.dev/images/like_hollow.svg\");\n  width: 20px;\n  height: 20px;\n  background-size: 20px 20px;\n  outline: none;\n  border: none;\n  cursor: pointer; }\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../src/app/components/like/like.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LikeComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_like_service__ = __webpack_require__("../../../../../src/app/services/like.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_toastr_service__ = __webpack_require__("../../../../../src/app/services/toastr.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var LikeComponent = (function () {
+    function LikeComponent(likeService, toastr) {
+        this.likeService = likeService;
+        this.toastr = toastr;
+        this.isLiked = false;
+        this.model = "";
+        this.likeChanged = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        var currentUser = JSON.parse(localStorage.getItem("currentUser"));
+        this.token = currentUser && currentUser.token;
+    }
+    LikeComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.likeChanged.subscribe(function () {
+            _this.likesModelStatus();
+        });
+    };
+    LikeComponent.prototype.likeToggle = function () {
+        var _this = this;
+        var like = {
+            "model": this.model,
+            "model_id": this.model_id
+        };
+        this.likeService.likeToggle(like).subscribe(function (response) {
+            _this.likeChanged.emit("changed");
+            _this.toastr.add("info", response.msg);
+        }, function (error) {
+            _this.toastr.add("error", error.msg);
+        });
+    };
+    LikeComponent.prototype.likesModelStatus = function () {
+        var _this = this;
+        var like = {
+            "model": this.model,
+            "model_id": this.model_id
+        };
+        this.likeService.likesModelStatus(like).subscribe(function (response) {
+            _this.isLiked = response.status;
+            _this.like_counter = response.likes_counter;
+        }, function (error) {
+            console.log(error);
+        });
+    };
+    return LikeComponent;
+}());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+    __metadata("design:type", Boolean)
+], LikeComponent.prototype, "isLiked", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+    __metadata("design:type", String)
+], LikeComponent.prototype, "model", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+    __metadata("design:type", Number)
+], LikeComponent.prototype, "like_counter", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+    __metadata("design:type", Number)
+], LikeComponent.prototype, "model_id", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"])(),
+    __metadata("design:type", Object)
+], LikeComponent.prototype, "likeChanged", void 0);
+LikeComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
+        selector: "app-like",
+        template: __webpack_require__("../../../../../src/app/components/like/like.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/components/like/like.component.scss")]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_like_service__["a" /* LikeService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_like_service__["a" /* LikeService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_toastr_service__["a" /* ToastrService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_toastr_service__["a" /* ToastrService */]) === "function" && _b || Object])
+], LikeComponent);
+
+var _a, _b;
+//# sourceMappingURL=C:/Users/nilse/Code/lablog/src/like.component.js.map
 
 /***/ }),
 
@@ -1558,7 +1687,7 @@ var _a;
 /***/ "../../../../../src/app/components/post/post.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-post-nav></app-post-nav>\n<div *ngIf=\"post\" class=\"posts container\">\n    <div class=\"row block\">\n        <div class=\"row\">\n            <div class=\"col-lg-12\">\n                <a [routerLink]=\"['/posts/', post.id]\" class=\"header clearfix\">{{post.name}}\n                    <span class=\"badge badge-secondary bg-info\" *ngIf=\"post.available && (authenticated && post.user.email === user.email)\">{{post.published}}</span>\n                    <span class=\"badge badge-secondary bg-dark\" *ngIf=\"!post.available  && (authenticated && post.user.email === user.email)\">{{post.published}}</span>\n                </a>\n                <div class=\"tag-block\">\n                    <strong class=\"text-muted\">tags: </strong>\n                    <a *ngFor=\"let tag of post.tagged\"\n                       class=\"post-tag\" [routerLink]=\"['posts/tagged/' + tag.tag_slug]\">\n                        {{tag.tag_slug}}\n                    </a>\n                    <span class=\"text-muted\" *ngIf=\"!post.tagged.length\">no tags</span>\n                </div>\n\n                <a *ngIf=\"authenticated && post.user.email === user.email\" [routerLink]=\"['/posts/update/', post.id]\"\n                   class=\"btn btn-info btn-sm float-right text-right m-1\">edit post</a>\n                <app-delete-post\n                        [(post)]=\"post\"\n                        *ngIf=\"authenticated && post.user.email === user.email\">\n                </app-delete-post>\n                <div class=\"card-block\">\n                    <img src=\"{{post.image_url}}\" alt=\"{{ post.name }}\" class=\"img-thumbnail\">\n                    <blockquote class=\"blockquote\">\n                        <p class=\"mb-0\">\n                            {{post.preamble}}\n                        </p>\n                        <footer class=\"blockquote-footer\">Preamble. Author: <cite title=\"{{post.user.name}}\"><a\n                                [routerLink]=\"['/user/', post.user.id]\">{{post.user.name}}</a></cite></footer>\n                    </blockquote>\n                    <hr>\n                    <!--<div  class=\"clearfix\" [innerHTML]=\"post.body | keepHtml\"></div>-->\n                    <section [innerHTML]=\"post.body\" highlight-js-content=\"pre code\"></section>\n\n                    <hr>\n                    <strong class=\"float-left text-left m-1\"> Created: </strong>\n                    <strong class=\"text-muted float-left text-left  m-1\"> {{post.created}}</strong>\n                    <strong class=\"float-left text-left  m-1\"> Views: </strong>\n                    <strong class=\"text-muted float-left text-left m-1\"> {{post.view_counter.view_counter}}</strong>\n                    <a [routerLink]=\"['/user/', post.user.id]\"\n                       class=\"btn btn-link btn-sm float-right text-right\">{{post.user.name}}</a>\n                    <strong class=\"float-right text-right\">Writer:</strong>\n                </div>\n                <disqus [identifier]=\"post.id\" [url]=\"'/posts/' + post.id\" [lang]=\"'en'\"\n                        (onNewComment)=\"onComment($event)\"\n                        (onReady)=\"onReady($event)\"\n                        (onPaginate)=\"onPaginate($event)\"></disqus>\n            </div>\n        </div>\n    </div>\n</div>"
+module.exports = "<app-post-nav></app-post-nav>\n<div *ngIf=\"post\" class=\"posts container\">\n    <div class=\"row block\">\n        <div class=\"row\">\n            <div class=\"col-lg-12\">\n                <a [routerLink]=\"['/posts/', post.id]\" class=\"header pull-left\">{{post.name}}\n                    <span class=\"badge badge-secondary bg-info\"\n                          *ngIf=\"post.available && (authenticated && post.user.email === user.email)\">{{post.published}}</span>\n                    <span class=\"badge badge-secondary bg-dark\"\n                          *ngIf=\"!post.available  && (authenticated && post.user.email === user.email)\">{{post.published}}</span>\n                </a>\n                <div class=\"second-header\">\n                    <div class=\"tag-block d-inline pull-left\">\n                        <strong class=\"text-muted\">tags: </strong>\n                        <a *ngFor=\"let tag of post.tagged\"\n                           class=\"post-tag\" [routerLink]=\"['posts/tagged/' + tag.tag_slug]\">\n                            {{tag.tag_slug}}\n                        </a>\n                        <span class=\"text-muted\" *ngIf=\"!post.tagged.length\">no tags</span>\n                    </div>\n                    <app-like\n                            [model]=\"'App\\\\Post'\"\n                            [model_id]=\"post.id\"\n                            [isLiked]=\"post.isLiked\"\n                            [like_counter]=\"post.likes_counter\"\n                    >\n                    </app-like>\n                </div>\n                <a *ngIf=\"authenticated && post.user.email === user.email\" [routerLink]=\"['/posts/update/', post.id]\"\n                   class=\"btn btn-info btn-sm float-right text-right m-1\">edit post</a>\n                <app-delete-post\n                        [(post)]=\"post\"\n                        *ngIf=\"authenticated && post.user.email === user.email\">\n                </app-delete-post>\n                <div class=\"card-block\">\n                    <img src=\"{{post.image_url}}\" alt=\"{{ post.name }}\" class=\"img-thumbnail\">\n                    <blockquote class=\"blockquote\">\n                        <p class=\"mb-0\">\n                            {{post.preamble}}\n                        </p>\n                        <footer class=\"blockquote-footer\">Preamble. Author: <cite title=\"{{post.user.name}}\"><a\n                                [routerLink]=\"['/user/', post.user.id]\">{{post.user.name}}</a></cite></footer>\n                    </blockquote>\n                    <hr>\n                    <!--<div  class=\"clearfix\" [innerHTML]=\"post.body | keepHtml\"></div>-->\n                    <section [innerHTML]=\"post.body\" highlight-js-content=\"pre code\"></section>\n\n                    <hr>\n                    <strong class=\"float-left text-left m-1\"> Created: </strong>\n                    <strong class=\"text-muted float-left text-left  m-1\"> {{post.created}}</strong>\n                    <strong class=\"float-left text-left  m-1\"> Views: </strong>\n                    <strong class=\"text-muted float-left text-left m-1\"> {{post.view_counter.view_counter}}</strong>\n                    <a [routerLink]=\"['/user/', post.user.id]\"\n                       class=\"btn btn-link btn-sm float-right text-right\">{{post.user.name}}</a>\n                    <strong class=\"float-right text-right\">Writer:</strong>\n                </div>\n                <disqus [identifier]=\"post.id\" [url]=\"'/posts/' + post.id\" [lang]=\"'en'\"\n                        (onNewComment)=\"onComment($event)\"\n                        (onReady)=\"onReady($event)\"\n                        (onPaginate)=\"onPaginate($event)\"></disqus>\n            </div>\n        </div>\n    </div>\n</div>"
 
 /***/ }),
 
@@ -1665,7 +1794,7 @@ var _a, _b, _c;
 /***/ "../../../../../src/app/components/posts/posts.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-post-nav></app-post-nav>\n<div class=\"posts container\">\n    <div *ngFor=\"let post of posts\" class=\"row block\">\n        <div class=\"row\">\n            <div class=\"col-lg-12\">\n                <a [routerLink]=\"['/posts/', post.id]\" class=\"header clearfix\">{{post.name}}</a>\n                <div class=\"tag-block\">\n                    <strong class=\"text-muted\">tags: </strong>\n                    <a *ngFor=\"let tag of post.tagged\"\n                       class=\"post-tag\" [routerLink]=\"['posts/tagged/' + tag.tag_slug]\">\n                        {{tag.tag_slug}}\n                    </a>\n                    <span class=\"text-muted\" *ngIf=\"!post.tagged.length\">no tags</span>\n                </div>\n\n                <div class=\"card-block\">\n                    <img src=\"{{post.image_url}}\" alt=\"{{ post.name }}\" class=\"img-thumbnail\">\n                    <div class=\"clearfix\">{{post.preamble}}</div>\n                    <strong class=\"float-left text-left  m-1\"> Views: </strong>\n                    <strong class=\"text-muted float-left text-left m-1\"> {{post.view_counter.view_counter}}</strong>\n                    <strong class=\"float-left text-left m-1\"> Created: </strong>\n                    <strong class=\"text-muted float-left text-left  m-1\"> {{post.created}}</strong>\n                    <strong class=\"float-left text-left  m-1\">Writer:</strong>\n                    <a [routerLink]=\"['/user/', post.user.id]\"\n                       class=\"btn btn-link btn-sm text-right\">{{post.user.name}}</a>\n                    <a [routerLink]=\"['/posts/', post.id]\"\n                       class=\"btn btn-dark btn-sm float-right text-right m-1\">go to post</a>\n                    <a *ngIf=\"authenticated && post.user.email === user.email\"\n                       [routerLink]=\"['/posts/update/', post.id]\"\n                       class=\"btn btn-info btn-sm float-right text-right m-1\">edit post</a>\n                </div>\n            </div>\n        </div>\n        <hr style=\"border: dashed 1px darkgrey; width: 100%\">\n    </div>\n    <app-pagination [pagination]=\"pagination\"\n                    [page]=\"page\"\n                    (pageUpdated)=\"pageUpdated($event)\">\n    </app-pagination>\n</div>"
+module.exports = "<app-post-nav></app-post-nav>\n<div class=\"posts container\">\n    <div *ngFor=\"let post of posts\" class=\"row block\">\n        <div class=\"row\">\n            <div class=\"col-lg-12\">\n                <a [routerLink]=\"['/posts/', post.id]\" class=\"header clearfix\">{{post.name}}</a>\n                <div class=\"second-header\">\n                    <div class=\"tag-block d-inline pull-left\">\n                        <strong class=\"text-muted\">tags: </strong>\n                        <a *ngFor=\"let tag of post.tagged\"\n                           class=\"post-tag\" [routerLink]=\"['posts/tagged/' + tag.tag_slug]\">\n                            {{tag.tag_slug}}\n                        </a>\n                        <span class=\"text-muted\" *ngIf=\"!post.tagged.length\">no tags</span>\n                    </div>\n                    <app-like\n                            [model]=\"'App\\\\Post'\"\n                            [model_id]=\"post.id\"\n                            [isLiked]=\"post.isLiked\"\n                            [like_counter]=\"post.likes_counter\"\n                    >\n                    </app-like>\n                </div>\n                <div class=\"card-block\">\n                    <img src=\"{{post.image_url}}\" alt=\"{{ post.name }}\" class=\"img-thumbnail\">\n                    <div class=\"clearfix\">{{post.preamble}}</div>\n                    <strong class=\"float-left text-left  m-1\"> Views: </strong>\n                    <strong class=\"text-muted float-left text-left m-1\"> {{post.view_counter.view_counter}}</strong>\n                    <strong class=\"float-left text-left m-1\"> Created: </strong>\n                    <strong class=\"text-muted float-left text-left  m-1\"> {{post.created}}</strong>\n                    <strong class=\"float-left text-left  m-1\">Writer:</strong>\n                    <a [routerLink]=\"['/user/', post.user.id]\"\n                       class=\"btn btn-link btn-sm text-right\">{{post.user.name}}</a>\n                    <a [routerLink]=\"['/posts/', post.id]\"\n                       class=\"btn btn-dark btn-sm float-right text-right m-1\">go to post</a>\n                    <a *ngIf=\"authenticated && post.user.email === user.email\"\n                       [routerLink]=\"['/posts/update/', post.id]\"\n                       class=\"btn btn-info btn-sm float-right text-right m-1\">edit post</a>\n                </div>\n            </div>\n        </div>\n        <hr style=\"border: dashed 1px darkgrey; width: 100%\">\n    </div>\n    <app-pagination [pagination]=\"pagination\"\n                    [page]=\"page\"\n                    (pageUpdated)=\"pageUpdated($event)\">\n    </app-pagination>\n</div>"
 
 /***/ }),
 
@@ -2145,6 +2274,8 @@ var Post = (function () {
         this.view_counter = "";
         this.user_id = null;
         this.tagged = [];
+        this.isLiked = false;
+        this.likes_counter = 0;
     }
     return Post;
 }());
@@ -2537,6 +2668,86 @@ var _a;
 
 /***/ }),
 
+/***/ "../../../../../src/app/services/like.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LikeService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__config_app__ = __webpack_require__("../../../../../src/config/app.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
+
+
+
+var LikeService = (function () {
+    function LikeService(http) {
+        this.http = http;
+        var currentUser = JSON.parse(localStorage.getItem("currentUser"));
+        this.token = currentUser && currentUser.token;
+    }
+    /**
+     * toggle like
+     *
+     * @param {Like} like
+     * @returns {Observable<any>}
+     */
+    LikeService.prototype.likeToggle = function (like) {
+        // add authorization header with jwt token
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({ "Authorization": "Bearer " + this.token });
+        var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]({ headers: headers });
+        // get users from api
+        return this.http.post(__WEBPACK_IMPORTED_MODULE_3__config_app__["a" /* app */].api_url + "/api/blog/likeToggle", like, options)
+            .map(function (response) { return response.json(); });
+    };
+    /**
+     * toggle like
+     *
+     * @param {Like} like
+     * @returns {Observable<any>}
+     */
+    LikeService.prototype.likesModelStatus = function (like) {
+        if (this.token) {
+            // add authorization header with jwt token
+            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({ "Authorization": "Bearer " + this.token });
+            var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]({ headers: headers });
+            // get users from api
+            return this.http.get(__WEBPACK_IMPORTED_MODULE_3__config_app__["a" /* app */].api_url + "/api/blog/likesModelStatus?model=" + like.model + "&model_id=" + like.model_id, options)
+                .map(function (response) { return response.json(); });
+        }
+        else {
+            // get users from api
+            return this.http.get(__WEBPACK_IMPORTED_MODULE_3__config_app__["a" /* app */].api_url + "/api/blog/likesModelStatus?model=" + like.model + "&model_id=" + like.model_id)
+                .map(function (response) { return response.json(); });
+        }
+    };
+    return LikeService;
+}());
+LikeService = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
+    __param(0, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Inject"])(__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */])),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object])
+], LikeService);
+
+var _a;
+//# sourceMappingURL=C:/Users/nilse/Code/lablog/src/like.service.js.map
+
+/***/ }),
+
 /***/ "../../../../../src/app/services/post.service.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2575,6 +2786,13 @@ var PostService = (function () {
      * @returns {Observable<R>}
      */
     PostService.prototype.getPosts = function (page) {
+        if (this.token) {
+            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Headers */]({ "Authorization": "Bearer " + this.token });
+            var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]({ headers: headers });
+            // get users from api
+            return this.http.get(__WEBPACK_IMPORTED_MODULE_3__config_app__["a" /* app */].api_url + "/api/blog/index?page=" + page, options)
+                .map(function (response) { return response.json(); });
+        }
         // get users from api
         return this.http.get(__WEBPACK_IMPORTED_MODULE_3__config_app__["a" /* app */].api_url + "/api/blog/index?page=" + page)
             .map(function (response) { return response.json(); });

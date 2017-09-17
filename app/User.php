@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Conner\Likeable\LikeableTrait;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use TagsCloud\Tagging\Taggable;
@@ -10,6 +11,8 @@ class User extends Authenticatable
 {
     use Notifiable;
     use Taggable;
+    use LikeableTrait;
+
     public $tagsPrefix = 'user';
 
     /**

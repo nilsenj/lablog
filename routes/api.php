@@ -65,6 +65,10 @@ Route::group(['middleware' => ['api'], 'as' => 'api.'], function () {
                     'as' => 'images'
                 ]);
             });
+            Route::post('/likeToggle', [
+                'uses' => 'LikesController@likesToggle',
+                'as' => 'likeToggle'
+            ]);
         });
     });
     Route::group(['prefix' => 'blog/file', 'as' => 'blog.file.'], function () {
@@ -76,6 +80,10 @@ Route::group(['middleware' => ['api'], 'as' => 'api.'], function () {
     Route::group(['prefix' => 'blog', 'as' => 'blog.'], function () {
         Route::get('/index', [
             'uses' => 'PostsController@index',
+        ]);
+        Route::get('/likesModelStatus', [
+            'uses' => 'LikesController@likesModelStatus',
+            'as' => 'likesModelStatus'
         ]);
         Route::get('/{id}', [
             'uses' => 'PostsController@show',

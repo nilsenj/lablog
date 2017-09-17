@@ -1,0 +1,12 @@
+<span class="like-block d-inline pull-right" *ngIf="model">
+<span *ngIf="token" class="button block">
+    <button *ngIf="isLiked" (click)="likeToggle()" class="like-btn">
+</button>
+<button *ngIf="!isLiked" (click)="likeToggle()" class="like-hollow-btn">
+</button>
+</span>
+    <span *ngIf="!token">
+    <i class="like-hollow-btn" style="display: inline-block;"></i>
+    </span>
+    <strong class="text-info">{{like_counter}}</strong>
+</span>

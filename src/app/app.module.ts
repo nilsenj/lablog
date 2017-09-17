@@ -37,6 +37,8 @@ import { ConfirmComponentComponent } from "./components/confirm-component/confir
 import { BootstrapModalModule } from "ng2-bootstrap-modal";
 import {FileUploadService} from "./services/file-upload.service";
 import { TagInputModule } from "ngx-chips";
+import { LikeComponent } from './components/like/like.component';
+import {LikeService} from "./services/like.service";
 
 @NgModule({
     declarations: [
@@ -56,7 +58,8 @@ import { TagInputModule } from "ngx-chips";
         KeepHtmlPipe,
         EditPostComponent,
         DeletePostComponent,
-        ConfirmComponentComponent
+        ConfirmComponentComponent,
+        LikeComponent
     ],
     imports: [
         BrowserModule,
@@ -81,7 +84,8 @@ import { TagInputModule } from "ngx-chips";
         PostService,
         ValidationService,
         HighlightJsService,
-        FileUploadService
+        FileUploadService,
+        LikeService
     ],
     entryComponents: [
         ConfirmComponentComponent

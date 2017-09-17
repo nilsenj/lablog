@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Core\Traits\ViewCounterTrait;
+use Conner\Likeable\LikeableTrait;
 use Illuminate\Database\Eloquent\Model;
 use TagsCloud\Tagging\Taggable;
 
@@ -14,6 +15,7 @@ class Post extends Model
 {
     use Taggable;
     use ViewCounterTrait;
+    use LikeableTrait;
 
     /**
      * @var string
@@ -40,7 +42,8 @@ class Post extends Model
      */
     protected $appends = [
         'created',
-        'view_counter'
+        'view_counter',
+        'likes_counter'
     ];
 
     /**
@@ -129,5 +132,13 @@ class Post extends Model
     public function getViewCounterAttribute()
     {
         return $this->get_counters()->first();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLikesCounterAttribute()
+    {
+        return $this->likeCount;
     }
 }

@@ -15,4 +15,6 @@ export class Post {
     public user_id?: number = null;
     public published?: string;
     public tagged?: any = [];
+    public isLiked?: boolean = false;
+    public likes_counter?: number = 0;
 }
