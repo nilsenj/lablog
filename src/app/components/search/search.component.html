@@ -1,5 +1,5 @@
 <div class="form-inline my-2 my-lg-0">
-    <input class="form-control mr-sm-2" (input)="makeSearch($event)" [(ngModel)]="searchQuery"
+    <input class="form-control mr-sm-2 search-input" (input)="makeSearch($event)" [(ngModel)]="searchQuery"
            type="text" placeholder="Search" aria-label="Search" name="searchQuery">
     <ul class="result mr-sm-2" *ngIf="searchResult">
         <li *ngFor="let item of searchResult">
