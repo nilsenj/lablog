@@ -4,7 +4,6 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {PostService} from "../../services/post.service";
 import {ToastrService} from "../../services/toastr.service";
 import {Router} from "@angular/router";
-import * as $ from "jquery";
 import {FileUploadService} from "../../services/file-upload.service";
 
 @Component({

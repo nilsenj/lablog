@@ -2020,7 +2020,7 @@ var _a, _b, _c;
 /***/ "../../../../../src/app/components/search/search.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"form-inline my-2 my-lg-0 w-100\" style=\"position: relative\">\n    <input class=\"form-control mr-sm-2 search-input \" (input)=\"makeSearch($event)\" [(ngModel)]=\"searchQuery\"\n           type=\"text\" placeholder=\"Search\" aria-label=\"Search\" name=\"searchQuery\">\n    <i class=\"glyphicon glyphicon-search icon-search\"></i>\n    <ul class=\"result mr-sm-2 w-100\" *ngIf=\"searchResult\">\n        <li *ngFor=\"let item of searchResult\">\n            <a href=\"{{'/posts/'+ item.id}}\" role=\"link\" class=\"btn btn-link\">\n                {{item.name}}\n                <div class=\"clearfix\"></div>\n                <span class=\"float-left text-left m-0\">\n                    <i class=\"glyphicon glyphicon-calendar\"></i>: </span>\n                <span class=\"float-left text-left  m-0\"> {{item.created}}</span>\n                <span class=\"float-left text-left  m-0\">\n                    <i style=\"\" class=\"glyphicon glyphicon-eye-open\"></i>:\n                </span>\n                <span class=\"float-left text-left m-0\"> {{item.view_counter.view_counter}}</span>\n                <img src=\"{{item.image_url}}\" alt=\"{{item.name}}\" class=\"thumb\">\n            </a>\n        </li>\n    </ul>\n</div>"
+module.exports = "<div class=\"form-inline my-2 my-lg-0 w-100\" id=\"search-block\" style=\"position: relative\">\n    <input class=\"form-control mr-sm-2 search-input\" (input)=\"makeSearch($event)\" [(ngModel)]=\"searchQuery\"\n           type=\"text\" placeholder=\"Search\" aria-label=\"Search\" name=\"searchQuery\">\n    <i class=\"glyphicon glyphicon-search icon-search\"></i>\n    <ul class=\"result mr-sm-2 w-100\" id=\"search-result\" *ngIf=\"searchResult\">\n        <li *ngFor=\"let item of searchResult\">\n            <a href=\"{{'/posts/'+ item.id}}\" role=\"link\" class=\"btn btn-link\">\n                {{item.name}}\n                <div class=\"clearfix\"></div>\n                <span class=\"float-left text-left m-0\">\n                    <i class=\"glyphicon glyphicon-calendar\"></i>: </span>\n                <span class=\"float-left text-left  m-0\"> {{item.created}}</span>\n                <span class=\"float-left text-left  m-0\">\n                    <i style=\"\" class=\"glyphicon glyphicon-eye-open\"></i>:\n                </span>\n                <span class=\"float-left text-left m-0\"> {{item.view_counter.view_counter}}</span>\n                <img src=\"{{item.image_url}}\" alt=\"{{item.name}}\" class=\"thumb\">\n            </a>\n        </li>\n    </ul>\n</div>"
 
 /***/ }),
 
@@ -2050,6 +2050,8 @@ module.exports = module.exports.toString();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_search_service__ = __webpack_require__("../../../../../src/app/services/search.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_jquery__ = __webpack_require__("../../../../jquery/dist/jquery.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_jquery___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_jquery__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2062,6 +2064,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var SearchComponent = (function () {
     function SearchComponent(search, router) {
         var _this = this;
@@ -2069,16 +2072,21 @@ var SearchComponent = (function () {
         this.router = router;
         this.searchQuery = "";
         this.searchResult = [];
+        this.emitter = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
         this.router.events.subscribe(function (event) {
             if (event instanceof __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* NavigationEnd */]) {
                 _this.searchResult = [];
                 _this.searchQuery = "";
             }
         });
+        this.emitter.subscribe(function (event) {
+            console.log(event);
+            event.searchResult = [];
+            event.searchQuery = "";
+        });
     }
     SearchComponent.prototype.ngOnInit = function () {
-        this.searchResult = [];
-        this.searchQuery = "";
+        this.clear();
     };
     SearchComponent.prototype.makeSearch = function (event) {
         var _this = this;
@@ -2086,6 +2094,7 @@ var SearchComponent = (function () {
             this.search.searchQuery(event.target.value)
                 .subscribe(function (result) {
                 _this.searchResult = result.data;
+                _this.domEventToggleSearchClear(_this);
             }, function (error) {
                 _this.searchResult = [];
             });
@@ -2094,8 +2103,20 @@ var SearchComponent = (function () {
             this.searchResult = [];
         }
     };
-    SearchComponent.prototype.goTo = function (path) {
-        window.location.href = path;
+    SearchComponent.prototype.domEventToggleSearchClear = function (that) {
+        __WEBPACK_IMPORTED_MODULE_3_jquery__(document).ready(function () {
+            __WEBPACK_IMPORTED_MODULE_3_jquery__("body").not(".result").not("li").on("click", function (event) {
+                event.stopPropagation();
+                console.log(event);
+                if (!__WEBPACK_IMPORTED_MODULE_3_jquery__(event.target).closest("#search-block, #search-result").length) {
+                    that.emitter.emit(that);
+                }
+            });
+        });
+    };
+    SearchComponent.prototype.clear = function () {
+        this.searchResult = [];
+        this.searchQuery = "";
     };
     return SearchComponent;
 }());
