@@ -14,18 +14,21 @@
                     <a class="nav-link" [routerLink]="['/user']">Hello, {{user['name']}}</a>
                 </li>
                 <app-search></app-search>
-                <li class="nav-item" *ngIf="!authenticated">
+                <span class="nav-item" style="margin-left: auto;display: flex;">
+                    <li class="nav-item" *ngIf="!authenticated">
                     <a class="nav-link" [routerLink]="['/register']">Register</a>
                 </li>
                 <li class="nav-item" *ngIf="!authenticated">
                     <a class="nav-link">|</a>
                 </li>
-                <li class="nav-item" *ngIf="!authenticated">
+                <li class="nav-item" style="margin-left: auto;" *ngIf="!authenticated">
                     <a class="nav-link" [routerLink]="['/login']">Login</a>
                 </li>
                 <li class="nav-item" style="margin-left: auto;" *ngIf="authenticated">
                     <a class="nav-link" [routerLink]="['/login']">Logout</a>
                 </li>
+                </span>
+
             </ul>
         </div>
     </div>
