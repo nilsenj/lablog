@@ -1,7 +1,8 @@
-<div class="form-inline my-2 my-lg-0">
-    <input class="form-control mr-sm-2 search-input" (input)="makeSearch($event)" [(ngModel)]="searchQuery"
+<div class="form-inline my-2 my-lg-0 w-100" style="position: relative">
+    <input class="form-control mr-sm-2 search-input " (input)="makeSearch($event)" [(ngModel)]="searchQuery"
            type="text" placeholder="Search" aria-label="Search" name="searchQuery">
-    <ul class="result mr-sm-2" *ngIf="searchResult">
+    <i class="glyphicon glyphicon-search icon-search"></i>
+    <ul class="result mr-sm-2 w-100" *ngIf="searchResult">
         <li *ngFor="let item of searchResult">
             <a href="{{'/posts/'+ item.id}}" role="link" class="btn btn-link">
                 {{item.name}}
@@ -13,6 +14,7 @@
                     <i style="" class="glyphicon glyphicon-eye-open"></i>:
                 </span>
                 <span class="float-left text-left m-0"> {{item.view_counter.view_counter}}</span>
+                <img src="{{item.image_url}}" alt="{{item.name}}" class="thumb">
             </a>
         </li>
     </ul>

@@ -1,6 +1,6 @@
 .result {
   position: absolute;
-  top: 60px;
+  top: 50px;
   list-style-type: none;
   padding-left: 0;
   display: inline-block;
@@ -14,8 +14,14 @@
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   background-clip: padding-box;
   li {
-    padding: 0;
     text-align: left;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 0 12px;
+    width: 100%;
+    box-sizing: border-box;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
     a {
       white-space: normal; /* Отменяем перенос текста */
       overflow: hidden; /* Обрезаем содержимое */
@@ -28,6 +34,7 @@
       color: #333;
       border-bottom: 1px solid lightgrey;
       text-align: left;
+      position: relative;
       i {
         color: #343a40;
         padding-left: 2px;
@@ -40,6 +47,20 @@
           color: #fff;
         }
       }
+      .thumb {
+        position: absolute;
+        display: block;
+        top: 4px;
+        right: 12px;
+        height: 37px;
+        width: 37px;
+        margin: 0;
+        background-size: cover;
+        background-color: rgba(0, 0, 0, .184314);
+        background-position: 50% 50%;
+        background-clip: content-box;
+        border-radius: 3px;
+      }
     }
 
   }
@@ -47,6 +68,31 @@
 
 .search-input {
   margin-right: 35px;
-  border: 1px solid black;
   background-color: #e5e5e5;
+  color: hsla(0, 0%, 100%, .6);
+  padding-right: 10px;
+  padding-bottom: 2px;
+  padding-left: 39px;
+  background: rgba(0, 0, 0, .13);
+  line-height: inherit;
+  font-size: 15px;
+  height: 34px;
+  width: 100%;
+  border: 0;
+  border-radius: 3px;
+  margin-top: 3px;
+  transition: background 75ms, color 75ms;
+  background: #fff;
+  color: #444;
+  font-weight: 400;
+}
+
+.icon-search {
+  transition: color .15s;
+  position: absolute;
+  font-size: 24px;
+  color: inherit;
+  z-index: 2;
+  left: 5px;
+  top: 10px;
 }
