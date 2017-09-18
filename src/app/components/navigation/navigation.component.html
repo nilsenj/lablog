@@ -6,13 +6,14 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav w-100">
                 <li class="nav-item">
                     <a class="nav-link" [routerLink]="['/posts']">Posts</a>
                 </li>
                 <li class="nav-item" *ngIf="authenticated">
                     <a class="nav-link" [routerLink]="['/user']">Hello, {{user['name']}}</a>
                 </li>
+                <app-search></app-search>
                 <li class="nav-item" *ngIf="!authenticated">
                     <a class="nav-link" [routerLink]="['/register']">Register</a>
                 </li>
@@ -22,7 +23,7 @@
                 <li class="nav-item" *ngIf="!authenticated">
                     <a class="nav-link" [routerLink]="['/login']">Login</a>
                 </li>
-                <li class="nav-item" *ngIf="authenticated">
+                <li class="nav-item" style="margin-left: auto;" *ngIf="authenticated">
                     <a class="nav-link" [routerLink]="['/login']">Logout</a>
                 </li>
             </ul>

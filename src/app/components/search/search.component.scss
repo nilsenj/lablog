@@ -1,0 +1,25 @@
+.result {
+  position: absolute;
+  top: 60px;
+  list-style-type: none;
+  box-shadow: 1px 2px 5px lighten(#0a001f, .5);
+  padding-left: 0;
+  display: inline-block;
+  width: 220.5px;
+  vertical-align: middle;
+  white-space: normal; /* Отменяем перенос текста */
+  overflow: hidden; /* Обрезаем содержимое */
+  li {
+    background: #fff;
+    border-bottom: 1px solid;
+    padding: 1px 5px;
+    text-align: left;
+    display: block;
+    button {
+      white-space: normal; /* Отменяем перенос текста */
+      overflow: hidden; /* Обрезаем содержимое */
+      width: 100%;
+      display: block;
+    }
+  }
+}

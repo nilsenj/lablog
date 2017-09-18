@@ -85,6 +85,10 @@ Route::group(['middleware' => ['api'], 'as' => 'api.'], function () {
             'uses' => 'LikesController@likesModelStatus',
             'as' => 'likesModelStatus'
         ]);
+        Route::get('/search', [
+            'uses' => 'SearchController@search',
+            'as' => 'search'
+        ]);
         Route::get('/{id}', [
             'uses' => 'PostsController@show',
         ]);

@@ -181,6 +181,9 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         TagsCloud\Tagging\Providers\TaggingServiceProvider::class,
         \Conner\Likeable\LikeableServiceProvider::class,
+        Laravel\Scout\ScoutServiceProvider::class,
+        ScoutEngines\Elasticsearch\ElasticsearchProvider::class,
+        \Yab\MySQLScout\Providers\MySQLScoutServiceProvider::class,
     ],
 
     /*

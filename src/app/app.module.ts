@@ -1,10 +1,9 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {ErrorHandler, Injectable, NgModule, Injector} from '@angular/core';
 import {AppComponent} from './app.component';
 import {RegisterComponent} from './components/register/register.component';
 import {LoginComponent} from './components/login/login.component';
 import {WelcomeComponent} from './components/welcome/welcome.component';
-import {AppRouterModule} from "./modules/router/approuter.module";
 import {HttpModule} from "@angular/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AuthGuard} from "./guards/auth.guard";
@@ -39,6 +38,57 @@ import {FileUploadService} from "./services/file-upload.service";
 import { TagInputModule } from "ngx-chips";
 import { LikeComponent } from './components/like/like.component';
 import {LikeService} from "./services/like.service";
+import { SearchComponent } from './components/search/search.component';
+import {SearchService} from "./services/search.service";
+import {
+    ActivatedRouteSnapshot, DetachedRouteHandle, Route, Router, RouteReuseStrategy,
+    RouterModule
+} from "@angular/router";
+import {ZoneListener} from "./support/zone.listener";
+import {appRoutes} from "./routes";
+let hasRouterError: boolean = false;
+
+@Injectable()
+export class MyErrorHandler implements ErrorHandler {
+    constructor(private inj: Injector) {}
+
+    handleError(error: any): void {
+        console.log('MyErrorHandler: ' + error);
+
+        if(hasRouterError) {
+            let router: Router = this.inj.get(Router);
+            router.navigated = false;
+        }
+
+        //throw error;
+    }
+}
+
+export function MyRouterErrorHandler(error: any) {
+    console.log('RouterErrorHandler: ' + error);
+    hasRouterError = true;
+    throw error;
+}
+
+export class PreventErrorRouteReuseStrategy implements RouteReuseStrategy {
+    shouldDetach(route: ActivatedRouteSnapshot): boolean { return false; }
+    store(route: ActivatedRouteSnapshot, detachedTree: DetachedRouteHandle): void {}
+    shouldAttach(route: ActivatedRouteSnapshot): boolean { return false; }
+    retrieve(route: ActivatedRouteSnapshot): DetachedRouteHandle|null { return null; }
+    shouldReuseRoute(future: ActivatedRouteSnapshot, curr: ActivatedRouteSnapshot): boolean {
+        if(hasRouterError) {
+            hasRouterError = false;
+            return false;
+        }
+        return future.routeConfig === curr.routeConfig;
+    }
+}
+let base = document.querySelector("#base");
+
+let useHash = false;
+if (base) {
+    useHash = false;
+}
 
 @NgModule({
     declarations: [
@@ -59,14 +109,19 @@ import {LikeService} from "./services/like.service";
         EditPostComponent,
         DeletePostComponent,
         ConfirmComponentComponent,
-        LikeComponent
+        LikeComponent,
+        SearchComponent
     ],
     imports: [
         BrowserModule,
         FormsModule,
         ReactiveFormsModule,
         HttpModule,
-        AppRouterModule,
+        RouterModule.forRoot(appRoutes, {
+            useHash: useHash,
+            errorHandler: MyRouterErrorHandler,
+            enableTracing: true
+        }),
         TagInputModule,
         BrowserAnimationsModule,
         ToastModule.forRoot(),
@@ -76,6 +131,9 @@ import {LikeService} from "./services/like.service";
         BootstrapModalModule.forRoot({container:document.body})
     ],
     providers: [
+        { provide: ErrorHandler, useClass: MyErrorHandler},
+        ZoneListener,
+        { provide: RouteReuseStrategy, useClass: PreventErrorRouteReuseStrategy },
         AuthenticationService,
         AuthGuard,
         UserAllowedToPostGuardGuard,
@@ -85,7 +143,8 @@ import {LikeService} from "./services/like.service";
         ValidationService,
         HighlightJsService,
         FileUploadService,
-        LikeService
+        LikeService,
+        SearchService
     ],
     entryComponents: [
         ConfirmComponentComponent

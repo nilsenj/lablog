@@ -5,6 +5,7 @@ namespace App;
 use App\Core\Traits\ViewCounterTrait;
 use Conner\Likeable\LikeableTrait;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 use TagsCloud\Tagging\Taggable;
 
 /**
@@ -16,7 +17,7 @@ class Post extends Model
     use Taggable;
     use ViewCounterTrait;
     use LikeableTrait;
-
+    use Searchable;
     /**
      * @var string
      */
@@ -38,11 +39,20 @@ class Post extends Model
     ];
 
     /**
+     * Get the index name for the model.
+     *
+     * @return string
+     */
+    public function searchableAs()
+    {
+        return 'posts_index';
+    }
+
+    /**
      * @var array
      */
     protected $appends = [
         'created',
-        'view_counter',
         'likes_counter'
     ];
 
@@ -87,7 +97,11 @@ class Post extends Model
      */
     public function getCreatedAttribute()
     {
-        return $this->created_at->diffForHumans();
+        if($this->created_at) {
+            return $this->created_at->diffForHumans();
+        } else {
+            return "";
+        }
     }
 
     /**
@@ -124,14 +138,6 @@ class Post extends Model
     public function addTagsAttribute()
     {
         return $this->tagNames();
-    }
-
-    /**
-     * get first counter
-     */
-    public function getViewCounterAttribute()
-    {
-        return $this->get_counters()->first();
     }
 
     /**

@@ -1,0 +1,29 @@
+{
+    "name": "yab/laravel-scout-mysql-driver",
+    "description": "MySQL driver for Laravel Scout.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Damian Crisafulli",
+            "email": "damian.crisafulli@troyweb.com"
+        },
+        {
+            "name": "Matt Lantz",
+            "email": "matt@yabhq.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.6.4",
+        "laravel/framework": "*5.3.|5.4.*",
+        "laravel/scout": "^2.0|^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Yab\\MySQLScout\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    }
+}

@@ -1,0 +1,21 @@
+<div class="form-inline my-2 my-lg-0">
+    <input class="form-control mr-sm-2" (input)="makeSearch($event)" [(ngModel)]="searchQuery"
+           type="text" placeholder="Search" aria-label="Search" name="searchQuery">
+    <ul class="result mr-sm-2" *ngIf="searchResult">
+        <li *ngFor="let item of searchResult">
+            <button role="link" style="cursor: pointer; text-align: left;" class="btn btn-link"
+                    (click)="goTo('/posts/'+ item.id)">
+                {{item.name}}
+                <div class="clearfix"></div>
+                <span class="float-left text-left m-0">
+                    <i class="glyphicon glyphicon-calendar color-dark"
+                       style="color:#343a40!important;"></i>: </span>
+                <span class="text-muted float-left text-left  m-0"> {{item.created}}</span>
+                <span class="float-left text-left  m-1"> <i style="color:#343a40!important;"
+                                                              class="glyphicon glyphicon-eye-open color-dark"></i>:
+                </span>
+                <span class="text-muted float-left text-left m-0"> {{item.view_counter.view_counter}}</span>
+            </button>
+        </li>
+    </ul>
+</div>
