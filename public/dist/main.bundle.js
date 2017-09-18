@@ -192,9 +192,6 @@ var _a, _b, _c, _d;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* unused harmony export MyErrorHandler */
-/* unused harmony export MyRouterErrorHandler */
-/* unused harmony export PreventErrorRouteReuseStrategy */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__("../../../platform-browser/@angular/platform-browser.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
@@ -250,9 +247,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 
 
 
@@ -295,48 +289,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
-var hasRouterError = false;
-var MyErrorHandler = (function () {
-    function MyErrorHandler(inj) {
-        this.inj = inj;
-    }
-    MyErrorHandler.prototype.handleError = function (error) {
-        console.log('MyErrorHandler: ' + error);
-        if (hasRouterError) {
-            var router = this.inj.get(__WEBPACK_IMPORTED_MODULE_40__angular_router__["d" /* Router */]);
-            router.navigated = false;
-        }
-        //throw error;
-    };
-    return MyErrorHandler;
-}());
-MyErrorHandler = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_core__["Injector"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_core__["Injector"]) === "function" && _a || Object])
-], MyErrorHandler);
-
-function MyRouterErrorHandler(error) {
-    console.log('RouterErrorHandler: ' + error);
-    hasRouterError = true;
-    throw error;
-}
-var PreventErrorRouteReuseStrategy = (function () {
-    function PreventErrorRouteReuseStrategy() {
-    }
-    PreventErrorRouteReuseStrategy.prototype.shouldDetach = function (route) { return false; };
-    PreventErrorRouteReuseStrategy.prototype.store = function (route, detachedTree) { };
-    PreventErrorRouteReuseStrategy.prototype.shouldAttach = function (route) { return false; };
-    PreventErrorRouteReuseStrategy.prototype.retrieve = function (route) { return null; };
-    PreventErrorRouteReuseStrategy.prototype.shouldReuseRoute = function (future, curr) {
-        if (hasRouterError) {
-            hasRouterError = false;
-            return false;
-        }
-        return future.routeConfig === curr.routeConfig;
-    };
-    return PreventErrorRouteReuseStrategy;
-}());
 
 var base = document.querySelector("#base");
 var useHash = false;
@@ -376,9 +328,8 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_7__angular_forms__["FormsModule"],
             __WEBPACK_IMPORTED_MODULE_7__angular_forms__["ReactiveFormsModule"],
             __WEBPACK_IMPORTED_MODULE_6__angular_http__["c" /* HttpModule */],
-            __WEBPACK_IMPORTED_MODULE_40__angular_router__["e" /* RouterModule */].forRoot(__WEBPACK_IMPORTED_MODULE_42__routes__["a" /* appRoutes */], {
+            __WEBPACK_IMPORTED_MODULE_40__angular_router__["d" /* RouterModule */].forRoot(__WEBPACK_IMPORTED_MODULE_42__routes__["a" /* appRoutes */], {
                 useHash: useHash,
-                errorHandler: MyRouterErrorHandler,
                 enableTracing: true
             }),
             __WEBPACK_IMPORTED_MODULE_35_ngx_chips__["TagInputModule"],
@@ -390,9 +341,7 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_33_ng2_bootstrap_modal__["BootstrapModalModule"].forRoot({ container: document.body })
         ],
         providers: [
-            { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["ErrorHandler"], useClass: MyErrorHandler },
             __WEBPACK_IMPORTED_MODULE_41__support_zone_listener__["a" /* ZoneListener */],
-            { provide: __WEBPACK_IMPORTED_MODULE_40__angular_router__["c" /* RouteReuseStrategy */], useClass: PreventErrorRouteReuseStrategy },
             __WEBPACK_IMPORTED_MODULE_9__services_authentication_service__["a" /* AuthenticationService */],
             __WEBPACK_IMPORTED_MODULE_8__guards_auth_guard__["a" /* AuthGuard */],
             __WEBPACK_IMPORTED_MODULE_30__guards_user_allowed_to_post_guard_guard__["a" /* UserAllowedToPostGuardGuard */],
@@ -412,7 +361,6 @@ AppModule = __decorate([
     })
 ], AppModule);
 
-var _a;
 //# sourceMappingURL=C:/Users/nilse/Code/lablog/src/app.module.js.map
 
 /***/ }),
@@ -690,7 +638,7 @@ DeletePostComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/components/delete-post/delete-post.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/delete-post/delete-post.component.scss")]
     }),
-    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["d" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["d" /* Router */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__services_post_service__["a" /* PostService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_post_service__["a" /* PostService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__services_toastr_service__["a" /* ToastrService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_toastr_service__["a" /* ToastrService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_6_ng2_bootstrap_modal__["DialogService"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6_ng2_bootstrap_modal__["DialogService"]) === "function" && _e || Object])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["c" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["c" /* Router */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__services_post_service__["a" /* PostService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_post_service__["a" /* PostService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__services_toastr_service__["a" /* ToastrService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_toastr_service__["a" /* ToastrService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_6_ng2_bootstrap_modal__["DialogService"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6_ng2_bootstrap_modal__["DialogService"]) === "function" && _e || Object])
 ], DeletePostComponent);
 
 var _a, _b, _c, _d, _e;
@@ -919,7 +867,7 @@ EditPostComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/components/edit-post/edit-post.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/edit-post/edit-post.component.scss")]
     }),
-    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_forms__["FormBuilder"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_forms__["FormBuilder"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__services_post_service__["a" /* PostService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_post_service__["a" /* PostService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__services_toastr_service__["a" /* ToastrService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_toastr_service__["a" /* ToastrService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__angular_router__["d" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_router__["d" /* Router */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_4__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_router__["a" /* ActivatedRoute */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_5__services_file_upload_service__["a" /* FileUploadService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__services_file_upload_service__["a" /* FileUploadService */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_7__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__angular_http__["b" /* Http */]) === "function" && _h || Object])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_forms__["FormBuilder"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_forms__["FormBuilder"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__services_post_service__["a" /* PostService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_post_service__["a" /* PostService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__services_toastr_service__["a" /* ToastrService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_toastr_service__["a" /* ToastrService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__angular_router__["c" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_router__["c" /* Router */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_4__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_router__["a" /* ActivatedRoute */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_5__services_file_upload_service__["a" /* FileUploadService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__services_file_upload_service__["a" /* FileUploadService */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_7__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__angular_http__["b" /* Http */]) === "function" && _h || Object])
 ], EditPostComponent);
 
 var _a, _b, _c, _d, _e, _f, _g, _h;
@@ -1139,7 +1087,7 @@ LoginComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/components/login/login.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/login/login.component.scss")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* Router */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_authentication_service__["a" /* AuthenticationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_authentication_service__["a" /* AuthenticationService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__services_toastr_service__["a" /* ToastrService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_toastr_service__["a" /* ToastrService */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* Router */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_authentication_service__["a" /* AuthenticationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_authentication_service__["a" /* AuthenticationService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__services_toastr_service__["a" /* ToastrService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_toastr_service__["a" /* ToastrService */]) === "function" && _c || Object])
 ], LoginComponent);
 
 var _a, _b, _c;
@@ -1368,7 +1316,7 @@ PaginationComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/components/pagination/pagination.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/pagination/pagination.component.scss")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* Router */]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* Router */]) === "function" && _a || Object])
 ], PaginationComponent);
 
 var _a;
@@ -1673,7 +1621,7 @@ PostCreateComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/components/post-create/post-create.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/post-create/post-create.component.scss")]
     }),
-    __metadata("design:paramtypes", [typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormBuilder"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormBuilder"]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__services_post_service__["a" /* PostService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_post_service__["a" /* PostService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__services_toastr_service__["a" /* ToastrService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_toastr_service__["a" /* ToastrService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_5__angular_router__["d" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__angular_router__["d" /* Router */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_6__services_file_upload_service__["a" /* FileUploadService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__services_file_upload_service__["a" /* FileUploadService */]) === "function" && _g || Object])
+    __metadata("design:paramtypes", [typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormBuilder"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormBuilder"]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__services_post_service__["a" /* PostService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_post_service__["a" /* PostService */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__services_toastr_service__["a" /* ToastrService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_toastr_service__["a" /* ToastrService */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_5__angular_router__["c" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__angular_router__["c" /* Router */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_6__services_file_upload_service__["a" /* FileUploadService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__services_file_upload_service__["a" /* FileUploadService */]) === "function" && _g || Object])
 ], PostCreateComponent);
 
 var _a, _b, _c, _d, _e, _f, _g;
@@ -2061,7 +2009,7 @@ RegisterComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/components/register/register.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/register/register.component.scss")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* Router */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_authentication_service__["a" /* AuthenticationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_authentication_service__["a" /* AuthenticationService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__services_toastr_service__["a" /* ToastrService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_toastr_service__["a" /* ToastrService */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* Router */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_authentication_service__["a" /* AuthenticationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_authentication_service__["a" /* AuthenticationService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__services_toastr_service__["a" /* ToastrService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__services_toastr_service__["a" /* ToastrService */]) === "function" && _c || Object])
 ], RegisterComponent);
 
 var _a, _b, _c;
@@ -2072,7 +2020,7 @@ var _a, _b, _c;
 /***/ "../../../../../src/app/components/search/search.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"form-inline my-2 my-lg-0\">\n    <input class=\"form-control mr-sm-2\" (input)=\"makeSearch($event)\" [(ngModel)]=\"searchQuery\"\n           type=\"text\" placeholder=\"Search\" aria-label=\"Search\" name=\"searchQuery\">\n    <ul class=\"result mr-sm-2\" *ngIf=\"searchResult\">\n        <li *ngFor=\"let item of searchResult\">\n            <button role=\"link\" style=\"cursor: pointer; text-align: left;\" class=\"btn btn-link\"\n                    (click)=\"goTo('/posts/'+ item.id)\">\n                {{item.name}}\n                <div class=\"clearfix\"></div>\n                <span class=\"float-left text-left m-0\">\n                    <i class=\"glyphicon glyphicon-calendar color-dark\"\n                       style=\"color:#343a40!important;\"></i>: </span>\n                <span class=\"text-muted float-left text-left  m-0\"> {{item.created}}</span>\n                <span class=\"float-left text-left  m-1\"> <i style=\"color:#343a40!important;\"\n                                                              class=\"glyphicon glyphicon-eye-open color-dark\"></i>:\n                </span>\n                <span class=\"text-muted float-left text-left m-0\"> {{item.view_counter.view_counter}}</span>\n            </button>\n        </li>\n    </ul>\n</div>"
+module.exports = "<div class=\"form-inline my-2 my-lg-0\">\n    <input class=\"form-control mr-sm-2\" (input)=\"makeSearch($event)\" [(ngModel)]=\"searchQuery\"\n           type=\"text\" placeholder=\"Search\" aria-label=\"Search\" name=\"searchQuery\">\n    <ul class=\"result mr-sm-2\" *ngIf=\"searchResult\">\n        <li *ngFor=\"let item of searchResult\">\n            <button role=\"link\" style=\"cursor: pointer; text-align: left;\" class=\"btn btn-link\"\n                    (click)=\"goTo('/posts/'+ item.id)\">\n                {{item.name}}\n                <div class=\"clearfix\"></div>\n                <span class=\"float-left text-left m-0\">\n                    <i class=\"glyphicon glyphicon-calendar\"></i>: </span>\n                <span class=\"float-left text-left  m-0\"> {{item.created}}</span>\n                <span class=\"float-left text-left  m-0\">\n                    <i style=\"\" class=\"glyphicon glyphicon-eye-open\"></i>:\n                </span>\n                <span class=\"float-left text-left m-0\"> {{item.view_counter.view_counter}}</span>\n            </button>\n        </li>\n    </ul>\n</div>"
 
 /***/ }),
 
@@ -2084,7 +2032,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "@charset \"UTF-8\";\n.result {\n  position: absolute;\n  top: 60px;\n  list-style-type: none;\n  box-shadow: 1px 2px 5px #0b0022;\n  padding-left: 0;\n  display: inline-block;\n  width: 220.5px;\n  vertical-align: middle;\n  white-space: normal;\n  /* Отменяем перенос текста */\n  overflow: hidden;\n  /* Обрезаем содержимое */ }\n  .result li {\n    background: #fff;\n    border-bottom: 1px solid;\n    padding: 1px 5px;\n    text-align: left;\n    display: block; }\n    .result li button {\n      white-space: normal;\n      /* Отменяем перенос текста */\n      overflow: hidden;\n      /* Обрезаем содержимое */\n      width: 100%;\n      display: block; }\n", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\n.result {\n  position: absolute;\n  top: 60px;\n  list-style-type: none;\n  padding-left: 0;\n  display: inline-block;\n  vertical-align: middle;\n  white-space: normal;\n  overflow: hidden;\n  background-color: #fff;\n  border: 1px solid rgba(0, 0, 0, 0.15);\n  border-radius: 4px;\n  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);\n  background-clip: padding-box; }\n  .result li {\n    padding: 0;\n    text-align: left; }\n    .result li button {\n      white-space: normal;\n      /* Отменяем перенос текста */\n      overflow: hidden;\n      /* Обрезаем содержимое */\n      width: 100%;\n      display: block;\n      padding: 3px 20px;\n      clear: both;\n      font-weight: normal;\n      line-height: 1.428571429;\n      color: #333;\n      border-bottom: 1px solid;\n      text-align: left; }\n      .result li button i {\n        color: #343a40; }\n      .result li button:hover {\n        background: #428bca;\n        color: #fff; }\n        .result li button:hover span {\n          color: #fff; }\n", ""]);
 
 // exports
 
@@ -2161,7 +2109,7 @@ SearchComponent = __decorate([
         template: __webpack_require__("../../../../../src/app/components/search/search.component.html"),
         styles: [__webpack_require__("../../../../../src/app/components/search/search.component.scss")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_search_service__["a" /* SearchService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_search_service__["a" /* SearchService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["d" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["d" /* Router */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_search_service__["a" /* SearchService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_search_service__["a" /* SearchService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["c" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["c" /* Router */]) === "function" && _b || Object])
 ], SearchComponent);
 
 var _a, _b;
@@ -2337,7 +2285,7 @@ var AuthGuard = (function () {
 }());
 AuthGuard = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["d" /* Router */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_toastr_service__["a" /* ToastrService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_toastr_service__["a" /* ToastrService */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* Router */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_toastr_service__["a" /* ToastrService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_toastr_service__["a" /* ToastrService */]) === "function" && _b || Object])
 ], AuthGuard);
 
 var _a, _b;
@@ -3055,6 +3003,12 @@ var SearchService = (function () {
         // get users from api
         return this.http.get(__WEBPACK_IMPORTED_MODULE_3__config_app__["a" /* app */].api_url + "/api/blog/search?search=" + search)
             .map(function (response) { return response.json(); });
+    };
+    SearchService.prototype.requestAutocompleteItems = function (text) {
+        var url = __WEBPACK_IMPORTED_MODULE_3__config_app__["a" /* app */].api_url + "/search?search=" + text;
+        return this.http
+            .get(url)
+            .map(function (data) { return data.json(); });
     };
     return SearchService;
 }());

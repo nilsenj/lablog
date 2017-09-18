@@ -2,24 +2,42 @@
   position: absolute;
   top: 60px;
   list-style-type: none;
-  box-shadow: 1px 2px 5px lighten(#0a001f, .5);
   padding-left: 0;
   display: inline-block;
-  width: 220.5px;
   vertical-align: middle;
-  white-space: normal; /* Отменяем перенос текста */
-  overflow: hidden; /* Обрезаем содержимое */
+  white-space: normal;
+  overflow: hidden;
+  background-color: #fff;
+  border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 4px;
+  -webkit-box-shadow: 0 6px 12px rgba(0,0,0,0.175);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.175);
+  background-clip: padding-box;
   li {
-    background: #fff;
-    border-bottom: 1px solid;
-    padding: 1px 5px;
+    padding: 0;
     text-align: left;
-    display: block;
     button {
       white-space: normal; /* Отменяем перенос текста */
       overflow: hidden; /* Обрезаем содержимое */
       width: 100%;
       display: block;
+      padding: 3px 20px;
+      clear: both;
+      font-weight: normal;
+      line-height: 1.428571429;
+      color: #333;
+      border-bottom: 1px solid;
+      text-align: left;
+      i {
+        color:#343a40;
+      }
+      &:hover {
+        background: #428bca;
+        color: #fff;
+        span{
+          color: #fff;
+        }
+      }
     }
   }
 }

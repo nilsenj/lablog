@@ -46,43 +46,6 @@ import {
 } from "@angular/router";
 import {ZoneListener} from "./support/zone.listener";
 import {appRoutes} from "./routes";
-let hasRouterError: boolean = false;
-
-@Injectable()
-export class MyErrorHandler implements ErrorHandler {
-    constructor(private inj: Injector) {}
-
-    handleError(error: any): void {
-        console.log('MyErrorHandler: ' + error);
-
-        if(hasRouterError) {
-            let router: Router = this.inj.get(Router);
-            router.navigated = false;
-        }
-
-        //throw error;
-    }
-}
-
-export function MyRouterErrorHandler(error: any) {
-    console.log('RouterErrorHandler: ' + error);
-    hasRouterError = true;
-    throw error;
-}
-
-export class PreventErrorRouteReuseStrategy implements RouteReuseStrategy {
-    shouldDetach(route: ActivatedRouteSnapshot): boolean { return false; }
-    store(route: ActivatedRouteSnapshot, detachedTree: DetachedRouteHandle): void {}
-    shouldAttach(route: ActivatedRouteSnapshot): boolean { return false; }
-    retrieve(route: ActivatedRouteSnapshot): DetachedRouteHandle|null { return null; }
-    shouldReuseRoute(future: ActivatedRouteSnapshot, curr: ActivatedRouteSnapshot): boolean {
-        if(hasRouterError) {
-            hasRouterError = false;
-            return false;
-        }
-        return future.routeConfig === curr.routeConfig;
-    }
-}
 let base = document.querySelector("#base");
 
 let useHash = false;
@@ -119,7 +82,6 @@ if (base) {
         HttpModule,
         RouterModule.forRoot(appRoutes, {
             useHash: useHash,
-            errorHandler: MyRouterErrorHandler,
             enableTracing: true
         }),
         TagInputModule,
@@ -131,9 +93,7 @@ if (base) {
         BootstrapModalModule.forRoot({container:document.body})
     ],
     providers: [
-        { provide: ErrorHandler, useClass: MyErrorHandler},
         ZoneListener,
-        { provide: RouteReuseStrategy, useClass: PreventErrorRouteReuseStrategy },
         AuthenticationService,
         AuthGuard,
         UserAllowedToPostGuardGuard,

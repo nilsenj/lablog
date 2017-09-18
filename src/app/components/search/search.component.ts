@@ -1,8 +1,5 @@
-import {Component, Input, OnChanges, OnInit, SimpleChange, SimpleChanges} from '@angular/core';
+import {Component, Inject, Input, OnChanges, OnInit, SimpleChange, SimpleChanges} from '@angular/core';
 import {SearchService} from "../../services/search.service";
-import {Subscription} from "rxjs/Subscription";
-import {Subject} from "rxjs/Subject";
-import {Observable} from "rxjs/Observable";
 import {NavigationEnd, Router} from "@angular/router";
 
 @Component({
@@ -45,4 +42,5 @@ export class SearchComponent implements OnInit {
     public goTo(path: string): void {
         window.location.href = path;
     }
+
 }

@@ -14,5 +14,10 @@ export class SearchService {
             .map((response: Response) => response.json());
     }
 
-
+    public requestAutocompleteItems(text: string): Observable<Response> {
+        let url: string = app.api_url + "/search?search="+ text;
+        return this.http
+            .get(url)
+            .map(data => data.json());
+    }
 }
