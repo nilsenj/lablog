@@ -8,15 +8,15 @@
   white-space: normal;
   overflow: hidden;
   background-color: #fff;
-  border: 1px solid rgba(0,0,0,0.15);
+  border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 4px;
-  -webkit-box-shadow: 0 6px 12px rgba(0,0,0,0.175);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.175);
+  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   background-clip: padding-box;
   li {
     padding: 0;
     text-align: left;
-    button {
+    a {
       white-space: normal; /* Отменяем перенос текста */
       overflow: hidden; /* Обрезаем содержимое */
       width: 100%;
@@ -26,18 +26,21 @@
       font-weight: normal;
       line-height: 1.428571429;
       color: #333;
-      border-bottom: 1px solid;
+      border-bottom: 1px solid lightgrey;
       text-align: left;
       i {
-        color:#343a40;
+        color: #343a40;
+        padding-left: 2px;
+        padding-right: 2px;
       }
       &:hover {
         background: #428bca;
         color: #fff;
-        span{
+        span {
           color: #fff;
         }
       }
     }
+
   }
 }

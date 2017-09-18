@@ -3,8 +3,7 @@
            type="text" placeholder="Search" aria-label="Search" name="searchQuery">
     <ul class="result mr-sm-2" *ngIf="searchResult">
         <li *ngFor="let item of searchResult">
-            <button role="link" style="cursor: pointer; text-align: left;" class="btn btn-link"
-                    (click)="goTo('/posts/'+ item.id)">
+            <a href="{{'/posts/'+ item.id}}" role="link" class="btn btn-link">
                 {{item.name}}
                 <div class="clearfix"></div>
                 <span class="float-left text-left m-0">
@@ -14,7 +13,7 @@
                     <i style="" class="glyphicon glyphicon-eye-open"></i>:
                 </span>
                 <span class="float-left text-left m-0"> {{item.view_counter.view_counter}}</span>
-            </button>
+            </a>
         </li>
     </ul>
 </div>
