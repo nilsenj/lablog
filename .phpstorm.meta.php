@@ -3,7 +3,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2017-09-18.
+    * Generated on 2017-09-19.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -55,6 +55,7 @@ namespace PHPSTORM_META {
         'TagsCloud\Tagging\Contracts\TaggingUtility' => \TagsCloud\Tagging\Util::class,
         'Yab\MySQLScout\Services\ModelService' => \Yab\MySQLScout\Services\ModelService::class,
         'Yab\MySQLScout\Services\IndexService' => \Yab\MySQLScout\Services\IndexService::class,
+        'Yab\MySQLScout\Engines\Modes\ModeContainer' => \Yab\MySQLScout\Engines\Modes\ModeContainer::class,
         'blade.compiler' => \Illuminate\View\Compilers\BladeCompiler::class,
         'Tymon\JWTAuth\JWTAuth' => \Tymon\JWTAuth\JWTAuth::class,
         'Tymon\JWTAuth\Providers\User\UserInterface' => \Tymon\JWTAuth\Providers\User\EloquentUserAdapter::class,
@@ -209,6 +210,7 @@ namespace PHPSTORM_META {
         'TagsCloud\Tagging\Contracts\TaggingUtility' => \TagsCloud\Tagging\Util::class,
         'Yab\MySQLScout\Services\ModelService' => \Yab\MySQLScout\Services\ModelService::class,
         'Yab\MySQLScout\Services\IndexService' => \Yab\MySQLScout\Services\IndexService::class,
+        'Yab\MySQLScout\Engines\Modes\ModeContainer' => \Yab\MySQLScout\Engines\Modes\ModeContainer::class,
         'blade.compiler' => \Illuminate\View\Compilers\BladeCompiler::class,
         'Tymon\JWTAuth\JWTAuth' => \Tymon\JWTAuth\JWTAuth::class,
         'Tymon\JWTAuth\Providers\User\UserInterface' => \Tymon\JWTAuth\Providers\User\EloquentUserAdapter::class,
@@ -363,6 +365,7 @@ namespace PHPSTORM_META {
         'TagsCloud\Tagging\Contracts\TaggingUtility' => \TagsCloud\Tagging\Util::class,
         'Yab\MySQLScout\Services\ModelService' => \Yab\MySQLScout\Services\ModelService::class,
         'Yab\MySQLScout\Services\IndexService' => \Yab\MySQLScout\Services\IndexService::class,
+        'Yab\MySQLScout\Engines\Modes\ModeContainer' => \Yab\MySQLScout\Engines\Modes\ModeContainer::class,
         'blade.compiler' => \Illuminate\View\Compilers\BladeCompiler::class,
         'Tymon\JWTAuth\JWTAuth' => \Tymon\JWTAuth\JWTAuth::class,
         'Tymon\JWTAuth\Providers\User\UserInterface' => \Tymon\JWTAuth\Providers\User\EloquentUserAdapter::class,
@@ -517,6 +520,7 @@ namespace PHPSTORM_META {
         'TagsCloud\Tagging\Contracts\TaggingUtility' => \TagsCloud\Tagging\Util::class,
         'Yab\MySQLScout\Services\ModelService' => \Yab\MySQLScout\Services\ModelService::class,
         'Yab\MySQLScout\Services\IndexService' => \Yab\MySQLScout\Services\IndexService::class,
+        'Yab\MySQLScout\Engines\Modes\ModeContainer' => \Yab\MySQLScout\Engines\Modes\ModeContainer::class,
         'blade.compiler' => \Illuminate\View\Compilers\BladeCompiler::class,
         'Tymon\JWTAuth\JWTAuth' => \Tymon\JWTAuth\JWTAuth::class,
         'Tymon\JWTAuth\Providers\User\UserInterface' => \Tymon\JWTAuth\Providers\User\EloquentUserAdapter::class,
@@ -671,6 +675,7 @@ namespace PHPSTORM_META {
         'TagsCloud\Tagging\Contracts\TaggingUtility' => \TagsCloud\Tagging\Util::class,
         'Yab\MySQLScout\Services\ModelService' => \Yab\MySQLScout\Services\ModelService::class,
         'Yab\MySQLScout\Services\IndexService' => \Yab\MySQLScout\Services\IndexService::class,
+        'Yab\MySQLScout\Engines\Modes\ModeContainer' => \Yab\MySQLScout\Engines\Modes\ModeContainer::class,
         'blade.compiler' => \Illuminate\View\Compilers\BladeCompiler::class,
         'Tymon\JWTAuth\JWTAuth' => \Tymon\JWTAuth\JWTAuth::class,
         'Tymon\JWTAuth\Providers\User\UserInterface' => \Tymon\JWTAuth\Providers\User\EloquentUserAdapter::class,
@@ -825,6 +830,7 @@ namespace PHPSTORM_META {
         'TagsCloud\Tagging\Contracts\TaggingUtility' => \TagsCloud\Tagging\Util::class,
         'Yab\MySQLScout\Services\ModelService' => \Yab\MySQLScout\Services\ModelService::class,
         'Yab\MySQLScout\Services\IndexService' => \Yab\MySQLScout\Services\IndexService::class,
+        'Yab\MySQLScout\Engines\Modes\ModeContainer' => \Yab\MySQLScout\Engines\Modes\ModeContainer::class,
         'blade.compiler' => \Illuminate\View\Compilers\BladeCompiler::class,
         'Tymon\JWTAuth\JWTAuth' => \Tymon\JWTAuth\JWTAuth::class,
         'Tymon\JWTAuth\Providers\User\UserInterface' => \Tymon\JWTAuth\Providers\User\EloquentUserAdapter::class,
@@ -979,6 +985,7 @@ namespace PHPSTORM_META {
         'TagsCloud\Tagging\Contracts\TaggingUtility' => \TagsCloud\Tagging\Util::class,
         'Yab\MySQLScout\Services\ModelService' => \Yab\MySQLScout\Services\ModelService::class,
         'Yab\MySQLScout\Services\IndexService' => \Yab\MySQLScout\Services\IndexService::class,
+        'Yab\MySQLScout\Engines\Modes\ModeContainer' => \Yab\MySQLScout\Engines\Modes\ModeContainer::class,
         'blade.compiler' => \Illuminate\View\Compilers\BladeCompiler::class,
         'Tymon\JWTAuth\JWTAuth' => \Tymon\JWTAuth\JWTAuth::class,
         'Tymon\JWTAuth\Providers\User\UserInterface' => \Tymon\JWTAuth\Providers\User\EloquentUserAdapter::class,

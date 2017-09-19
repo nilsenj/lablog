@@ -23,7 +23,7 @@ webpackEmptyAsyncContext.id = "../../../../../src lazy recursive";
 
 var DURATION = 100;
 var routeAnimation = Object(__WEBPACK_IMPORTED_MODULE_0__angular_animations__["trigger"])("routeAnimation", []);
-//# sourceMappingURL=C:/Users/nilse/Code/lablog/src/app.animations.js.map
+//# sourceMappingURL=/var/www/Code/lablog/src/app.animations.js.map
 
 /***/ }),
 
@@ -35,7 +35,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".post-tag {\r\n    display: inline-block;\r\n    padding: 0.3em 0.9em;\r\n    margin: 0 0.5em 0.5em 0;\r\n    white-space: nowrap;\r\n    background-color: #f1f8ff;\r\n    border-radius: 3px;\r\n}", ""]);
+exports.push([module.i, ".post-tag {\n    display: inline-block;\n    padding: 0.3em 0.9em;\n    margin: 0 0.5em 0.5em 0;\n    white-space: nowrap;\n    background-color: #f1f8ff;\n    border-radius: 3px;\n}", ""]);
 
 // exports
 
@@ -48,7 +48,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-navigation [(userChange)]=\"userChange\"></app-navigation>\r\n<div [@routeAnimation]=\"getState(o)\" style=\"margin-top:60px;\" class=\"container bg-light\">\r\n    <router-outlet #o=\"outlet\"></router-outlet>\r\n</div>"
+module.exports = "<app-navigation [(userChange)]=\"userChange\"></app-navigation>\n<div [@routeAnimation]=\"getState(o)\" style=\"margin-top:60px;\" class=\"container bg-light\">\n    <router-outlet #o=\"outlet\"></router-outlet>\n</div>"
 
 /***/ }),
 
@@ -184,7 +184,7 @@ AppComponent = __decorate([
 ], AppComponent);
 
 var _a, _b, _c, _d;
-//# sourceMappingURL=C:/Users/nilse/Code/lablog/src/app.component.js.map
+//# sourceMappingURL=/var/www/Code/lablog/src/app.component.js.map
 
 /***/ }),
 
@@ -361,7 +361,7 @@ AppModule = __decorate([
     })
 ], AppModule);
 
-//# sourceMappingURL=C:/Users/nilse/Code/lablog/src/app.module.js.map
+//# sourceMappingURL=/var/www/Code/lablog/src/app.module.js.map
 
 /***/ }),
 
@@ -444,7 +444,7 @@ ConfirmComponentComponent = __decorate([
 ], ConfirmComponentComponent);
 
 var _a;
-//# sourceMappingURL=C:/Users/nilse/Code/lablog/src/confirm-component.component.js.map
+//# sourceMappingURL=/var/www/Code/lablog/src/confirm-component.component.js.map
 
 /***/ }),
 
@@ -525,7 +525,7 @@ ControlMessagesComponent = __decorate([
 ], ControlMessagesComponent);
 
 var _a;
-//# sourceMappingURL=C:/Users/nilse/Code/lablog/src/control-messages.component.js.map
+//# sourceMappingURL=/var/www/Code/lablog/src/control-messages.component.js.map
 
 /***/ }),
 
@@ -642,7 +642,7 @@ DeletePostComponent = __decorate([
 ], DeletePostComponent);
 
 var _a, _b, _c, _d, _e;
-//# sourceMappingURL=C:/Users/nilse/Code/lablog/src/delete-post.component.js.map
+//# sourceMappingURL=/var/www/Code/lablog/src/delete-post.component.js.map
 
 /***/ }),
 
@@ -871,7 +871,7 @@ EditPostComponent = __decorate([
 ], EditPostComponent);
 
 var _a, _b, _c, _d, _e, _f, _g, _h;
-//# sourceMappingURL=C:/Users/nilse/Code/lablog/src/edit-post.component.js.map
+//# sourceMappingURL=/var/www/Code/lablog/src/edit-post.component.js.map
 
 /***/ }),
 
@@ -994,14 +994,14 @@ LikeComponent = __decorate([
 ], LikeComponent);
 
 var _a, _b;
-//# sourceMappingURL=C:/Users/nilse/Code/lablog/src/like.component.js.map
+//# sourceMappingURL=/var/www/Code/lablog/src/like.component.js.map
 
 /***/ }),
 
 /***/ "../../../../../src/app/components/login/login.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "    <div class=\"main\">\r\n\r\n  <h3>Please Log In</h3>\r\n  <div class=\"row\">\r\n    <div class=\"col-xs-6 col-sm-6 col-md-6\">\r\n      <a href=\"#\" class=\"btn btn-lg btn-primary btn-block\">Facebook</a>\r\n    </div>\r\n    <div class=\"col-xs-6 col-sm-6 col-md-6\">\r\n      <a href=\"#\" class=\"btn btn-lg btn-info btn-block\">Google</a>\r\n    </div>\r\n  </div>\r\n  <div class=\"login-or\">\r\n    <hr class=\"hr-or\">\r\n    <span class=\"span-or\">or</span>\r\n  </div>\r\n  <div *ngIf=\"error\" class=\"alert alert-danger\">{{error}}</div>\r\n  <form role=\"form\" name=\"form\" (ngSubmit)=\"f.form.valid && login()\" #f=\"ngForm\" novalidate>\r\n    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !email.valid }\">\r\n      <label for=\"email\">Email</label>\r\n      <input type=\"email\" class=\"form-control\" name=\"email\" [(ngModel)]=\"model.email\" #email=\"ngModel\" required />\r\n      <div *ngIf=\"f.submitted && !email.valid\" class=\"help-block\">Email is required</div>\r\n    </div>\r\n    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !password.valid }\">\r\n      <a class=\"pull-right\" href=\"#\">Forgot password?</a>\r\n      <label for=\"password\">Password</label>\r\n      <input type=\"password\" class=\"form-control\" name=\"password\" [(ngModel)]=\"model.password\" #password=\"ngModel\" required />\r\n      <div *ngIf=\"f.submitted && !password.valid\" class=\"help-block\">Password is required</div>\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <button type=\"submit\" [disabled]=\"loading\" class=\"btn btn-primary\">Login</button>\r\n      <img *ngIf=\"loading\" src=\"data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==\" />\r\n    </div>\r\n  </form>\r\n  <p>Don't have a login? <a [routerLink]=\"['/register']\"> Click</a></p>\r\n</div>\r\n"
+module.exports = "    <div class=\"main\">\n\n  <h3>Please Log In</h3>\n  <div class=\"row\">\n    <div class=\"col-xs-6 col-sm-6 col-md-6\">\n      <a href=\"#\" class=\"btn btn-lg btn-primary btn-block\">Facebook</a>\n    </div>\n    <div class=\"col-xs-6 col-sm-6 col-md-6\">\n      <a href=\"#\" class=\"btn btn-lg btn-info btn-block\">Google</a>\n    </div>\n  </div>\n  <div class=\"login-or\">\n    <hr class=\"hr-or\">\n    <span class=\"span-or\">or</span>\n  </div>\n  <div *ngIf=\"error\" class=\"alert alert-danger\">{{error}}</div>\n  <form role=\"form\" name=\"form\" (ngSubmit)=\"f.form.valid && login()\" #f=\"ngForm\" novalidate>\n    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !email.valid }\">\n      <label for=\"email\">Email</label>\n      <input type=\"email\" class=\"form-control\" name=\"email\" [(ngModel)]=\"model.email\" #email=\"ngModel\" required />\n      <div *ngIf=\"f.submitted && !email.valid\" class=\"help-block\">Email is required</div>\n    </div>\n    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !password.valid }\">\n      <a class=\"pull-right\" href=\"#\">Forgot password?</a>\n      <label for=\"password\">Password</label>\n      <input type=\"password\" class=\"form-control\" name=\"password\" [(ngModel)]=\"model.password\" #password=\"ngModel\" required />\n      <div *ngIf=\"f.submitted && !password.valid\" class=\"help-block\">Password is required</div>\n    </div>\n    <div class=\"form-group\">\n      <button type=\"submit\" [disabled]=\"loading\" class=\"btn btn-primary\">Login</button>\n      <img *ngIf=\"loading\" src=\"data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==\" />\n    </div>\n  </form>\n  <p>Don't have a login? <a [routerLink]=\"['/register']\"> Click</a></p>\n</div>\n"
 
 /***/ }),
 
@@ -1091,14 +1091,14 @@ LoginComponent = __decorate([
 ], LoginComponent);
 
 var _a, _b, _c;
-//# sourceMappingURL=C:/Users/nilse/Code/lablog/src/login.component.js.map
+//# sourceMappingURL=/var/www/Code/lablog/src/login.component.js.map
 
 /***/ }),
 
 /***/ "../../../../../src/app/components/navigation/navigation.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-lg fixed-top navbar-dark bg-dark\">\r\n    <div class=\"container\">\r\n        <a class=\"navbar-brand\" [routerLink]=\"['/']\"><strong style=\"\">#{{appName}}</strong></a>\r\n        <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarNav\"\r\n                aria-controls=\"navbarNav\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n            <span class=\"navbar-toggler-icon\"></span>\r\n        </button>\r\n        <div class=\"collapse navbar-collapse\" id=\"navbarNav\">\r\n            <ul class=\"navbar-nav col-4\">\r\n                <li class=\"nav-item\">\r\n                    <a class=\"nav-link\" [routerLink]=\"['/posts']\">Posts</a>\r\n                </li>\r\n                <li class=\"nav-item\" *ngIf=\"authenticated\">\r\n                    <a class=\"nav-link\" [routerLink]=\"['/user']\">Hello, {{user['name']}}</a>\r\n                </li>\r\n            </ul>\r\n            <ul class=\"navbar-nav col-5\">\r\n                <app-search class=\"w-100\"></app-search>\r\n            </ul>\r\n            <ul class=\"navbar-nav col-3\">\r\n                <span class=\"nav-item\" style=\"margin-left: auto;display: flex;\">\r\n                    <li class=\"nav-item\" *ngIf=\"!authenticated\">\r\n                    <a class=\"nav-link\" [routerLink]=\"['/register']\">Register</a>\r\n                </li>\r\n                <li class=\"nav-item\" *ngIf=\"!authenticated\">\r\n                    <a class=\"nav-link\">|</a>\r\n                </li>\r\n                <li class=\"nav-item\" style=\"margin-left: auto;\" *ngIf=\"!authenticated\">\r\n                    <a class=\"nav-link\" [routerLink]=\"['/login']\">Login</a>\r\n                </li>\r\n                <li class=\"nav-item\" style=\"margin-left: auto;\" *ngIf=\"authenticated\">\r\n                    <a class=\"nav-link\" [routerLink]=\"['/login']\">Logout</a>\r\n                </li>\r\n                </span>\r\n            </ul>\r\n        </div>\r\n    </div>\r\n</nav>"
+module.exports = "<nav class=\"navbar navbar-expand-lg fixed-top navbar-dark bg-dark\">\n    <div class=\"container\">\n        <a class=\"navbar-brand\" [routerLink]=\"['/']\"><strong style=\"\">#{{appName}}</strong></a>\n        <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarNav\"\n                aria-controls=\"navbarNav\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n            <span class=\"navbar-toggler-icon\"></span>\n        </button>\n        <div class=\"collapse navbar-collapse\" id=\"navbarNav\">\n            <ul class=\"navbar-nav col-4\">\n                <li class=\"nav-item\">\n                    <a class=\"nav-link\" [routerLink]=\"['/posts']\">Posts</a>\n                </li>\n                <li class=\"nav-item\" *ngIf=\"authenticated\">\n                    <a class=\"nav-link\" [routerLink]=\"['/user']\">Hello, {{user['name']}}</a>\n                </li>\n            </ul>\n            <ul class=\"navbar-nav col-5\">\n                <app-search class=\"w-100\"></app-search>\n            </ul>\n            <ul class=\"navbar-nav col-3\">\n                <span class=\"nav-item\" style=\"margin-left: auto;display: flex;\">\n                    <li class=\"nav-item\" *ngIf=\"!authenticated\">\n                    <a class=\"nav-link\" [routerLink]=\"['/register']\">Register</a>\n                </li>\n                <li class=\"nav-item\" *ngIf=\"!authenticated\">\n                    <a class=\"nav-link\">|</a>\n                </li>\n                <li class=\"nav-item\" style=\"margin-left: auto;\" *ngIf=\"!authenticated\">\n                    <a class=\"nav-link\" [routerLink]=\"['/login']\">Login</a>\n                </li>\n                <li class=\"nav-item\" style=\"margin-left: auto;\" *ngIf=\"authenticated\">\n                    <a class=\"nav-link\" [routerLink]=\"['/login']\">Logout</a>\n                </li>\n                </span>\n            </ul>\n        </div>\n    </div>\n</nav>"
 
 /***/ }),
 
@@ -1191,14 +1191,14 @@ NavigationComponent = __decorate([
 ], NavigationComponent);
 
 var _a;
-//# sourceMappingURL=C:/Users/nilse/Code/lablog/src/navigation.component.js.map
+//# sourceMappingURL=/var/www/Code/lablog/src/navigation.component.js.map
 
 /***/ }),
 
 /***/ "../../../../../src/app/components/pagination/pagination.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<ul class=\"pagination\" *ngIf=\"pagination && pagination.current_page && pagination.last_page\">\r\n  <li *ngIf=\"pagination.current_page > 1\">\r\n    <a role=\"link\" aria-label=\"Previous\" class=\"btn btn-dark btn-sm\" [routerLink]=\"['/posts']\" [queryParams]=\"{ page: this.page - 1 }\">\r\n      <span aria-hidden=\"true\">←</span>\r\n    </a>\r\n  </li>\r\n  <li *ngFor=\"let page of pagesNumber()\" [ngClass]=\"{'active': page == pagination.current_page}\">\r\n    <a [routerLink]=\"['/posts']\" [queryParams]=\"{ page: page }\" class=\"btn btn-dark btn-sm\">{{ page }}</a>\r\n  </li>\r\n  <li *ngIf=\"pagination.current_page < pagination.last_page\">\r\n    <button role=\"link\" aria-label=\"Next\" class=\"btn btn-dark btn-sm\" [routerLink]=\"['/posts']\" [queryParams]=\"{ page: this.page + 1 }\">\r\n      <span aria-hidden=\"true\">→</span>\r\n    </button>\r\n  </li>\r\n</ul>"
+module.exports = "<ul class=\"pagination\" *ngIf=\"pagination && pagination.current_page && pagination.last_page\">\n  <li *ngIf=\"pagination.current_page > 1\">\n    <a role=\"link\" aria-label=\"Previous\" class=\"btn btn-dark btn-sm\" [routerLink]=\"['/posts']\" [queryParams]=\"{ page: this.page - 1 }\">\n      <span aria-hidden=\"true\">←</span>\n    </a>\n  </li>\n  <li *ngFor=\"let page of pagesNumber()\" [ngClass]=\"{'active': page == pagination.current_page}\">\n    <a [routerLink]=\"['/posts']\" [queryParams]=\"{ page: page }\" class=\"btn btn-dark btn-sm\">{{ page }}</a>\n  </li>\n  <li *ngIf=\"pagination.current_page < pagination.last_page\">\n    <button role=\"link\" aria-label=\"Next\" class=\"btn btn-dark btn-sm\" [routerLink]=\"['/posts']\" [queryParams]=\"{ page: this.page + 1 }\">\n      <span aria-hidden=\"true\">→</span>\n    </button>\n  </li>\n</ul>"
 
 /***/ }),
 
@@ -1320,7 +1320,7 @@ PaginationComponent = __decorate([
 ], PaginationComponent);
 
 var _a;
-//# sourceMappingURL=C:/Users/nilse/Code/lablog/src/pagination.component.js.map
+//# sourceMappingURL=/var/www/Code/lablog/src/pagination.component.js.map
 
 /***/ }),
 
@@ -1430,14 +1430,14 @@ PersonalPostsComponent = __decorate([
 ], PersonalPostsComponent);
 
 var _a, _b, _c;
-//# sourceMappingURL=C:/Users/nilse/Code/lablog/src/personal-posts.component.js.map
+//# sourceMappingURL=/var/www/Code/lablog/src/personal-posts.component.js.map
 
 /***/ }),
 
 /***/ "../../../../../src/app/components/post-create/post-create.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-post-nav></app-post-nav>\r\n<h3 class=\"text-muted\">Create your post</h3>\r\n<form *ngIf=\"post\" [formGroup]=\"postForm\">\r\n    <div class=\"form-group\">\r\n        <label class=\"center-block w-100\">Name:\r\n            <div class=\"badge badge-secondary\">symbols left: {{120 - post.name.length}}</div>\r\n            <input placeholder=\"please type the name of the post (min:2, max:120)\" class=\"form-control\"\r\n                   [(ngModel)]=\"post.name\" formControlName=\"name\">\r\n        </label>\r\n        <app-control-messages [control]=\"postForm.controls.name\"></app-control-messages>\r\n    </div>\r\n    <div *ngIf=\"post.image_url\" class=\"form-group\">\r\n        <label class=\"center-block\">Upload Image:\r\n            <img src=\"{{post.image_url}}\" class=\"thumbnail\">\r\n        </label>\r\n    </div>\r\n    <div class=\"form-group\">\r\n        <label class=\"center-block  w-100\">Post tags:\r\n            <tag-input [(ngModel)]=\"post.tagged\"\r\n                       [identifyBy]=\"'id'\"\r\n                       [displayBy]=\"'tag_slug'\"\r\n                       [theme]=\"'dark'\"\r\n                       [class]=\"'tag-block-form'\"\r\n                       formControlName=\"tagged\">\r\n            </tag-input>\r\n        </label>\r\n    </div>\r\n    <div class=\"form-group\">\r\n        <label class=\"center-block\">Upload Image:\r\n            <input type=\"file\" (change)=\"fileChange($event)\"\r\n                   placeholder=\"Upload Post Image\" class=\"img-post-input\" accept=\".png,.jpeg,.jpg\">\r\n            <img *ngIf=\"!tmpFileSrc\" src=\"{{post.image_url}}\" class=\"img-post-thumbnail\">\r\n            <img *ngIf=\"tmpFileSrc\" src=\"{{tmpFileSrc}}\" class=\"img-post-thumbnail\">\r\n        </label>\r\n    </div>\r\n    <div class=\"form-group\">\r\n        <label class=\"center-block w-100\">Preamble:\r\n            <div class=\"badge badge-secondary\">symbols left: {{500 - post.preamble.length}}</div>\r\n            <textarea placeholder=\"please type the preamble of the post (min:50, max:500)\" class=\"form-control\"\r\n                       [(ngModel)]=\"post.preamble\" formControlName=\"preamble\">\r\n            </textarea>\r\n        </label>\r\n        <app-control-messages [control]=\"postForm.controls.preamble\"></app-control-messages>\r\n    </div>\r\n\r\n    <div class=\"form-group\">\r\n        <label class=\"center-block  w-100\">Body:\r\n            <div class=\"badge badge-secondary\">symbols left: {{50000 - post.body.length}}</div>\r\n            <ckeditor\r\n                    formControlName=\"body\"\r\n                    [(ngModel)]=\"post.body\"\r\n                    [config]=\"{uiColor: '#343a40',toolbar: [\r\n\t\t\t{ name: 'document', items: [ 'Source' ] },\r\n\t\t\t{ name: 'basicstyles', items: [ 'Bold', 'Italic' ] },\r\n\t\t\t{ name: 'paragraph', items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote' ] },\r\n\t\t\t{ name: 'links', items: [ 'Link', 'Unlink' ] },\r\n\t\t\t{ name: 'insert', items: [ 'CodeSnippet' ] },\r\n\t\t\t{ name: 'styles', items: [ 'Format', 'Styles' ] }],\r\n\t\t\tformat_tags: 'p;h1;h2;h3;pre',\r\n\t\t\tremovePlugins: 'image',\r\n\t\t\textraPlugins: 'codesnippet,youtube,codemirror',\r\n\t\t\tremoveDialogTabs: 'image:advanced;link:advanced;link:target'}\"\r\n                    [readonly]=\"false\"\r\n                    (change)=\"onChange($event)\"\r\n                    (ready)=\"onReady($event)\"\r\n                    (focus)=\"onFocus($event)\"\r\n                    (blur)=\"onBlur($event)\"\r\n                    debounce=\"500\">\r\n            </ckeditor>\r\n        </label>\r\n        <app-control-messages [control]=\"postForm.controls.body\"></app-control-messages>\r\n    </div>\r\n    <div class=\"form-group\">\r\n        <input id=\"available\" type=\"hidden\" formControlName=\"available\" name=\"available\"\r\n               [(ngModel)]=\"post.available\">\r\n        <div>\r\n            <label class=\"w-100\">Available:\r\n                <span class=\"clearfix\"></span>\r\n                <input class=\"\" type=\"checkbox\"\r\n                       [checked]=\"post.available === toggles[0].value\"\r\n                       (change)=\"$event.target.checked? (post.available = toggles[0].value) : (post.available = toggles[1].value)\">\r\n                <span class=\"form-check-inline\">\r\n                    {{ getDisplayToggles() }}\r\n                </span>\r\n            </label>\r\n        </div>\r\n        <app-control-messages [control]=\"postForm.controls.available\"></app-control-messages>\r\n    </div>\r\n    <div class=\"form-group\">\r\n        <button [disabled]=\"loading\" (click)=\"savePost()\" class=\"btn btn-primary\">Create Post</button>\r\n        <img *ngIf=\"loading\"\r\n             src=\"data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==\"/>\r\n    </div>\r\n    <div *ngIf=\"showDebug\" class=\"debug\">\r\n        <p>Form value: {{ postForm.value | json }}</p>\r\n        <p>Form status: {{ postForm.status | json }}</p>\r\n    </div>\r\n</form>"
+module.exports = "<app-post-nav></app-post-nav>\n<h3 class=\"text-muted\">Create your post</h3>\n<form *ngIf=\"post\" [formGroup]=\"postForm\">\n    <div class=\"form-group\">\n        <label class=\"center-block w-100\">Name:\n            <div class=\"badge badge-secondary\">symbols left: {{120 - post.name.length}}</div>\n            <input placeholder=\"please type the name of the post (min:2, max:120)\" class=\"form-control\"\n                   [(ngModel)]=\"post.name\" formControlName=\"name\">\n        </label>\n        <app-control-messages [control]=\"postForm.controls.name\"></app-control-messages>\n    </div>\n    <div *ngIf=\"post.image_url\" class=\"form-group\">\n        <label class=\"center-block\">Upload Image:\n            <img src=\"{{post.image_url}}\" class=\"thumbnail\">\n        </label>\n    </div>\n    <div class=\"form-group\">\n        <label class=\"center-block  w-100\">Post tags:\n            <tag-input [(ngModel)]=\"post.tagged\"\n                       [identifyBy]=\"'id'\"\n                       [displayBy]=\"'tag_slug'\"\n                       [theme]=\"'dark'\"\n                       [class]=\"'tag-block-form'\"\n                       formControlName=\"tagged\">\n            </tag-input>\n        </label>\n    </div>\n    <div class=\"form-group\">\n        <label class=\"center-block\">Upload Image:\n            <input type=\"file\" (change)=\"fileChange($event)\"\n                   placeholder=\"Upload Post Image\" class=\"img-post-input\" accept=\".png,.jpeg,.jpg\">\n            <img *ngIf=\"!tmpFileSrc\" src=\"{{post.image_url}}\" class=\"img-post-thumbnail\">\n            <img *ngIf=\"tmpFileSrc\" src=\"{{tmpFileSrc}}\" class=\"img-post-thumbnail\">\n        </label>\n    </div>\n    <div class=\"form-group\">\n        <label class=\"center-block w-100\">Preamble:\n            <div class=\"badge badge-secondary\">symbols left: {{500 - post.preamble.length}}</div>\n            <textarea placeholder=\"please type the preamble of the post (min:50, max:500)\" class=\"form-control\"\n                       [(ngModel)]=\"post.preamble\" formControlName=\"preamble\">\n            </textarea>\n        </label>\n        <app-control-messages [control]=\"postForm.controls.preamble\"></app-control-messages>\n    </div>\n\n    <div class=\"form-group\">\n        <label class=\"center-block  w-100\">Body:\n            <div class=\"badge badge-secondary\">symbols left: {{50000 - post.body.length}}</div>\n            <ckeditor\n                    formControlName=\"body\"\n                    [(ngModel)]=\"post.body\"\n                    [config]=\"{uiColor: '#343a40',toolbar: [\n\t\t\t{ name: 'document', items: [ 'Source' ] },\n\t\t\t{ name: 'basicstyles', items: [ 'Bold', 'Italic' ] },\n\t\t\t{ name: 'paragraph', items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote' ] },\n\t\t\t{ name: 'links', items: [ 'Link', 'Unlink' ] },\n\t\t\t{ name: 'insert', items: [ 'CodeSnippet' ] },\n\t\t\t{ name: 'styles', items: [ 'Format', 'Styles' ] }],\n\t\t\tformat_tags: 'p;h1;h2;h3;pre',\n\t\t\tremovePlugins: 'image',\n\t\t\textraPlugins: 'codesnippet,youtube,codemirror',\n\t\t\tremoveDialogTabs: 'image:advanced;link:advanced;link:target'}\"\n                    [readonly]=\"false\"\n                    (change)=\"onChange($event)\"\n                    (ready)=\"onReady($event)\"\n                    (focus)=\"onFocus($event)\"\n                    (blur)=\"onBlur($event)\"\n                    debounce=\"500\">\n            </ckeditor>\n        </label>\n        <app-control-messages [control]=\"postForm.controls.body\"></app-control-messages>\n    </div>\n    <div class=\"form-group\">\n        <input id=\"available\" type=\"hidden\" formControlName=\"available\" name=\"available\"\n               [(ngModel)]=\"post.available\">\n        <div>\n            <label class=\"w-100\">Available:\n                <span class=\"clearfix\"></span>\n                <input class=\"\" type=\"checkbox\"\n                       [checked]=\"post.available === toggles[0].value\"\n                       (change)=\"$event.target.checked? (post.available = toggles[0].value) : (post.available = toggles[1].value)\">\n                <span class=\"form-check-inline\">\n                    {{ getDisplayToggles() }}\n                </span>\n            </label>\n        </div>\n        <app-control-messages [control]=\"postForm.controls.available\"></app-control-messages>\n    </div>\n    <div class=\"form-group\">\n        <button [disabled]=\"loading\" (click)=\"savePost()\" class=\"btn btn-primary\">Create Post</button>\n        <img *ngIf=\"loading\"\n             src=\"data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==\"/>\n    </div>\n    <div *ngIf=\"showDebug\" class=\"debug\">\n        <p>Form value: {{ postForm.value | json }}</p>\n        <p>Form status: {{ postForm.status | json }}</p>\n    </div>\n</form>"
 
 /***/ }),
 
@@ -1625,7 +1625,7 @@ PostCreateComponent = __decorate([
 ], PostCreateComponent);
 
 var _a, _b, _c, _d, _e, _f, _g;
-//# sourceMappingURL=C:/Users/nilse/Code/lablog/src/post-create.component.js.map
+//# sourceMappingURL=/var/www/Code/lablog/src/post-create.component.js.map
 
 /***/ }),
 
@@ -1701,7 +1701,7 @@ PostNavComponent = __decorate([
 ], PostNavComponent);
 
 var _a;
-//# sourceMappingURL=C:/Users/nilse/Code/lablog/src/post-nav.component.js.map
+//# sourceMappingURL=/var/www/Code/lablog/src/post-nav.component.js.map
 
 /***/ }),
 
@@ -1808,7 +1808,7 @@ PostComponent = __decorate([
 ], PostComponent);
 
 var _a, _b, _c;
-//# sourceMappingURL=C:/Users/nilse/Code/lablog/src/post.component.js.map
+//# sourceMappingURL=/var/www/Code/lablog/src/post.component.js.map
 
 /***/ }),
 
@@ -1914,14 +1914,14 @@ PostsComponent = __decorate([
 ], PostsComponent);
 
 var _a, _b, _c;
-//# sourceMappingURL=C:/Users/nilse/Code/lablog/src/posts.component.js.map
+//# sourceMappingURL=/var/www/Code/lablog/src/posts.component.js.map
 
 /***/ }),
 
 /***/ "../../../../../src/app/components/register/register.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"main\">\r\n\r\n  <h3>Please Sign Up</h3>\r\n  <div class=\"row\">\r\n    <div class=\"col-xs-6 col-sm-6 col-md-6\">\r\n      <a href=\"#\" class=\"btn btn-lg btn-primary btn-block\">Facebook</a>\r\n    </div>\r\n    <div class=\"col-xs-6 col-sm-6 col-md-6\">\r\n      <a href=\"#\" class=\"btn btn-lg btn-info btn-block\">Google</a>\r\n    </div>\r\n  </div>\r\n  <div class=\"login-or\">\r\n    <hr class=\"hr-or\">\r\n    <span class=\"span-or\">or</span>\r\n  </div>\r\n  <div *ngIf=\"error\" class=\"alert alert-danger\">{{error}}</div>\r\n  <form name=\"form\" role=\"form\" (ngSubmit)=\"f.form.valid && register()\" #f=\"ngForm\" novalidate>\r\n    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !name.valid }\">\r\n      <label for=\"name\">Name</label>\r\n      <input type=\"text\" class=\"form-control\" name=\"name\" [(ngModel)]=\"model.name\" #name=\"ngModel\" required />\r\n      <div *ngIf=\"f.submitted && !name.valid\" class=\"help-block\">Name is required</div>\r\n    </div>\r\n    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !email.valid }\">\r\n      <label for=\"email\">Email</label>\r\n      <input type=\"email\" class=\"form-control\" name=\"email\" [(ngModel)]=\"model.email\" #email=\"ngModel\" required />\r\n      <div *ngIf=\"f.submitted && !email.valid\" class=\"help-block\">Email is required</div>\r\n    </div>\r\n    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !password.valid }\">\r\n      <label for=\"password\">Password</label>\r\n      <input type=\"password\" class=\"form-control\" name=\"password\" [(ngModel)]=\"model.password\" #password=\"ngModel\" required />\r\n      <div *ngIf=\"f.submitted && !password.valid\" class=\"help-block\">Password is required</div>\r\n    </div>\r\n    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !password.valid }\">\r\n      <label for=\"confirm\">Confirmation</label>\r\n      <input type=\"password\" class=\"form-control\" name=\"password\" [(ngModel)]=\"model.confirm\" #confirm=\"ngModel\" required />\r\n      <div *ngIf=\"f.submitted && !confirm.valid\" class=\"help-block\">Confirm is required</div>\r\n    </div>\r\n    <div class=\"form-group\">\r\n      <button [disabled]=\"loading\" class=\"btn btn-primary\">SignUp</button>\r\n      <img *ngIf=\"loading\" src=\"data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==\" />\r\n    </div>\r\n  </form>\r\n  <p>Have a login? <a [routerLink]=\"['/login']\"> Click</a></p>\r\n</div>\r\n\r\n"
+module.exports = "<div class=\"main\">\n\n  <h3>Please Sign Up</h3>\n  <div class=\"row\">\n    <div class=\"col-xs-6 col-sm-6 col-md-6\">\n      <a href=\"#\" class=\"btn btn-lg btn-primary btn-block\">Facebook</a>\n    </div>\n    <div class=\"col-xs-6 col-sm-6 col-md-6\">\n      <a href=\"#\" class=\"btn btn-lg btn-info btn-block\">Google</a>\n    </div>\n  </div>\n  <div class=\"login-or\">\n    <hr class=\"hr-or\">\n    <span class=\"span-or\">or</span>\n  </div>\n  <div *ngIf=\"error\" class=\"alert alert-danger\">{{error}}</div>\n  <form name=\"form\" role=\"form\" (ngSubmit)=\"f.form.valid && register()\" #f=\"ngForm\" novalidate>\n    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !name.valid }\">\n      <label for=\"name\">Name</label>\n      <input type=\"text\" class=\"form-control\" name=\"name\" [(ngModel)]=\"model.name\" #name=\"ngModel\" required />\n      <div *ngIf=\"f.submitted && !name.valid\" class=\"help-block\">Name is required</div>\n    </div>\n    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !email.valid }\">\n      <label for=\"email\">Email</label>\n      <input type=\"email\" class=\"form-control\" name=\"email\" [(ngModel)]=\"model.email\" #email=\"ngModel\" required />\n      <div *ngIf=\"f.submitted && !email.valid\" class=\"help-block\">Email is required</div>\n    </div>\n    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !password.valid }\">\n      <label for=\"password\">Password</label>\n      <input type=\"password\" class=\"form-control\" name=\"password\" [(ngModel)]=\"model.password\" #password=\"ngModel\" required />\n      <div *ngIf=\"f.submitted && !password.valid\" class=\"help-block\">Password is required</div>\n    </div>\n    <div class=\"form-group\" [ngClass]=\"{ 'has-error': f.submitted && !password.valid }\">\n      <label for=\"confirm\">Confirmation</label>\n      <input type=\"password\" class=\"form-control\" name=\"password\" [(ngModel)]=\"model.confirm\" #confirm=\"ngModel\" required />\n      <div *ngIf=\"f.submitted && !confirm.valid\" class=\"help-block\">Confirm is required</div>\n    </div>\n    <div class=\"form-group\">\n      <button [disabled]=\"loading\" class=\"btn btn-primary\">SignUp</button>\n      <img *ngIf=\"loading\" src=\"data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==\" />\n    </div>\n  </form>\n  <p>Have a login? <a [routerLink]=\"['/login']\"> Click</a></p>\n</div>\n\n"
 
 /***/ }),
 
@@ -2013,7 +2013,7 @@ RegisterComponent = __decorate([
 ], RegisterComponent);
 
 var _a, _b, _c;
-//# sourceMappingURL=C:/Users/nilse/Code/lablog/src/register.component.js.map
+//# sourceMappingURL=/var/www/Code/lablog/src/register.component.js.map
 
 /***/ }),
 
@@ -2134,14 +2134,14 @@ SearchComponent = __decorate([
 ], SearchComponent);
 
 var _a, _b;
-//# sourceMappingURL=C:/Users/nilse/Code/lablog/src/search.component.js.map
+//# sourceMappingURL=/var/www/Code/lablog/src/search.component.js.map
 
 /***/ }),
 
 /***/ "../../../../../src/app/components/user/user.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p class=\"jumbotron justify-content-center\">\r\n  name: {{user['name']}}\r\n  email: {{user['email']}}\r\n</p>\r\n"
+module.exports = "<p class=\"jumbotron justify-content-center\">\n  name: {{user['name']}}\n  email: {{user['email']}}\n</p>\n"
 
 /***/ }),
 
@@ -2207,14 +2207,14 @@ UserComponent = __decorate([
 ], UserComponent);
 
 var _a;
-//# sourceMappingURL=C:/Users/nilse/Code/lablog/src/user.component.js.map
+//# sourceMappingURL=/var/www/Code/lablog/src/user.component.js.map
 
 /***/ }),
 
 /***/ "../../../../../src/app/components/welcome/welcome.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n  <!--The content below is only a placeholder and can be replaced.-->\r\n  <div style=\"width: 100%; text-align:center\">\r\n    <h1 class=\"text-info\">\r\n      Welcome here!\r\n    </h1>\r\n    <h1>\r\n      Hello Guys! <br>\r\n      This is the app that binds angular4 and laravel!\r\n      <br>\r\n      Welcome to {{title}}!\r\n    </h1>\r\n    <img width=\"400\" src=\"assets/images/laravel.png\">\r\n    <img width=\"300\"\r\n         src=\"data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxOS4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiDQoJIHZpZXdCb3g9IjAgMCAyNTAgMjUwIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAyNTAgMjUwOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+DQo8c3R5bGUgdHlwZT0idGV4dC9jc3MiPg0KCS5zdDB7ZmlsbDojREQwMDMxO30NCgkuc3Qxe2ZpbGw6I0MzMDAyRjt9DQoJLnN0MntmaWxsOiNGRkZGRkY7fQ0KPC9zdHlsZT4NCjxnPg0KCTxwb2x5Z29uIGNsYXNzPSJzdDAiIHBvaW50cz0iMTI1LDMwIDEyNSwzMCAxMjUsMzAgMzEuOSw2My4yIDQ2LjEsMTg2LjMgMTI1LDIzMCAxMjUsMjMwIDEyNSwyMzAgMjAzLjksMTg2LjMgMjE4LjEsNjMuMiAJIi8+DQoJPHBvbHlnb24gY2xhc3M9InN0MSIgcG9pbnRzPSIxMjUsMzAgMTI1LDUyLjIgMTI1LDUyLjEgMTI1LDE1My40IDEyNSwxNTMuNCAxMjUsMjMwIDEyNSwyMzAgMjAzLjksMTg2LjMgMjE4LjEsNjMuMiAxMjUsMzAgCSIvPg0KCTxwYXRoIGNsYXNzPSJzdDIiIGQ9Ik0xMjUsNTIuMUw2Ni44LDE4Mi42aDBoMjEuN2gwbDExLjctMjkuMmg0OS40bDExLjcsMjkuMmgwaDIxLjdoMEwxMjUsNTIuMUwxMjUsNTIuMUwxMjUsNTIuMUwxMjUsNTIuMQ0KCQlMMTI1LDUyLjF6IE0xNDIsMTM1LjRIMTA4bDE3LTQwLjlMMTQyLDEzNS40eiIvPg0KPC9nPg0KPC9zdmc+DQo=\">\r\n  </div>\r\n  <h2 class=\"text-center\" style=\"width: 100%\">Here are some links to help you start: </h2>\r\n  <ul class=\"text-center\"  style=\"width: 100%; list-style-type: none\">\r\n    <li>\r\n      <h2><a target=\"_blank\" href=\"https://laravel.com/docs/5.4\">Laravel Docs</a></h2>\r\n    </li>\r\n    <li>\r\n      <h2><a target=\"_blank\" href=\"https://github.com/angular/angular-cli/wiki\">Angular CLI\r\n        Documentation</a>\r\n      </h2>\r\n    </li>\r\n    <li>\r\n      <h2><a target=\"_blank\" href=\"https://getbootstrap.com/\">Bootstrap4 Documentation</a></h2>\r\n    </li>\r\n  </ul>\r\n\r\n</div>\r\n"
+module.exports = "<div class=\"row\">\n  <!--The content below is only a placeholder and can be replaced.-->\n  <div style=\"width: 100%; text-align:center\">\n    <h1 class=\"text-info\">\n      Welcome here!\n    </h1>\n    <h1>\n      Hello Guys! <br>\n      This is the app that binds angular4 and laravel!\n      <br>\n      Welcome to {{title}}!\n    </h1>\n    <img width=\"400\" src=\"assets/images/laravel.png\">\n    <img width=\"300\"\n         src=\"data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxOS4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiDQoJIHZpZXdCb3g9IjAgMCAyNTAgMjUwIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAyNTAgMjUwOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+DQo8c3R5bGUgdHlwZT0idGV4dC9jc3MiPg0KCS5zdDB7ZmlsbDojREQwMDMxO30NCgkuc3Qxe2ZpbGw6I0MzMDAyRjt9DQoJLnN0MntmaWxsOiNGRkZGRkY7fQ0KPC9zdHlsZT4NCjxnPg0KCTxwb2x5Z29uIGNsYXNzPSJzdDAiIHBvaW50cz0iMTI1LDMwIDEyNSwzMCAxMjUsMzAgMzEuOSw2My4yIDQ2LjEsMTg2LjMgMTI1LDIzMCAxMjUsMjMwIDEyNSwyMzAgMjAzLjksMTg2LjMgMjE4LjEsNjMuMiAJIi8+DQoJPHBvbHlnb24gY2xhc3M9InN0MSIgcG9pbnRzPSIxMjUsMzAgMTI1LDUyLjIgMTI1LDUyLjEgMTI1LDE1My40IDEyNSwxNTMuNCAxMjUsMjMwIDEyNSwyMzAgMjAzLjksMTg2LjMgMjE4LjEsNjMuMiAxMjUsMzAgCSIvPg0KCTxwYXRoIGNsYXNzPSJzdDIiIGQ9Ik0xMjUsNTIuMUw2Ni44LDE4Mi42aDBoMjEuN2gwbDExLjctMjkuMmg0OS40bDExLjcsMjkuMmgwaDIxLjdoMEwxMjUsNTIuMUwxMjUsNTIuMUwxMjUsNTIuMUwxMjUsNTIuMQ0KCQlMMTI1LDUyLjF6IE0xNDIsMTM1LjRIMTA4bDE3LTQwLjlMMTQyLDEzNS40eiIvPg0KPC9nPg0KPC9zdmc+DQo=\">\n  </div>\n  <h2 class=\"text-center\" style=\"width: 100%\">Here are some links to help you start: </h2>\n  <ul class=\"text-center\"  style=\"width: 100%; list-style-type: none\">\n    <li>\n      <h2><a target=\"_blank\" href=\"https://laravel.com/docs/5.4\">Laravel Docs</a></h2>\n    </li>\n    <li>\n      <h2><a target=\"_blank\" href=\"https://github.com/angular/angular-cli/wiki\">Angular CLI\n        Documentation</a>\n      </h2>\n    </li>\n    <li>\n      <h2><a target=\"_blank\" href=\"https://getbootstrap.com/\">Bootstrap4 Documentation</a></h2>\n    </li>\n  </ul>\n\n</div>\n"
 
 /***/ }),
 
@@ -2263,7 +2263,7 @@ WelcomeComponent = __decorate([
     })
 ], WelcomeComponent);
 
-//# sourceMappingURL=C:/Users/nilse/Code/lablog/src/welcome.component.js.map
+//# sourceMappingURL=/var/www/Code/lablog/src/welcome.component.js.map
 
 /***/ }),
 
@@ -2310,7 +2310,7 @@ AuthGuard = __decorate([
 ], AuthGuard);
 
 var _a, _b;
-//# sourceMappingURL=C:/Users/nilse/Code/lablog/src/auth.guard.js.map
+//# sourceMappingURL=/var/www/Code/lablog/src/auth.guard.js.map
 
 /***/ }),
 
@@ -2377,7 +2377,7 @@ UserAllowedToPostGuardGuard = __decorate([
 ], UserAllowedToPostGuardGuard);
 
 var _a, _b, _c, _d;
-//# sourceMappingURL=C:/Users/nilse/Code/lablog/src/user-allowed-to-post-guard.guard.js.map
+//# sourceMappingURL=/var/www/Code/lablog/src/user-allowed-to-post-guard.guard.js.map
 
 /***/ }),
 
@@ -2397,7 +2397,7 @@ var arrays = {
         return arrays[0];
     }
 };
-//# sourceMappingURL=C:/Users/nilse/Code/lablog/src/arrays.js.map
+//# sourceMappingURL=/var/www/Code/lablog/src/arrays.js.map
 
 /***/ }),
 
@@ -2422,7 +2422,7 @@ var Post = (function () {
     return Post;
 }());
 
-//# sourceMappingURL=C:/Users/nilse/Code/lablog/src/Post.js.map
+//# sourceMappingURL=/var/www/Code/lablog/src/Post.js.map
 
 /***/ }),
 
@@ -2437,7 +2437,7 @@ var User = (function () {
     return User;
 }());
 
-//# sourceMappingURL=C:/Users/nilse/Code/lablog/src/User.js.map
+//# sourceMappingURL=/var/www/Code/lablog/src/User.js.map
 
 /***/ }),
 
@@ -2474,7 +2474,7 @@ KeepHtmlPipe = __decorate([
 ], KeepHtmlPipe);
 
 var _a;
-//# sourceMappingURL=C:/Users/nilse/Code/lablog/src/keep-html.pipe.js.map
+//# sourceMappingURL=/var/www/Code/lablog/src/keep-html.pipe.js.map
 
 /***/ }),
 
@@ -2522,7 +2522,7 @@ var appRoutes = [
     // otherwise redirect to home
     { path: "**", redirectTo: "" }
 ];
-//# sourceMappingURL=C:/Users/nilse/Code/lablog/src/routes.js.map
+//# sourceMappingURL=/var/www/Code/lablog/src/routes.js.map
 
 /***/ }),
 
@@ -2719,7 +2719,7 @@ AuthenticationService = __decorate([
 ], AuthenticationService);
 
 var _a, _b;
-//# sourceMappingURL=C:/Users/nilse/Code/lablog/src/authentication.service.js.map
+//# sourceMappingURL=/var/www/Code/lablog/src/authentication.service.js.map
 
 /***/ }),
 
@@ -2778,7 +2778,7 @@ FileUploadService = __decorate([
 ], FileUploadService);
 
 var _a;
-//# sourceMappingURL=C:/Users/nilse/Code/lablog/src/file-upload.service.js.map
+//# sourceMappingURL=/var/www/Code/lablog/src/file-upload.service.js.map
 
 /***/ }),
 
@@ -2858,7 +2858,7 @@ LikeService = __decorate([
 ], LikeService);
 
 var _a;
-//# sourceMappingURL=C:/Users/nilse/Code/lablog/src/like.service.js.map
+//# sourceMappingURL=/var/www/Code/lablog/src/like.service.js.map
 
 /***/ }),
 
@@ -2986,7 +2986,7 @@ PostService = __decorate([
 ], PostService);
 
 var _a;
-//# sourceMappingURL=C:/Users/nilse/Code/lablog/src/post.service.js.map
+//# sourceMappingURL=/var/www/Code/lablog/src/post.service.js.map
 
 /***/ }),
 
@@ -3040,7 +3040,7 @@ SearchService = __decorate([
 ], SearchService);
 
 var _a;
-//# sourceMappingURL=C:/Users/nilse/Code/lablog/src/search.service.js.map
+//# sourceMappingURL=/var/www/Code/lablog/src/search.service.js.map
 
 /***/ }),
 
@@ -3089,7 +3089,7 @@ ToastrService = __decorate([
     __metadata("design:paramtypes", [])
 ], ToastrService);
 
-//# sourceMappingURL=C:/Users/nilse/Code/lablog/src/toastr.service.js.map
+//# sourceMappingURL=/var/www/Code/lablog/src/toastr.service.js.map
 
 /***/ }),
 
@@ -3153,7 +3153,7 @@ ValidationService = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])()
 ], ValidationService);
 
-//# sourceMappingURL=C:/Users/nilse/Code/lablog/src/validation.service.js.map
+//# sourceMappingURL=/var/www/Code/lablog/src/validation.service.js.map
 
 /***/ }),
 
@@ -3187,7 +3187,7 @@ var CustomToastr = (function (_super) {
     return CustomToastr;
 }(__WEBPACK_IMPORTED_MODULE_0_ng2_toastr_src_toast_options__["ToastOptions"]));
 
-//# sourceMappingURL=C:/Users/nilse/Code/lablog/src/CustomToastr.js.map
+//# sourceMappingURL=/var/www/Code/lablog/src/CustomToastr.js.map
 
 /***/ }),
 
@@ -3231,7 +3231,7 @@ ZoneListener = __decorate([
 ], ZoneListener);
 
 var _a;
-//# sourceMappingURL=C:/Users/nilse/Code/lablog/src/zone.listener.js.map
+//# sourceMappingURL=/var/www/Code/lablog/src/zone.listener.js.map
 
 /***/ }),
 
@@ -3244,7 +3244,7 @@ var app = {
     api_url: "http://lablog.dev",
     name: "BadCoders"
 };
-//# sourceMappingURL=C:/Users/nilse/Code/lablog/src/app.js.map
+//# sourceMappingURL=/var/www/Code/lablog/src/app.js.map
 
 /***/ }),
 
@@ -3261,7 +3261,7 @@ var app = {
 var environment = {
     production: false
 };
-//# sourceMappingURL=C:/Users/nilse/Code/lablog/src/environment.js.map
+//# sourceMappingURL=/var/www/Code/lablog/src/environment.js.map
 
 /***/ }),
 
@@ -3284,7 +3284,7 @@ if (__WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment *
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["enableProdMode"])();
 }
 Object(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_2__app_app_module__["a" /* AppModule */], [__WEBPACK_IMPORTED_MODULE_4__app_services_authentication_service__["a" /* AuthenticationService */]]);
-//# sourceMappingURL=C:/Users/nilse/Code/lablog/src/main.js.map
+//# sourceMappingURL=/var/www/Code/lablog/src/main.js.map
 
 /***/ }),
 

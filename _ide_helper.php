@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.5.4 on 2017-09-18.
+ * Generated for Laravel 5.5.5 on 2017-09-19.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -8904,6 +8904,18 @@ namespace Illuminate\Support\Facades {
         public static function any($uri, $action = null)
         {
             return \Illuminate\Routing\Router::any($uri, $action);
+        }
+        
+        /**
+         * Register a new Fallback route with the router.
+         *
+         * @param \Closure|array|string|null $action
+         * @return \Illuminate\Routing\Route 
+         * @static 
+         */ 
+        public static function fallback($action)
+        {
+            return \Illuminate\Routing\Router::fallback($action);
         }
         
         /**
