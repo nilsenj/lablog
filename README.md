@@ -2,6 +2,22 @@
 For stream series! Channel https://www.youtube.com/badCoder
 ![lablog](https://raw.githubusercontent.com/nilsenj/lablog/master/src/assets/images/Screenshot.png)
 
+So guys! The stream is finished! 
+I have assignments for those who wanted to experiment with code))
+This is for those who viewed Laravel + Angular4 stream series on my channel!
+
+* Create admin panel!
+    * Create Rights & Privileges! I've done something similar in djinni.co clone "skillhire" on my channel.
+    * Users management from admin panel! Add, delete, ban, edit.
+    * Logs output from admin panel! You can use "arcanedev/log-viewer" package for that. 
+    * Work with filesystem.
+        * Upload photos for posts!
+          You can use "plank/laravel-mediable" package.
+        * Write client for filesystem for admin panel!
+    * System commands through routes! For example dump database or make reset)) Or one button click go to maintenance mode. and etc.
+    * Posts management in admin panel! Posts pre moderation! 
+       Delete, Update, create from admin panel!
+
 #This is a full-stack combination of Laravel 5.4 and Angular4
 to run it type `npm run serve`
 and launch your laravel app.
